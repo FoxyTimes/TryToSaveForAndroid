@@ -4,29 +4,34 @@
 
 
 <Container>:
-    id: fl1
-    orientation: 'vertical'
-    spacing: 20
-    canvas:
-        Rectangle:
-            source: 'img/darkPurple.png'
-            size: self.size
-            pos: self.pos
-    Button:
-        size_hint: 0.19, 0.23
-        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-        background_normal: 'img/button.png'
-        background_down: 'img/button.png'
+    AnchorLayout:
+        id: anch1
+        orientation: 'vertical'
+        spacing: 20
+        canvas:
+            Rectangle:
+                source: 'img/darkPurple.png'
+                size: self.size
+                pos: self.pos
+        Button:
+            id: bt1
+            size_hint: 0.19, 0.23
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            background_normal: 'img/button.png'
+            background_down: 'img/button.png'
+            on_press:
+                root.remove_start_game_screen()
 
 
-<Anch>:
-    anchor_x: 'center'
-    anchor_y: 'top'
-    Label:
-        color: 1, 1, 0, 1
-        text: 'TryToSave'
-        font_size: self.height
-        size_hint: None, None
+        AnchorLayout:
+            id: anch2
+            anchor_x: 'center'
+            anchor_y: 'top'
+            Label:
+                color: 1, 1, 0, 1
+                text: 'TryToSave'
+                font_size: self.height
+                size_hint: None, None
 
 
 
