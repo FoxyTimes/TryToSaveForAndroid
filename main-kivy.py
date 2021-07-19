@@ -9,23 +9,26 @@ from kivy.uix.gridlayout import GridLayout
 from functools import partial
 from kivy.properties import NumericProperty
 from kivy.uix.boxlayout import BoxLayout
+import time
 
-
-
+runing = 0
 class Container(FloatLayout):
     def remove_start_game_screen(self):
-        score = NumericProperty(0)
         self.ids.anch1.remove_widget(self.ids.bt1)
-        self.remove_widget(self.ids.anch2)
-        self.ids.anch1.add_widget(Button(text=''))
-
+        self.ids.anch2.remove_widget(self.ids.box1)
+        self.score = 0
+        self.start_game()
+    def start_game(self):
+        self.box = BoxLayout(orientation='vertical')
+        self.lbl = Label(text='Ваш счет: ' + str(self.score), text_size=(self.width / 2, self.height - 100), halign='center', valign='top')
+        self.box.add_widget(self.lbl)
+        self.ids.anch2.add_widget(self.box)
 class MainApp(App):
     def build(self):
-        anchor_main = AnchorLayout(anchor_x='center', anchor_y='center')
         self.b = Container()
-        anchor_main.add_widget(self.b)
-        return anchor_main
+        return self.b
 
 if __name__ == '__main__':
     MainApp().run()
+
 
