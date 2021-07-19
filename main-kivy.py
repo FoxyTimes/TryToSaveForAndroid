@@ -7,11 +7,17 @@ from kivy.uix.image import Image
 from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
 from functools import partial
+from kivy.properties import NumericProperty
+from kivy.uix.boxlayout import BoxLayout
+
+
 
 class Container(FloatLayout):
     def remove_start_game_screen(self):
+        score = NumericProperty(0)
         self.ids.anch1.remove_widget(self.ids.bt1)
-        self.ids.anch1.remove_widget(self.ids.anch2)
+        self.remove_widget(self.ids.anch2)
+        self.ids.anch1.add_widget(Button(text=''))
 
 class MainApp(App):
     def build(self):
