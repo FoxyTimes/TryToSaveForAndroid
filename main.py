@@ -183,7 +183,7 @@ class ScreenOne(Screen):
 class ScreenTwo(Screen):
     health = ObjectProperty(1000)
     money = ObjectProperty(0)
-    plus = ObjectProperty(199)
+    plus = ObjectProperty(1)
     damage = ObjectProperty(1)
     lvl = ObjectProperty(1)
     mana = ObjectProperty(10)
