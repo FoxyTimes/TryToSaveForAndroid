@@ -203,18 +203,64 @@ temp = """
             size_hint_y: .8
             do_scroll_x: False
             do_scroll_y: True
-            pos_hint: {'x':0.25, 'y': .05}
+            pos_hint: {'x':0.0625, 'y': .05}
             GridLayout:
-                size:(root.width/2, root.height/4)
+                size:(root.width/2+root.width/2/2+root.width/2/2/2, root.height/4)
                 size_hint_x: None
                 size_hint_y: None
                 spacing: 20
                 cols: 1
                 height: self.minimum_height
-                Button:
-                    size_hint: 1, 0.4
-                    text: 'Увеличить количество пушек   ' + str(root.guns1)
-                    on_press: root.up_guns1()
+                canvas:
+                    Rectangle:
+                        id: rec1
+                        source: 'img/darkPurple.png'
+                        size: self.size
+                        pos: self.pos
+                BoxLayout:
+                    spacing: 30
+                    padding: 3
+                    canvas:
+                        Rectangle:
+                            id: rec1
+                            source: 'img/page.jpg'
+                            size: self.size[0]-self.width/2, self.size[1]-10
+                            pos: self.pos
+                    BoxLayout:
+                        canvas:
+                            Rectangle:
+                                id: rec1
+                                source: 'img/upgrade1.png'
+                                size: self.width, self.height-20
+                                pos: self.pos[0]+self.width/2, self.pos[1]+5
+                    BoxLayout:
+                        size_hint: 2.5, 0.8
+                        orientation: 'vertical'
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H4'
+                            text: 'lvl ' + str(root.guns1)
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.4, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'Плазмопушка'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.4, 'center_y': 0.5}
+                    Button:
+                        id: d1
+                        size_hint: 4, 1.2
+                        pos_hint: {'center_x': 0.2, 'center_y': 0.5}
+                        text: 'Купить  '
+                        background_normal: 'img/btn1.png'
+                        background_down: 'img/btn1.png'
+                        font_size: 15
+                        on_press: root.up_guns1()
                 Button:
                     size_hint: 1, 0.4
                     text: 'Улучшение 2'
@@ -224,11 +270,14 @@ temp = """
         BoxLayout:
             spacing: 20
             pos_hint: {'center_x': 0.8, 'center_y': 0.1}
-            size_hint: .2, .07
+            size_hint: .2, .1
             Button:
                 text: 'назад'
+                background_normal: 'img/btn1.png'
+                background_down: 'img/btn1.png'
                 on_press:
                     root.manager.current = "screen2"
+    
             
     
                 
