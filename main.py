@@ -217,25 +217,22 @@ temp = """
                         source: 'img/darkPurple.png'
                         size: self.size
                         pos: self.pos
-                BoxLayout:
-                    spacing: 30
-                    padding: 3
+                FloatLayout:
                     canvas:
                         Rectangle:
                             id: rec1
                             source: 'img/page.jpg'
                             size: self.size[0]-self.width/2, self.size[1]-10
                             pos: self.pos
+                        Rectangle:
+                            id: rec1
+                            source: 'img/upgrade1.png'
+                            size: self.size[0]/5, self.size[1]/2
+                            pos: self.pos[0]+10, self.pos[1]+10
                     BoxLayout:
-                        canvas:
-                            Rectangle:
-                                id: rec1
-                                source: 'img/upgrade1.png'
-                                size: self.width, self.height-20
-                                pos: self.pos[0]+self.width/2, self.pos[1]+5
-                    BoxLayout:
-                        size_hint: 2.5, 0.8
+                        size_hint: 1, 0.5
                         orientation: 'vertical'
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
                         MDLabel:
                             halign: 'center'
                             font_style: 'H4'
@@ -243,7 +240,7 @@ temp = """
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
                             font_size: 15
-                            pos_hint: {'center_x': 0.4, 'center_y': 0.5}
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
                             font_style: 'H6'
@@ -251,11 +248,11 @@ temp = """
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
                             font_size: 15
-                            pos_hint: {'center_x': 0.4, 'center_y': 0.5}
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
                         id: d1
-                        size_hint: 4, 1.2
-                        pos_hint: {'center_x': 0.2, 'center_y': 0.5}
+                        size_hint: 0.5, 1.3
+                        pos_hint: {'center_x': 0.75, 'center_y': 0.45}
                         text: 'Купить  '
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
