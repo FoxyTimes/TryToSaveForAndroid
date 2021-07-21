@@ -19,7 +19,7 @@ temp = """
         id: fl1
         Button:
             id: bt1
-            size_hint: 0.19, 0.23
+            size_hint: 0.7, 0.23
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             background_normal: 'img/button.png'
             background_down: 'img/button.png'
@@ -48,8 +48,35 @@ temp = """
                 source: 'img/darkPurple.png'
                 size: self.size
                 pos: self.pos
+            Rectangle:
+                id: rec2
+                source: 'img/bar_money.png'
+                size: self.width/3, self.height/12
+                pos: 0, self.height-35
+            Rectangle:
+                id: rec3
+                source: 'img/bar_lvl.png'
+                size: self.width/3, self.height/12
+                pos: self.width/3, self.height-35
+            Rectangle:
+                id: rec4
+                source: 'img/bar_mana.png'
+                size: self.width/3, self.height/12
+                pos: 2*(self.width/3), self.height-35
+        FloatLayout:
+            BoxLayout:
+                orientation: 'vertical'
+                pos_hint: {'center_x': 0.17, 'center_y': 0.95}
+                size_hint: 1, 1
+                Label:
+                    color: 0, 0, 0, 1
+                    text: str(root.money)
+                    text_size: self.width/6, self.height/12
+                    halign: 'center'
+                    valign: 'top'
+                    size_hint: 1, 1
     FloatLayout:
-        id: fl2
+        id: fl3
         BoxLayout:
             orientation: 'vertical'
             padding: 20
@@ -59,10 +86,10 @@ temp = """
             Button:
                 text: 'Улучшения'
                 background_normal: 'img/btn1.png'
-                font_size: 10
+                font_size: 25
                 on_press: root.manager.current = "screen3"
     FloatLayout:
-        id: fl3
+        id: fl4
         BoxLayout:
             orientation: 'vertical'
             size_hint: 0.95, 0.5
@@ -79,20 +106,6 @@ temp = """
                 background_down: 'img/hit_mob1.png'
                 size_hint: 1, 1
                 on_release: root.plus_money(), root.minus_health()
-    AnchorLayout:
-        id: anch5
-        anchor_x: 'center'
-        anchor_y: 'top'
-        Label:
-            text: 'Количество монет: ' + str(root.money)
-            halign: 'center'
-            valign: 'top'
-            size_hint: 1, 0.2
-        Label:
-            text: 'Количество монет за клик: ' + str(root.plus)
-            halign: 'center'
-            valign: 'top'
-            size_hint: 1, 0.25
 
 <ScreenThree>:
     
@@ -127,7 +140,7 @@ class ScreenOne(Screen):
 class ScreenTwo(Screen):
     health = ObjectProperty(1000)
     money = ObjectProperty(0)
-    plus = ObjectProperty(1)
+    plus = ObjectProperty(199)
     damage = ObjectProperty(1)
     def __init__(self, **kwargs):
         super(ScreenTwo, self).__init__(**kwargs)
