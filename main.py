@@ -41,7 +41,6 @@ temp = """
 <ScreenTwo>:
     AnchorLayout:
         id: anch1
-        spacing: 20
         canvas:
             Rectangle:
                 id: rec1
@@ -52,29 +51,73 @@ temp = """
                 id: rec2
                 source: 'img/bar_money.png'
                 size: self.width/3, self.height/12
-                pos: 0, self.height-35
+                pos: 0, self.height-45
             Rectangle:
                 id: rec3
                 source: 'img/bar_lvl.png'
                 size: self.width/3, self.height/12
-                pos: self.width/3, self.height-35
+                pos: self.width/3, self.height-45
             Rectangle:
                 id: rec4
                 source: 'img/bar_mana.png'
                 size: self.width/3, self.height/12
-                pos: 2*(self.width/3), self.height-35
-        FloatLayout:
-            BoxLayout:
-                orientation: 'vertical'
-                pos_hint: {'center_x': 0.17, 'center_y': 0.95}
-                size_hint: 1, 1
-                Label:
-                    color: 0, 0, 0, 1
-                    text: str(root.money)
-                    text_size: self.width/6, self.height/12
-                    halign: 'center'
-                    valign: 'top'
-                    size_hint: 1, 1
+                pos: 2*(self.width/3), self.height-45
+    FloatLayout:
+        id: fl1
+        Button:
+            id: bt1
+            text: 'Меню'
+            size_hint: 0.3, 0.1
+            pos_hint: {'center_x': 0.15, 'center_y': 0.88}
+            background_normal: 'img/btn1.png'
+            background_down: 'img/btn1.png'
+            on_press:
+                root.manager.current = "screen1"
+    AnchorLayout:
+        id: anch1
+        canvas:
+            Rectangle:
+                id: rec5
+                source: 'img/money_icon.png'
+                size: self.width/12, self.height/20
+                pos: 10, self.height-35
+            Rectangle:
+                id: rec6
+                source: 'img/lvl_icon.png'
+                size: self.width/12, self.height/20
+                pos: 10+self.width/3, self.height-35
+            Rectangle:
+                id: rec7
+                source: 'img/mana_icon.png'
+                size: self.width/12, self.height/20
+                pos: 10+self.width/3+self.width/3, self.height-35
+    BoxLayout:
+        pos_hint: {'center_x': 0.5, 'center_y': 0.945}
+        size_hint: 1, 1
+        Label:
+            color: 1, 1, 1, 1
+            text: str(root.money)
+            text_size: self.width/1.5, self.height/12
+            font_size: 20
+            halign: 'right'
+            valign: 'top'
+            size_hint: 1, 1
+        Label:
+            color: 1, 1, 1, 1
+            text: str(root.lvl)
+            text_size: self.width/1.5, self.height/12
+            font_size: 20
+            halign: 'right'
+            valign: 'top'
+            size_hint: 1, 1
+        Label:
+            color: 1, 1, 1, 1
+            text: str(root.mana)
+            text_size: self.width/1.5, self.height/12
+            font_size: 20
+            halign: 'right'
+            valign: 'top'
+            size_hint: 1, 1
     FloatLayout:
         id: fl3
         BoxLayout:
@@ -142,6 +185,8 @@ class ScreenTwo(Screen):
     money = ObjectProperty(0)
     plus = ObjectProperty(199)
     damage = ObjectProperty(1)
+    lvl = ObjectProperty(1)
+    mana = ObjectProperty(10)
     def __init__(self, **kwargs):
         super(ScreenTwo, self).__init__(**kwargs)
     def plus_money(self):
