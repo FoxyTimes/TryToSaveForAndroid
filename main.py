@@ -28,7 +28,6 @@ def count(number):
         return str("%.1f" % (number/1000)) + 'K'
     return str(int(number))
 
-runing = 0
 temp = """
 <ScreenOne>:
     AnchorLayout:
@@ -281,8 +280,9 @@ temp = """
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
                         id: d1
-                        size_hint: 0.5, 1.3
-                        pos_hint: {'center_x': 0.75, 'center_y': 0.45}
+                        size_hint: None, None
+                        size: root.width/2.2, root.height/5
+                        pos_hint: {'center_x': 0.75, 'center_y': 0.5}
                         text: str(root.return_price1)
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
@@ -340,8 +340,9 @@ temp = """
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
                         id: d1
-                        size_hint: 0.5, 1.3
-                        pos_hint: {'center_x': 0.75, 'center_y': 0.45}
+                        size_hint: None, None
+                        size: root.width/2.2, root.height/5
+                        pos_hint: {'center_x': 0.75, 'center_y': 0.5}
                         text: str(root.return_price2)
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
@@ -399,8 +400,9 @@ temp = """
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
                         id: d1
-                        size_hint: 0.5, 1.3
-                        pos_hint: {'center_x': 0.75, 'center_y': 0.45}
+                        size_hint: None, None
+                        size: root.width/2.2, root.height/5
+                        pos_hint: {'center_x': 0.75, 'center_y': 0.5}
                         text: str(root.return_price3)
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
@@ -458,8 +460,9 @@ temp = """
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
                         id: d1
-                        size_hint: 0.5, 1.3
-                        pos_hint: {'center_x': 0.75, 'center_y': 0.45}
+                        size_hint: None, None
+                        size: root.width/2.2, root.height/5
+                        pos_hint: {'center_x': 0.75, 'center_y': 0.5}
                         text: str(root.return_price4)
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
@@ -517,8 +520,9 @@ temp = """
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
                         id: d1
-                        size_hint: 0.5, 1.3
-                        pos_hint: {'center_x': 0.75, 'center_y': 0.45}
+                        size_hint: None, None
+                        size: root.width/2.2, root.height/5
+                        pos_hint: {'center_x': 0.75, 'center_y': 0.5}
                         text: str(root.return_price5)
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
@@ -584,8 +588,9 @@ temp = """
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
                         id: d1
-                        size_hint: 0.5, 1.3
-                        pos_hint: {'center_x': 0.75, 'center_y': 0.45}
+                        size_hint: None, None
+                        size: root.width/2.2, root.height/5
+                        pos_hint: {'center_x': 0.75, 'center_y': 0.5}
                         text: str(root.return_price6)
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
@@ -643,8 +648,9 @@ temp = """
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
                         id: d1
-                        size_hint: 0.5, 1.3
-                        pos_hint: {'center_x': 0.75, 'center_y': 0.45}
+                        size_hint: None, None
+                        size: root.width/2.2, root.height/5
+                        pos_hint: {'center_x': 0.75, 'center_y': 0.5}
                         text: str(root.return_price7)
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
@@ -702,8 +708,9 @@ temp = """
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
                         id: d1
-                        size_hint: 0.5, 1.3
-                        pos_hint: {'center_x': 0.75, 'center_y': 0.45}
+                        size_hint: None, None
+                        size: root.width/2.2, root.height/5
+                        pos_hint: {'center_x': 0.75, 'center_y': 0.5}
                         text: str(root.return_price8)
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
@@ -769,8 +776,9 @@ temp = """
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
                         id: d1
-                        size_hint: 0.5, 1.3
-                        pos_hint: {'center_x': 0.75, 'center_y': 0.45}
+                        size_hint: None, None
+                        size: root.width/2.2, root.height/5
+                        pos_hint: {'center_x': 0.75, 'center_y': 0.5}
                         text: str(root.return_price9)
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
@@ -828,8 +836,9 @@ temp = """
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
                         id: d1
-                        size_hint: 0.5, 1.3
-                        pos_hint: {'center_x': 0.75, 'center_y': 0.45}
+                        size_hint: None, None
+                        size: root.width/2.2, root.height/5
+                        pos_hint: {'center_x': 0.75, 'center_y': 0.5}
                         text: str(root.return_price10)
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
