@@ -216,7 +216,7 @@ temp = """
             do_scroll_y: True
             pos_hint: {'x':0.025, 'y': .2}
             GridLayout:
-                size:(root.width/2+root.width/2/2+root.width/2/2/1.25, root.height)
+                size:(root.width/2+root.width/2/2+root.width/2/2/1.25, root.height+root.height)
                 size_hint_x: None
                 size_hint_y: None
                 spacing: 30
@@ -524,6 +524,317 @@ temp = """
                         background_down: 'img/btn1.png'
                         font_size: 15
                         on_press: root.up_guns5()
+                FloatLayout:
+                    canvas:
+                        Rectangle:
+                            id: rec1
+                            source: 'img/page.jpg'
+                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2/2
+                            pos: self.pos[0], self.pos[1]-5
+                        Rectangle:
+                            id: rec1
+                            source: 'img/fon.jpg'
+                            size: self.size[0]/5, self.size[1]/1.4
+                            pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
+                        Rectangle:
+                            id: rec1
+                            source: 'img/upgrade6.png'
+                            size: self.size[0]/5.5, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/2/1.2, self.pos[1]+self.height/2/2
+                        Rectangle:
+                            id: rec1
+                            source: 'img/page1.png'
+                            size: self.size[0]/3.5, self.size[1]+self.height/2/2
+                            pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
+                    BoxLayout:
+                        size_hint: 1, 0.7
+                        orientation: 'vertical'
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H4'
+                            text: 'lvl ' + str(root.return_guns6)
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'Ультра'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'Плазмопушка'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: '+ 200 урон'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                    Button:
+                        id: d1
+                        size_hint: 0.5, 1.3
+                        pos_hint: {'center_x': 0.75, 'center_y': 0.45}
+                        text: str(root.return_price6)
+                        background_normal: 'img/btn1.png'
+                        background_down: 'img/btn1.png'
+                        font_size: 15
+                        on_press: root.up_guns6()
+                FloatLayout:
+                    canvas:
+                        Rectangle:
+                            id: rec1
+                            source: 'img/page.jpg'
+                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2/2
+                            pos: self.pos[0], self.pos[1]-5
+                        Rectangle:
+                            id: rec1
+                            source: 'img/fon.jpg'
+                            size: self.size[0]/5, self.size[1]/1.4
+                            pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
+                        Rectangle:
+                            id: rec1
+                            source: 'img/upgrade7.png'
+                            size: self.size[0]/5.5, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/2/1.2, self.pos[1]+self.height/2/2
+                        Rectangle:
+                            id: rec1
+                            source: 'img/page1.png'
+                            size: self.size[0]/3.5, self.size[1]+self.height/2/2
+                            pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
+                    BoxLayout:
+                        size_hint: 1, 0.5
+                        orientation: 'vertical'
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H4'
+                            text: 'lvl ' + str(root.return_guns7)
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'Торпеда'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: '+ 500 урон'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                    Button:
+                        id: d1
+                        size_hint: 0.5, 1.3
+                        pos_hint: {'center_x': 0.75, 'center_y': 0.45}
+                        text: str(root.return_price7)
+                        background_normal: 'img/btn1.png'
+                        background_down: 'img/btn1.png'
+                        font_size: 15
+                        on_press: root.up_guns7()
+                FloatLayout:
+                    canvas:
+                        Rectangle:
+                            id: rec1
+                            source: 'img/page.jpg'
+                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2/2
+                            pos: self.pos[0], self.pos[1]-5
+                        Rectangle:
+                            id: rec1
+                            source: 'img/fon.jpg'
+                            size: self.size[0]/5, self.size[1]/1.4
+                            pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
+                        Rectangle:
+                            id: rec1
+                            source: 'img/upgrade8.png'
+                            size: self.size[0]/5.5, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/2/1.2, self.pos[1]+self.height/2/2
+                        Rectangle:
+                            id: rec1
+                            source: 'img/page1.png'
+                            size: self.size[0]/3.5, self.size[1]+self.height/2/2
+                            pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
+                    BoxLayout:
+                        size_hint: 1, 0.5
+                        orientation: 'vertical'
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H4'
+                            text: 'lvl ' + str(root.return_guns8)
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'ЭМИ орудие'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: '+ 1000 урон'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                    Button:
+                        id: d1
+                        size_hint: 0.5, 1.3
+                        pos_hint: {'center_x': 0.75, 'center_y': 0.45}
+                        text: str(root.return_price8)
+                        background_normal: 'img/btn1.png'
+                        background_down: 'img/btn1.png'
+                        font_size: 15
+                        on_press: root.up_guns8()
+                FloatLayout:
+                    canvas:
+                        Rectangle:
+                            id: rec1
+                            source: 'img/page.jpg'
+                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2/2
+                            pos: self.pos[0], self.pos[1]-5
+                        Rectangle:
+                            id: rec1
+                            source: 'img/fon.jpg'
+                            size: self.size[0]/5, self.size[1]/1.4
+                            pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
+                        Rectangle:
+                            id: rec1
+                            source: 'img/upgrade9.png'
+                            size: self.size[0]/5.5, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/2/1.2, self.pos[1]+self.height/2/2
+                        Rectangle:
+                            id: rec1
+                            source: 'img/page1.png'
+                            size: self.size[0]/3.5, self.size[1]+self.height/2/2
+                            pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
+                    BoxLayout:
+                        size_hint: 1, 0.7
+                        orientation: 'vertical'
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H4'
+                            text: 'lvl ' + str(root.return_guns9)
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'ускоритель'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'частиц'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: '+ 2000 урон'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                    Button:
+                        id: d1
+                        size_hint: 0.5, 1.3
+                        pos_hint: {'center_x': 0.75, 'center_y': 0.45}
+                        text: str(root.return_price9)
+                        background_normal: 'img/btn1.png'
+                        background_down: 'img/btn1.png'
+                        font_size: 15
+                        on_press: root.up_guns9()
+                FloatLayout:
+                    canvas:
+                        Rectangle:
+                            id: rec1
+                            source: 'img/page.jpg'
+                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2/2
+                            pos: self.pos[0], self.pos[1]-5
+                        Rectangle:
+                            id: rec1
+                            source: 'img/fon.jpg'
+                            size: self.size[0]/5, self.size[1]/1.4
+                            pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
+                        Rectangle:
+                            id: rec1
+                            source: 'img/upgrade10.png'
+                            size: self.size[0]/5.5, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/2/1.2, self.pos[1]+self.height/2/2
+                        Rectangle:
+                            id: rec1
+                            source: 'img/page1.png'
+                            size: self.size[0]/3.5, self.size[1]+self.height/2/2
+                            pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
+                    BoxLayout:
+                        size_hint: 1, 0.5
+                        orientation: 'vertical'
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H4'
+                            text: 'lvl ' + str(root.return_guns10)
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'Гипер ракета'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: '+ 5000 урон'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                    Button:
+                        id: d1
+                        size_hint: 0.5, 1.3
+                        pos_hint: {'center_x': 0.75, 'center_y': 0.45}
+                        text: str(root.return_price10)
+                        background_normal: 'img/btn1.png'
+                        background_down: 'img/btn1.png'
+                        font_size: 15
+                        on_press: root.up_guns10()
         
         BoxLayout:
             spacing: 20
@@ -602,11 +913,21 @@ class ScreenThree(Screen):
     return_guns3 = StringProperty('0')
     return_guns4 = StringProperty('0')
     return_guns5 = StringProperty('0')
+    return_guns6 = StringProperty('0')
+    return_guns7 = StringProperty('0')
+    return_guns8 = StringProperty('0')
+    return_guns9 = StringProperty('0')
+    return_guns10 = StringProperty('0')
     return_price1 = StringProperty('100')
     return_price2 = StringProperty('1.0K')
     return_price3 = StringProperty('10.0K')
     return_price4 = StringProperty('100.0K')
     return_price5 = StringProperty('1.0M')
+    return_price6 = StringProperty('10.0M')
+    return_price7 = StringProperty('100.0M')
+    return_price8 = StringProperty('1.0B')
+    return_price9 = StringProperty('10.0B')
+    return_price10 = StringProperty('100.0B')
     def __init__(self, **kwargs):
         super(ScreenThree, self).__init__(**kwargs)
         self.guns1 = 1
@@ -614,11 +935,21 @@ class ScreenThree(Screen):
         self.guns3 = 0
         self.guns4 = 0
         self.guns5 = 0
+        self.guns6 = 0
+        self.guns7 = 0
+        self.guns8 = 0
+        self.guns9 = 0
+        self.guns10 = 0
         self.price1 = 100
         self.price2 = 1000
         self.price3 = 10000
         self.price4 = 100000
         self.price5 = 1000000
+        self.price6 = 10000000
+        self.price7 = 100000000
+        self.price8 = 1000000000
+        self.price9 = 10000000000
+        self.price10 = 100000000000
         self.money = App.get_running_app().money
     def up_guns1(self):
         self.money = App.get_running_app().money
@@ -685,6 +1016,71 @@ class ScreenThree(Screen):
             self.price5 = int(self.price5)
             App.get_running_app().return_money = count(self.money)
             self.return_price5 = count(self.price5)
+    def up_guns6(self):
+        self.money = App.get_running_app().money
+        if self.money > self.price6:
+            self.guns6 += 1
+            App.get_running_app().damage += 200
+            App.get_running_app().return_damage = count(App.get_running_app().damage)
+            self.return_guns6 = count(self.guns6)
+            self.money -= self.price6
+            App.get_running_app().money -= self.price6
+            self.price6*= 1.1
+            self.price6 = int(self.price6)
+            App.get_running_app().return_money = count(self.money)
+            self.return_price6 = count(self.price6)
+    def up_guns7(self):
+        self.money = App.get_running_app().money
+        if self.money > self.price7:
+            self.guns7 += 1
+            App.get_running_app().damage += 500
+            App.get_running_app().return_damage = count(App.get_running_app().damage)
+            self.return_guns7 = count(self.guns7)
+            self.money -= self.price7
+            App.get_running_app().money -= self.price7
+            self.price7*= 1.1
+            self.price7 = int(self.price7)
+            App.get_running_app().return_money = count(self.money)
+            self.return_price7 = count(self.price7)
+    def up_guns8(self):
+        self.money = App.get_running_app().money
+        if self.money > self.price8:
+            self.guns8 += 1
+            App.get_running_app().damage += 1000
+            App.get_running_app().return_damage = count(App.get_running_app().damage)
+            self.return_guns8 = count(self.guns8)
+            self.money -= self.price8
+            App.get_running_app().money -= self.price8
+            self.price8 *= 1.1
+            self.price8 = int(self.price8)
+            App.get_running_app().return_money = count(self.money)
+            self.return_price8 = count(self.price8)
+    def up_guns9(self):
+        self.money = App.get_running_app().money
+        if self.money > self.price9:
+            self.guns9 += 1
+            App.get_running_app().damage += 2000
+            App.get_running_app().return_damage = count(App.get_running_app().damage)
+            self.return_guns9 = count(self.guns9)
+            self.money -= self.price9
+            App.get_running_app().money -= self.price9
+            self.price9 *= 1.1
+            self.price9 = int(self.price9)
+            App.get_running_app().return_money = count(self.money)
+            self.return_price9 = count(self.price9)
+    def up_guns10(self):
+        self.money = App.get_running_app().money
+        if self.money > self.price10:
+            self.guns10 += 1
+            App.get_running_app().damage += 5000
+            App.get_running_app().return_damage = count(App.get_running_app().damage)
+            self.return_guns10 = count(self.guns10)
+            self.money -= self.price10
+            App.get_running_app().money -= self.price10
+            self.price10 *= 1.1
+            self.price10 = int(self.price10)
+            App.get_running_app().return_money = count(self.money)
+            self.return_price10 = count(self.price10)
 
 class Manager(ScreenManager):
 
@@ -693,7 +1089,7 @@ class Manager(ScreenManager):
     screen_three = ObjectProperty(None)
 
 class ScreensApp(MDApp):
-    money = ObjectProperty(1)
+    money = ObjectProperty(100000000000000)
     damage = ObjectProperty(1)
     return_damage = StringProperty('1')
     return_money = StringProperty('0')
