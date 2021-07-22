@@ -19,7 +19,7 @@ def count(number):
     if number / 1000000000000000 > 1.0:
         return str("%.1f" % (number/1000000000000000)) + 'T'
     if number / 1000000000000 > 1.0:
-        return str("%.1f" % (number/1000000000000)) + 'K'
+        return str("%.1f" % (number/1000000000000)) + 'Kv'
     if number / 1000000000 > 1.0:
         return str("%.1f" % (number/1000000000)) + 'B'
     if number / 1000000 > 1.0:
@@ -211,15 +211,16 @@ temp = """
                 size_hint: 1, 1.7
                 font_size: 15
         ScrollView:
-            size_hint_y: 0.8
+            size_hint_y: 0.6
             do_scroll_x: False
             do_scroll_y: True
-            pos_hint: {'x':0.025, 'y': .05}
+            pos_hint: {'x':0.025, 'y': .2}
             GridLayout:
-                size:(root.width/2+root.width/2/2+root.width/2/2/1.25, root.height/4)
+                size:(root.width/2+root.width/2/2+root.width/2/2/1.25, root.height)
                 size_hint_x: None
                 size_hint_y: None
-                spacing: 20
+                spacing: 30
+                padding: 10
                 cols: 1
                 height: self.minimum_height
                 canvas:
@@ -238,20 +239,20 @@ temp = """
                         Rectangle:
                             id: rec1
                             source: 'img/fon.jpg'
-                            size: self.size[0]/5, self.size[1]/1.5
+                            size: self.size[0]/5, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
                             id: rec1
                             source: 'img/upgrade1.png'
                             size: self.size[0]/5.5, self.size[1]/2
-                            pos: self.pos[0]+10, self.pos[1]+10
+                            pos: self.pos[0]+self.width/2/3/2/2/1.2, self.pos[1]+self.height/2/2
                         Rectangle:
                             id: rec1
                             source: 'img/page1.png'
-                            size: self.size[0]/3.5, self.size[1]+self.height/2/2/1.5
-                            pos: self.pos[0]-self.width/2/2/2/2/3, self.pos[1]-self.height/2/2/2
+                            size: self.size[0]/3.5, self.size[1]+self.height/2/2
+                            pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
                     BoxLayout:
-                        size_hint: 1, 1
+                        size_hint: 1, 0.5
                         orientation: 'vertical'
                         pos_hint: {'center_x': 0.5, 'center_y': 0.45}
                         MDLabel:
@@ -270,9 +271,17 @@ temp = """
                             size_hint: 1, 1
                             font_size: 15
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: '+ 1 урон'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
                         id: d1
-                        size_hint: 0.5, 1.7
+                        size_hint: 0.5, 1.3
                         pos_hint: {'center_x': 0.75, 'center_y': 0.45}
                         text: str(root.return_price1)
                         background_normal: 'img/btn1.png'
@@ -284,25 +293,25 @@ temp = """
                         Rectangle:
                             id: rec1
                             source: 'img/page.jpg'
-                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2
+                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
                             id: rec1
                             source: 'img/fon.jpg'
-                            size: self.size[0]/5, self.size[1]/1.5
+                            size: self.size[0]/5, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
                             id: rec1
                             source: 'img/upgrade2.png'
                             size: self.size[0]/5.5, self.size[1]/2
-                            pos: self.pos[0]+10, self.pos[1]+10
+                            pos: self.pos[0]+self.width/2/3/2/2/1.2, self.pos[1]+self.height/2/2
                         Rectangle:
                             id: rec1
                             source: 'img/page1.png'
-                            size: self.size[0]/3.5, self.size[1]+self.height/2/2/1.5
-                            pos: self.pos[0]-self.width/2/2/2/2/3, self.pos[1]-self.height/2/2/2
+                            size: self.size[0]/3.5, self.size[1]+self.height/2/2
+                            pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
                     BoxLayout:
-                        size_hint: 1, 1
+                        size_hint: 1, 0.5
                         orientation: 'vertical'
                         pos_hint: {'center_x': 0.5, 'center_y': 0.45}
                         MDLabel:
@@ -321,9 +330,17 @@ temp = """
                             size_hint: 1, 1
                             font_size: 15
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: '+ 5 урона'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
                         id: d1
-                        size_hint: 0.5, 1.7
+                        size_hint: 0.5, 1.3
                         pos_hint: {'center_x': 0.75, 'center_y': 0.45}
                         text: str(root.return_price2)
                         background_normal: 'img/btn1.png'
@@ -335,25 +352,25 @@ temp = """
                         Rectangle:
                             id: rec1
                             source: 'img/page.jpg'
-                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2
+                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
                             id: rec1
                             source: 'img/fon.jpg'
-                            size: self.size[0]/5, self.size[1]/1.5
+                            size: self.size[0]/5, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
                             id: rec1
                             source: 'img/upgrade3.png'
                             size: self.size[0]/5.5, self.size[1]/2
-                            pos: self.pos[0]+10, self.pos[1]+10
+                            pos: self.pos[0]+self.width/2/3/2/2/1.2, self.pos[1]+self.height/2/2
                         Rectangle:
                             id: rec1
                             source: 'img/page1.png'
-                            size: self.size[0]/3.5, self.size[1]+self.height/2/2/1.5
-                            pos: self.pos[0]-self.width/2/2/2/2/3, self.pos[1]-self.height/2/2/2
+                            size: self.size[0]/3.5, self.size[1]+self.height/2/2
+                            pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
                     BoxLayout:
-                        size_hint: 1, 1
+                        size_hint: 1, 0.5
                         orientation: 'vertical'
                         pos_hint: {'center_x': 0.5, 'center_y': 0.45}
                         MDLabel:
@@ -372,15 +389,142 @@ temp = """
                             size_hint: 1, 1
                             font_size: 15
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: '+ 20 урона'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
                         id: d1
-                        size_hint: 0.5, 1.7
+                        size_hint: 0.5, 1.3
                         pos_hint: {'center_x': 0.75, 'center_y': 0.45}
                         text: str(root.return_price3)
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
                         font_size: 15
                         on_press: root.up_guns3()
+                FloatLayout:
+                    canvas:
+                        Rectangle:
+                            id: rec1
+                            source: 'img/page.jpg'
+                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2/2
+                            pos: self.pos[0], self.pos[1]-5
+                        Rectangle:
+                            id: rec1
+                            source: 'img/fon.jpg'
+                            size: self.size[0]/5, self.size[1]/1.4
+                            pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
+                        Rectangle:
+                            id: rec1
+                            source: 'img/upgrade4.png'
+                            size: self.size[0]/5.5, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/2/1.2, self.pos[1]+self.height/2/2
+                        Rectangle:
+                            id: rec1
+                            source: 'img/page1.png'
+                            size: self.size[0]/3.5, self.size[1]+self.height/2/2
+                            pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
+                    BoxLayout:
+                        size_hint: 1, 0.5
+                        orientation: 'vertical'
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H4'
+                            text: 'lvl ' + str(root.return_guns4)
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'Ультра Лазер'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: '+ 50 урон'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                    Button:
+                        id: d1
+                        size_hint: 0.5, 1.3
+                        pos_hint: {'center_x': 0.75, 'center_y': 0.45}
+                        text: str(root.return_price4)
+                        background_normal: 'img/btn1.png'
+                        background_down: 'img/btn1.png'
+                        font_size: 15
+                        on_press: root.up_guns4()
+                FloatLayout:
+                    canvas:
+                        Rectangle:
+                            id: rec1
+                            source: 'img/page.jpg'
+                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2/2
+                            pos: self.pos[0], self.pos[1]-5
+                        Rectangle:
+                            id: rec1
+                            source: 'img/fon.jpg'
+                            size: self.size[0]/5, self.size[1]/1.4
+                            pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
+                        Rectangle:
+                            id: rec1
+                            source: 'img/upgrade5.png'
+                            size: self.size[0]/5.5, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/2/1.2, self.pos[1]+self.height/2/2
+                        Rectangle:
+                            id: rec1
+                            source: 'img/page1.png'
+                            size: self.size[0]/3.5, self.size[1]+self.height/2/2
+                            pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
+                    BoxLayout:
+                        size_hint: 1, 0.5
+                        orientation: 'vertical'
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H4'
+                            text: 'lvl ' + str(root.return_guns5)
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'Бластер'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: '+ 100 урона'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                    Button:
+                        id: d1
+                        size_hint: 0.5, 1.3
+                        pos_hint: {'center_x': 0.75, 'center_y': 0.45}
+                        text: str(root.return_price5)
+                        background_normal: 'img/btn1.png'
+                        background_down: 'img/btn1.png'
+                        font_size: 15
+                        on_press: root.up_guns5()
+        
         BoxLayout:
             spacing: 20
             pos_hint: {'center_x': 0.8, 'center_y': 0.1}
@@ -456,17 +600,25 @@ class ScreenThree(Screen):
     return_guns1 = StringProperty('1')
     return_guns2 = StringProperty('0')
     return_guns3 = StringProperty('0')
+    return_guns4 = StringProperty('0')
+    return_guns5 = StringProperty('0')
     return_price1 = StringProperty('100')
     return_price2 = StringProperty('1.0K')
     return_price3 = StringProperty('10.0K')
+    return_price4 = StringProperty('100.0K')
+    return_price5 = StringProperty('1.0M')
     def __init__(self, **kwargs):
         super(ScreenThree, self).__init__(**kwargs)
         self.guns1 = 1
         self.guns2 = 0
         self.guns3 = 0
+        self.guns4 = 0
+        self.guns5 = 0
         self.price1 = 100
         self.price2 = 1000
         self.price3 = 10000
+        self.price4 = 100000
+        self.price5 = 1000000
         self.money = App.get_running_app().money
     def up_guns1(self):
         self.money = App.get_running_app().money
@@ -503,10 +655,37 @@ class ScreenThree(Screen):
             self.return_guns3 = count(self.guns3)
             self.money -= self.price3
             App.get_running_app().money -= self.price3
-            self.price3 *= 1
+            self.price3 *= 1.1
             self.price3 = int(self.price3)
             App.get_running_app().return_money = count(self.money)
             self.return_price3 = count(self.price3)
+    def up_guns4(self):
+        self.money = App.get_running_app().money
+        if self.money > self.price4:
+            self.guns4 += 1
+            App.get_running_app().damage += 50
+            App.get_running_app().return_damage = count(App.get_running_app().damage)
+            self.return_guns4 = count(self.guns4)
+            self.money -= self.price4
+            App.get_running_app().money -= self.price4
+            self.price4 *= 1.1
+            self.price4 = int(self.price4)
+            App.get_running_app().return_money = count(self.money)
+            self.return_price4 = count(self.price4)
+    def up_guns5(self):
+        self.money = App.get_running_app().money
+        if self.money > self.price5:
+            self.guns5 += 1
+            App.get_running_app().damage += 100
+            App.get_running_app().return_damage = count(App.get_running_app().damage)
+            self.return_guns5 = count(self.guns5)
+            self.money -= self.price5
+            App.get_running_app().money -= self.price5
+            self.price5*= 1.1
+            self.price5 = int(self.price5)
+            App.get_running_app().return_money = count(self.money)
+            self.return_price5 = count(self.price5)
+
 class Manager(ScreenManager):
 
     screen_one = ObjectProperty(None)
@@ -514,7 +693,7 @@ class Manager(ScreenManager):
     screen_three = ObjectProperty(None)
 
 class ScreensApp(MDApp):
-    money = ObjectProperty(0)
+    money = ObjectProperty(1)
     damage = ObjectProperty(1)
     return_damage = StringProperty('1')
     return_money = StringProperty('0')
