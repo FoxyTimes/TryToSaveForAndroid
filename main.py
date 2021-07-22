@@ -6,27 +6,27 @@ from kivy.uix.screenmanager import ScreenManager, Screen, NoTransition
 
 
 def count(number):
-    if number / 1000000000000000000000000000000 > 1.0:
-        return str(number/1000000000000000000000000000000) + 'O'
-    if number / 1000000000000000000000000000 > 1.0:
-        return str(number/1000000000000000000000000000) + 'Sp'
-    if number / 1000000000000000000000000 > 1.0:
-        return str(number/1000000000000000000000000) + 'Sk'
-    if number / 1000000000000000000000 > 1.0:
-        return str(number/10000000000000000000000) + 'Qw'
-    if number / 1000000000000000000 > 1.0:
-        return str(number/11000000000000000000) + 'Qr'
-    if number / 1000000000000000 > 1.0:
-        return str(number/1000000000000000) + 'T'
-    if number / 1000000000000 > 1.0:
-        return str(number/1000000000000) + 'K'
-    if number / 1000000000 > 1.0:
-        return str(number/1000000000) + 'B'
-    if number / 1000000 > 1.0:
-        return str(number/1000000) + 'M'
-    if number / 1000 > 1.0:
-        return str(number/1000) + 'K'
-    return str(number)
+    if number // 1000000000000000000000000000000 > 1.0:
+        return str("%.2f" % (number/1000000000000000000000000000000)) + 'O'
+    if number // 1000000000000000000000000000 > 1.0:
+        return str("%.2f" % (number/1000000000000000000000000000)) + 'Sp'
+    if number // 1000000000000000000000000 > 1.0:
+        return str("%.2f" % (number/1000000000000000000000000)) + 'Sk'
+    if number // 1000000000000000000000 > 1.0:
+        return str("%.2f" % (number/10000000000000000000000)) + 'Qw'
+    if number // 1000000000000000000 > 1.0:
+        return str("%.2f" % (number/11000000000000000000)) + 'Qr'
+    if number // 1000000000000000 > 1.0:
+        return str("%.2f" % (number/1000000000000000)) + 'T'
+    if number // 1000000000000 > 1.0:
+        return str("%.2f" % (number/1000000000000)) + 'K'
+    if number // 1000000000 > 1.0:
+        return str("%.2f" % (number/1000000000)) + 'B'
+    if number // 1000000 > 1.0:
+        return str("%.2f" % (number/1000000)) + 'M'
+    if number // 1000 > 1.0:
+        return str("%.2f" % (number/1000)) + 'K'
+    return str("%.2f" % number)
 
 runing = 0
 temp = """
@@ -126,7 +126,7 @@ temp = """
             size_hint: 1, 1
             MDLabel:
                 color: 1, 1, 1, 1
-                text: str(root.return_money)
+                text: str(app.return_money)
                 text_size: self.width/1.5, self.height/12
                 font_size: 20
                 size_hint: 1, 1
@@ -188,16 +188,30 @@ temp = """
 
 <ScreenThree>:
     FloatLayout:
+        canvas:
+            Rectangle:
+                id: rec1
+                source: 'img/darkPurple.png'
+                size: self.size
+                pos: self.pos
         BoxLayout:
-            spacing: 20
-            pos_hint: {'center_x': 0.5, 'center_y': 0.95}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.93}
             size_hint: .9, .07
             Button:
-                text: 'улучшения'
+                text: 'урон'
+                background_normal: 'img/btn1.png'
+                background_down: 'img/btn1.png'
+                size_hint: 1.8, 1.7
             Button:
                 text: 'способности'
+                background_normal: 'img/btn1.png'
+                background_down: 'img/btn1.png'
+                size_hint: 1.8, 1.7
             Button:
                 text: 'деньги'
+                background_normal: 'img/btn1.png'
+                background_down: 'img/btn1.png'
+                size_hint: 1.8, 1.7
         ScrollView:
             size_hint_y: 0.8
             do_scroll_x: False
@@ -213,7 +227,7 @@ temp = """
                 canvas:
                     Rectangle:
                         id: rec1
-                        source: 'img/darkPurple.png'
+                        source: 'img/background.jpg'
                         size: self.size
                         pos: self.pos
                 FloatLayout:
@@ -226,8 +240,8 @@ temp = """
                         Rectangle:
                             id: rec1
                             source: 'img/upgrade1.png'
-                            size: self.size[0]/5, self.size[1]/2
-                            pos: self.pos[0]+10, self.pos[1]+10
+                            size: self.size[0]/5.5, self.size[1]/2
+                            pos: self.pos[0]+5, self.pos[1]+10
                     BoxLayout:
                         size_hint: 1, 1
                         orientation: 'vertical'
@@ -235,7 +249,7 @@ temp = """
                         MDLabel:
                             halign: 'center'
                             font_style: 'H4'
-                            text: 'lvl ' + str(root.guns1)
+                            text: 'lvl ' + str(root.return_guns1)
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
                             font_size: 15
@@ -252,7 +266,7 @@ temp = """
                         id: d1
                         size_hint: 0.5, 1.7
                         pos_hint: {'center_x': 0.75, 'center_y': 0.45}
-                        text: 'Купить  '
+                        text: str(root.price1)
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
                         font_size: 15
@@ -266,8 +280,8 @@ temp = """
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
                             id: rec1
-                            source: 'img/upgrade1.png'
-                            size: self.size[0]/5, self.size[1]/2
+                            source: 'img/upgrade2.png'
+                            size: self.size[0]/5.5, self.size[1]/2
                             pos: self.pos[0]+5, self.pos[1]+10
                     BoxLayout:
                         size_hint: 1, 1
@@ -276,7 +290,7 @@ temp = """
                         MDLabel:
                             halign: 'center'
                             font_style: 'H4'
-                            text: 'lvl ' + str(root.guns1)
+                            text: 'lvl ' + str(root.return_guns2)
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
                             font_size: 15
@@ -284,7 +298,7 @@ temp = """
                         MDLabel:
                             halign: 'center'
                             font_style: 'H6'
-                            text: 'Плазмопушка'
+                            text: 'Лазер'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
                             font_size: 15
@@ -293,11 +307,11 @@ temp = """
                         id: d1
                         size_hint: 0.5, 1.7
                         pos_hint: {'center_x': 0.75, 'center_y': 0.45}
-                        text: 'Купить  '
+                        text: str(root.price2)
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
                         font_size: 15
-                        on_press: root.up_guns1()
+                        on_press: root.up_guns2()
                 FloatLayout:
                     canvas:
                         Rectangle:
@@ -307,8 +321,8 @@ temp = """
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
                             id: rec1
-                            source: 'img/upgrade1.png'
-                            size: self.size[0]/5, self.size[1]/2
+                            source: 'img/upgrade3.png'
+                            size: self.size[0]/5.5, self.size[1]/2
                             pos: self.pos[0]+5, self.pos[1]+10
                     BoxLayout:
                         size_hint: 1, 1
@@ -317,7 +331,7 @@ temp = """
                         MDLabel:
                             halign: 'center'
                             font_style: 'H4'
-                            text: 'lvl ' + str(root.guns1)
+                            text: 'lvl ' + str(root.return_guns3)
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
                             font_size: 15
@@ -325,7 +339,7 @@ temp = """
                         MDLabel:
                             halign: 'center'
                             font_style: 'H6'
-                            text: 'Плазмопушка'
+                            text: 'Ракета'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
                             font_size: 15
@@ -334,11 +348,11 @@ temp = """
                         id: d1
                         size_hint: 0.5, 1.7
                         pos_hint: {'center_x': 0.75, 'center_y': 0.45}
-                        text: 'Купить  '
+                        text: str(root.price3)
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
                         font_size: 15
-                        on_press: root.up_guns1()
+                        on_press: root.up_guns3()
         BoxLayout:
             spacing: 20
             pos_hint: {'center_x': 0.8, 'center_y': 0.1}
@@ -388,13 +402,14 @@ class ScreenTwo(Screen):
         super(ScreenTwo, self).__init__(**kwargs)
         self.damage = App.get_running_app().damage
         self.health = 1000
-        self.money = 0
+        self.money = App.get_running_app().money
         self.mana = 10
         self.return_mana = count(self.mana)
     def plus_money(self):
+        self.money = App.get_running_app().money
         self.money += self.plus
-        self.return_money = count(self.money)
-        print(count(self.money), count(self.mana), count(self.damage))
+        App.get_running_app().money = self.money
+        App.get_running_app().return_money = count(self.money)
     def plus_plus(self):
         self.plus += 1
     def minus_health(self):
@@ -402,18 +417,63 @@ class ScreenTwo(Screen):
         self.return_health = count(self.health)
         if self.health <= 0:
             self.health = 1000
-            self.money += 1000
+            App.get_running_app().money += 1000
     def get_damage(self):
         return App.get_running_app().damage
 
 class ScreenThree(Screen):
-    guns1 = ObjectProperty(1)
+    return_guns1 = StringProperty('1')
+    return_guns2 = StringProperty('0')
+    return_guns3 = StringProperty('0')
+    price1 = ObjectProperty(100)
+    price1 = ObjectProperty(1000)
+    price1 = ObjectProperty(10000)
     def __init__(self, **kwargs):
         super(ScreenThree, self).__init__(**kwargs)
+        self.guns1 = 1
+        self.guns2 = 0
+        self.guns3 = 0
+        self.price1 = 100
+        self.price2 = 1000
+        self.price3 = 10000
+        self.money = App.get_running_app().money
     def up_guns1(self):
-        self.guns1 += 1
-        App.get_running_app().damage += 1
-        App.get_running_app().return_damage = count(App.get_running_app().damage)
+        self.money = App.get_running_app().money
+        if self.money > self.price1:
+            self.guns1 += 1
+            App.get_running_app().damage += 1
+            App.get_running_app().return_damage = count(App.get_running_app().damage)
+            self.return_guns1 = count(self.guns1)
+            self.money -= self.price1
+            App.get_running_app().money -= self.price1
+            self.price1 *= 1.1
+            self.price1 = int(self.price1)
+            App.get_running_app().return_money = count(self.money)
+            print(self.money)
+    def up_guns2(self):
+        self.money = App.get_running_app().money
+        if self.money > self.price2:
+            self.guns2 += 1
+            App.get_running_app().damage += 5
+            App.get_running_app().return_damage = count(App.get_running_app().damage)
+            self.return_guns2 = count(self.guns2)
+            self.money -= self.price2
+            App.get_running_app().money -= self.price2
+            self.price2 *= 1.1
+            self.price2 = int(self.price2)
+            App.get_running_app().return_money = count(self.money)
+    def up_guns3(self):
+        self.money = App.get_running_app().money
+        if self.money > self.price3:
+            self.guns3 += 1
+            App.get_running_app().damage += 20
+            App.get_running_app().return_damage = count(App.get_running_app().damage)
+            self.return_guns3 = count(self.guns3)
+            self.money -= self.price3
+            App.get_running_app().money -= self.price3
+            self.price3 *= 1
+            self.price3 = int(self.price3)
+            App.get_running_app().return_money = count(self.money)
 class Manager(ScreenManager):
 
     screen_one = ObjectProperty(None)
@@ -421,8 +481,10 @@ class Manager(ScreenManager):
     screen_three = ObjectProperty(None)
 
 class ScreensApp(MDApp):
+    money = ObjectProperty(0)
     damage = ObjectProperty(1)
     return_damage = StringProperty('1')
+    return_money = StringProperty('0')
     def build(self):
         m = Manager(transition=NoTransition())
         return m
