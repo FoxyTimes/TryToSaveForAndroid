@@ -114,7 +114,7 @@ temp = """
                 id: rec7
                 source: 'img/mana_icon.png'
                 size: root.width/12, root.height/20
-                pos: 10+root.width/3+root.width/3, self.height-self.height/2/2/2/2
+                pos: 10+root.width/3+root.width/3, self.height-self.height/2/2/2/1.8
     FloatLayout:
         BoxLayout:
             pos: self.width/16, self.height/3+self.height/2/2/1.65
@@ -190,23 +190,26 @@ temp = """
                 size: self.size
                 pos: self.pos
         BoxLayout:
-            pos_hint: {'center_x': 0.5, 'center_y': 0.93}
-            size_hint: .9, .07
+            pos_hint: {'center_x': 0.5, 'center_y': 0.9}
+            size_hint: 1, .09
             Button:
                 text: 'урон'
                 background_normal: 'img/btn1.png'
                 background_down: 'img/btn1.png'
                 size_hint: 1, 1.7
+                font_size: 15
             Button:
                 text: 'способности'
                 background_normal: 'img/btn1.png'
                 background_down: 'img/btn1.png'
-                size_hint: 1, 1.7
+                size_hint: 1.5, 1.7
+                font_size: 15
             Button:
                 text: 'деньги'
                 background_normal: 'img/btn1.png'
                 background_down: 'img/btn1.png'
                 size_hint: 1, 1.7
+                font_size: 15
         ScrollView:
             size_hint_y: 0.8
             do_scroll_x: False
@@ -234,9 +237,19 @@ temp = """
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
                             id: rec1
+                            source: 'img/fon.jpg'
+                            size: self.size[0]/5, self.size[1]/1.5
+                            pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
+                        Rectangle:
+                            id: rec1
                             source: 'img/upgrade1.png'
                             size: self.size[0]/5.5, self.size[1]/2
-                            pos: self.pos[0]+5, self.pos[1]+10
+                            pos: self.pos[0]+10, self.pos[1]+10
+                        Rectangle:
+                            id: rec1
+                            source: 'img/page1.png'
+                            size: self.size[0]/3.5, self.size[1]+self.height/2/2/1.5
+                            pos: self.pos[0]-self.width/2/2/2/2/3, self.pos[1]-self.height/2/2/2
                     BoxLayout:
                         size_hint: 1, 1
                         orientation: 'vertical'
@@ -275,9 +288,19 @@ temp = """
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
                             id: rec1
+                            source: 'img/fon.jpg'
+                            size: self.size[0]/5, self.size[1]/1.5
+                            pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
+                        Rectangle:
+                            id: rec1
                             source: 'img/upgrade2.png'
                             size: self.size[0]/5.5, self.size[1]/2
-                            pos: self.pos[0]+5, self.pos[1]+10
+                            pos: self.pos[0]+10, self.pos[1]+10
+                        Rectangle:
+                            id: rec1
+                            source: 'img/page1.png'
+                            size: self.size[0]/3.5, self.size[1]+self.height/2/2/1.5
+                            pos: self.pos[0]-self.width/2/2/2/2/3, self.pos[1]-self.height/2/2/2
                     BoxLayout:
                         size_hint: 1, 1
                         orientation: 'vertical'
@@ -316,9 +339,19 @@ temp = """
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
                             id: rec1
+                            source: 'img/fon.jpg'
+                            size: self.size[0]/5, self.size[1]/1.5
+                            pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
+                        Rectangle:
+                            id: rec1
                             source: 'img/upgrade3.png'
                             size: self.size[0]/5.5, self.size[1]/2
-                            pos: self.pos[0]+5, self.pos[1]+10
+                            pos: self.pos[0]+10, self.pos[1]+10
+                        Rectangle:
+                            id: rec1
+                            source: 'img/page1.png'
+                            size: self.size[0]/3.5, self.size[1]+self.height/2/2/1.5
+                            pos: self.pos[0]-self.width/2/2/2/2/3, self.pos[1]-self.height/2/2/2
                     BoxLayout:
                         size_hint: 1, 1
                         orientation: 'vertical'
@@ -415,6 +448,7 @@ class ScreenTwo(Screen):
             App.get_running_app().money += 100
         self.health -= self.get_damage()
         self.return_health = count(self.health)
+        App.get_running_app().return_money = count(App.get_running_app().money)
     def get_damage(self):
         return App.get_running_app().damage
 
@@ -423,8 +457,8 @@ class ScreenThree(Screen):
     return_guns2 = StringProperty('0')
     return_guns3 = StringProperty('0')
     return_price1 = StringProperty('100')
-    return_price2 = StringProperty('1000')
-    return_price3 = StringProperty('10000')
+    return_price2 = StringProperty('1.0K')
+    return_price3 = StringProperty('10.0K')
     def __init__(self, **kwargs):
         super(ScreenThree, self).__init__(**kwargs)
         self.guns1 = 1
