@@ -169,7 +169,7 @@ temp = """
                 font_size: 20
                 pos_hint: {'center_x': 0.5, 'center_y': 0.8}
             MDProgressBar:
-                max: 1000
+                max: 300
                 value: root.health
                 size_hint: 0.5, 0.01
                 color: 1, 0, 0, 1
@@ -196,24 +196,24 @@ temp = """
                 text: 'урон'
                 background_normal: 'img/btn1.png'
                 background_down: 'img/btn1.png'
-                size_hint: 1.8, 1.7
+                size_hint: 1, 1.7
             Button:
                 text: 'способности'
                 background_normal: 'img/btn1.png'
                 background_down: 'img/btn1.png'
-                size_hint: 1.8, 1.7
+                size_hint: 1, 1.7
             Button:
                 text: 'деньги'
                 background_normal: 'img/btn1.png'
                 background_down: 'img/btn1.png'
-                size_hint: 1.8, 1.7
+                size_hint: 1, 1.7
         ScrollView:
             size_hint_y: 0.8
             do_scroll_x: False
             do_scroll_y: True
-            pos_hint: {'x':0.0625, 'y': .05}
+            pos_hint: {'x':0.025, 'y': .05}
             GridLayout:
-                size:(root.width/2+root.width/2/2+root.width/2/2/2, root.height/4)
+                size:(root.width/2+root.width/2/2+root.width/2/2/1.25, root.height/4)
                 size_hint_x: None
                 size_hint_y: None
                 spacing: 20
@@ -388,15 +388,16 @@ class ScreenOne(Screen):
     pass
 
 class ScreenTwo(Screen):
-    return_health = StringProperty('1000')
+    return_health = StringProperty('300')
     return_money = StringProperty('0')
     plus = ObjectProperty(1)
     lvl = ObjectProperty(1)
     return_mana = StringProperty('10')
+    health = ObjectProperty(300)
     def __init__(self, **kwargs):
         super(ScreenTwo, self).__init__(**kwargs)
         self.damage = App.get_running_app().damage
-        self.health = 1000
+        self.health = 300
         self.money = App.get_running_app().money
         self.mana = 10
         self.return_mana = count(self.mana)
@@ -408,11 +409,12 @@ class ScreenTwo(Screen):
     def plus_plus(self):
         self.plus += 1
     def minus_health(self):
+        check = self.health - self.get_damage()
+        if check <= 0:
+            self.health = 300 + self.get_damage()
+            App.get_running_app().money += 100
         self.health -= self.get_damage()
         self.return_health = count(self.health)
-        if self.health <= 0:
-            self.health = 1000
-            App.get_running_app().money += 1000
     def get_damage(self):
         return App.get_running_app().damage
 
@@ -478,7 +480,7 @@ class Manager(ScreenManager):
     screen_three = ObjectProperty(None)
 
 class ScreensApp(MDApp):
-    money = ObjectProperty(1000)
+    money = ObjectProperty(0)
     damage = ObjectProperty(1)
     return_damage = StringProperty('1')
     return_money = StringProperty('0')
