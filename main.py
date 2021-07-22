@@ -6,27 +6,27 @@ from kivy.uix.screenmanager import ScreenManager, Screen, NoTransition
 
 
 def count(number):
-    if number // 1000000000000000000000000000000 > 1.0:
-        return str("%.2f" % (number/1000000000000000000000000000000)) + 'O'
-    if number // 1000000000000000000000000000 > 1.0:
-        return str("%.2f" % (number/1000000000000000000000000000)) + 'Sp'
-    if number // 1000000000000000000000000 > 1.0:
-        return str("%.2f" % (number/1000000000000000000000000)) + 'Sk'
-    if number // 1000000000000000000000 > 1.0:
-        return str("%.2f" % (number/10000000000000000000000)) + 'Qw'
-    if number // 1000000000000000000 > 1.0:
-        return str("%.2f" % (number/11000000000000000000)) + 'Qr'
-    if number // 1000000000000000 > 1.0:
-        return str("%.2f" % (number/1000000000000000)) + 'T'
-    if number // 1000000000000 > 1.0:
-        return str("%.2f" % (number/1000000000000)) + 'K'
-    if number // 1000000000 > 1.0:
-        return str("%.2f" % (number/1000000000)) + 'B'
-    if number // 1000000 > 1.0:
-        return str("%.2f" % (number/1000000)) + 'M'
-    if number // 1000 > 1.0:
-        return str("%.2f" % (number/1000)) + 'K'
-    return str("%.2f" % number)
+    if number / 1000000000000000000000000000000 > 1.0:
+        return str("%.1f" % (number/1000000000000000000000000000000)) + 'O'
+    if number / 1000000000000000000000000000 > 1.0:
+        return str("%.1f" % (number/1000000000000000000000000000)) + 'Sp'
+    if number / 1000000000000000000000000 > 1.0:
+        return str("%.1f" % (number/1000000000000000000000000)) + 'Sk'
+    if number / 1000000000000000000000 > 1.0:
+        return str("%.1f" % (number/10000000000000000000000)) + 'Qw'
+    if number / 1000000000000000000 > 1.0:
+        return str("%.1f" % (number/11000000000000000000)) + 'Qr'
+    if number / 1000000000000000 > 1.0:
+        return str("%.1f" % (number/1000000000000000)) + 'T'
+    if number / 1000000000000 > 1.0:
+        return str("%.1f" % (number/1000000000000)) + 'K'
+    if number / 1000000000 > 1.0:
+        return str("%.1f" % (number/1000000000)) + 'B'
+    if number / 1000000 > 1.0:
+        return str("%.1f" % (number/1000000)) + 'M'
+    if number / 1000 > 1.0:
+        return str("%.1f" % (number/1000)) + 'K'
+    return str(int(number))
 
 runing = 0
 temp = """
@@ -85,11 +85,6 @@ temp = """
                 root.manager.current = "screen1"
     FloatLayout:
         canvas:
-            Rectangle:
-                id: rec1
-                source: 'img/darkPurple.png'
-                size: self.size
-                pos: self.pos
             Rectangle:
                 id: rec2
                 source: 'img/bar_money.png'
@@ -266,7 +261,7 @@ temp = """
                         id: d1
                         size_hint: 0.5, 1.7
                         pos_hint: {'center_x': 0.75, 'center_y': 0.45}
-                        text: str(root.price1)
+                        text: str(root.return_price1)
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
                         font_size: 15
@@ -307,7 +302,7 @@ temp = """
                         id: d1
                         size_hint: 0.5, 1.7
                         pos_hint: {'center_x': 0.75, 'center_y': 0.45}
-                        text: str(root.price2)
+                        text: str(root.return_price2)
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
                         font_size: 15
@@ -348,7 +343,7 @@ temp = """
                         id: d1
                         size_hint: 0.5, 1.7
                         pos_hint: {'center_x': 0.75, 'center_y': 0.45}
-                        text: str(root.price3)
+                        text: str(root.return_price3)
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
                         font_size: 15
@@ -425,9 +420,9 @@ class ScreenThree(Screen):
     return_guns1 = StringProperty('1')
     return_guns2 = StringProperty('0')
     return_guns3 = StringProperty('0')
-    price1 = ObjectProperty(100)
-    price1 = ObjectProperty(1000)
-    price1 = ObjectProperty(10000)
+    return_price1 = StringProperty('100')
+    return_price2 = StringProperty('1000')
+    return_price3 = StringProperty('10000')
     def __init__(self, **kwargs):
         super(ScreenThree, self).__init__(**kwargs)
         self.guns1 = 1
@@ -449,7 +444,7 @@ class ScreenThree(Screen):
             self.price1 *= 1.1
             self.price1 = int(self.price1)
             App.get_running_app().return_money = count(self.money)
-            print(self.money)
+            self.return_price1 = count(self.price1)
     def up_guns2(self):
         self.money = App.get_running_app().money
         if self.money > self.price2:
@@ -462,6 +457,7 @@ class ScreenThree(Screen):
             self.price2 *= 1.1
             self.price2 = int(self.price2)
             App.get_running_app().return_money = count(self.money)
+            self.return_price2 = count(self.price2)
     def up_guns3(self):
         self.money = App.get_running_app().money
         if self.money > self.price3:
@@ -474,6 +470,7 @@ class ScreenThree(Screen):
             self.price3 *= 1
             self.price3 = int(self.price3)
             App.get_running_app().return_money = count(self.money)
+            self.return_price3 = count(self.price3)
 class Manager(ScreenManager):
 
     screen_one = ObjectProperty(None)
@@ -481,7 +478,7 @@ class Manager(ScreenManager):
     screen_three = ObjectProperty(None)
 
 class ScreensApp(MDApp):
-    money = ObjectProperty(0)
+    money = ObjectProperty(1000)
     damage = ObjectProperty(1)
     return_damage = StringProperty('1')
     return_money = StringProperty('0')
