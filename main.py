@@ -72,21 +72,6 @@ temp = """
                 source: 'img/darkPurple.png'
                 size: self.size
                 pos: self.pos
-            Rectangle:
-                id: rec2
-                source: 'img/bar_money.png'
-                size: self.width/3, self.height/12
-                pos: 0, self.height-55
-            Rectangle:
-                id: rec3
-                source: 'img/bar_lvl.png'
-                size: self.width/3, self.height/12
-                pos: self.width/3, self.height-55
-            Rectangle:
-                id: rec4
-                source: 'img/bar_mana.png'
-                size: self.width/3, self.height/12
-                pos: 2*(self.width/3), self.height-55
     FloatLayout:
         id: fl1
         Button:
@@ -98,54 +83,68 @@ temp = """
             background_down: 'img/btn1.png'
             on_press:
                 root.manager.current = "screen1"
-    AnchorLayout:
-        id: anch1
+    FloatLayout:
         canvas:
+            Rectangle:
+                id: rec1
+                source: 'img/darkPurple.png'
+                size: self.size
+                pos: self.pos
+            Rectangle:
+                id: rec2
+                source: 'img/bar_money.png'
+                size: self.width/3, self.height/12
+                pos: 0, self.height-self.height/2/2/2/1.5
+            Rectangle:
+                id: rec3
+                source: 'img/bar_lvl.png'
+                size: self.width/3, self.height/12
+                pos: self.width/3, self.height-self.height/2/2/2/1.5
+            Rectangle:
+                id: rec4
+                source: 'img/bar_mana.png'
+                size: self.width/3, self.height/12
+                pos: 2*(self.width/3), self.height-self.height/2/2/2/1.5
             Rectangle:
                 id: rec5
                 source: 'img/money_icon.png'
-                size: self.width/12, self.height/20
-                pos: 10, self.height-45
+                size: root.width/12, root.height/20
+                pos: 10, self.height-self.height/2/2/2/2
             Rectangle:
                 id: rec6
                 source: 'img/lvl_icon.png'
-                size: self.width/12, self.height/20
-                pos: 10+self.width/3, self.height-45
+                size: root.width/12, root.height/20
+                pos: 10+root.width/3, self.height-self.height/2/2/2/2
             Rectangle:
                 id: rec7
                 source: 'img/mana_icon.png'
-                size: self.width/12, self.height/20
-                pos: 10+self.width/3+self.width/3, self.height-45
-    BoxLayout:
-        pos_hint: {'center_x': 0.5, 'center_y': 0.93}
-        size_hint: 1, 1
-        MDLabel:
-            color: 1, 1, 1, 1
-            text: str(root.return_money)
-            text_size: self.width/1.5, self.height/12
-            font_size: 20
-            halign: 'right'
-            valign: 'top'
+                size: root.width/12, root.height/20
+                pos: 10+root.width/3+root.width/3, self.height-self.height/2/2/2/2
+    FloatLayout:
+        BoxLayout:
+            pos: self.width/16, self.height/3+self.height/2/2/1.65
             size_hint: 1, 1
-            font_style: 'H6'
-        MDLabel:
-            color: 1, 1, 1, 1
-            text: str(app.return_damage)
-            text_size: self.width/1.5, self.height/12
-            font_size: 20
-            halign: 'right'
-            valign: 'top'
-            size_hint: 1, 1
-            font_style: 'H6'
-        MDLabel:
-            color: 1, 1, 1, 1
-            text: str(root.return_mana)
-            text_size: self.width/1.5, self.height/12
-            font_size: 20
-            halign: 'right'
-            valign: 'top'
-            size_hint: 1, 1
-            font_style: 'H6'
+            MDLabel:
+                color: 1, 1, 1, 1
+                text: str(root.return_money)
+                text_size: self.width/1.5, self.height/12
+                font_size: 20
+                size_hint: 1, 1
+                font_style: 'H6'
+            MDLabel:
+                color: 1, 1, 1, 1
+                text: str(app.return_damage)
+                text_size: self.width/1.5, self.height/12
+                font_size: 20
+                size_hint: 1, 1
+                font_style: 'H6'
+            MDLabel:
+                color: 1, 1, 1, 1
+                text: str(root.return_mana)
+                text_size: self.width/1.5, self.height/12
+                font_size: 20
+                size_hint: 1, 1
+                font_style: 'H6'
     FloatLayout:
         id: fl3
         BoxLayout:
@@ -196,11 +195,11 @@ temp = """
             Button:
                 text: 'улучшения'
             Button:
-                text: 'скилы'
+                text: 'способности'
             Button:
-                text: 'в разработке'
+                text: 'деньги'
         ScrollView:
-            size_hint_y: .8
+            size_hint_y: 0.8
             do_scroll_x: False
             do_scroll_y: True
             pos_hint: {'x':0.0625, 'y': .05}
@@ -222,15 +221,15 @@ temp = """
                         Rectangle:
                             id: rec1
                             source: 'img/page.jpg'
-                            size: self.size[0]-self.width/2, self.size[1]-10
-                            pos: self.pos
+                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2/2
+                            pos: self.pos[0], self.pos[1]-5
                         Rectangle:
                             id: rec1
                             source: 'img/upgrade1.png'
                             size: self.size[0]/5, self.size[1]/2
                             pos: self.pos[0]+10, self.pos[1]+10
                     BoxLayout:
-                        size_hint: 1, 0.5
+                        size_hint: 1, 1
                         orientation: 'vertical'
                         pos_hint: {'center_x': 0.5, 'center_y': 0.45}
                         MDLabel:
@@ -251,23 +250,99 @@ temp = """
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
                         id: d1
-                        size_hint: 0.5, 1.3
+                        size_hint: 0.5, 1.7
                         pos_hint: {'center_x': 0.75, 'center_y': 0.45}
                         text: 'Купить  '
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
                         font_size: 15
                         on_press: root.up_guns1()
-                Button:
-                    size_hint: 1, 0.4
-                    text: 'Улучшение 2'
-                Button:
-                    size_hint: 1, 0.4
-                    text: 'Улучшение 3'
+                FloatLayout:
+                    canvas:
+                        Rectangle:
+                            id: rec1
+                            source: 'img/page.jpg'
+                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2
+                            pos: self.pos[0], self.pos[1]-5
+                        Rectangle:
+                            id: rec1
+                            source: 'img/upgrade1.png'
+                            size: self.size[0]/5, self.size[1]/2
+                            pos: self.pos[0]+5, self.pos[1]+10
+                    BoxLayout:
+                        size_hint: 1, 1
+                        orientation: 'vertical'
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H4'
+                            text: 'lvl ' + str(root.guns1)
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'Плазмопушка'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                    Button:
+                        id: d1
+                        size_hint: 0.5, 1.7
+                        pos_hint: {'center_x': 0.75, 'center_y': 0.45}
+                        text: 'Купить  '
+                        background_normal: 'img/btn1.png'
+                        background_down: 'img/btn1.png'
+                        font_size: 15
+                        on_press: root.up_guns1()
+                FloatLayout:
+                    canvas:
+                        Rectangle:
+                            id: rec1
+                            source: 'img/page.jpg'
+                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2
+                            pos: self.pos[0], self.pos[1]-5
+                        Rectangle:
+                            id: rec1
+                            source: 'img/upgrade1.png'
+                            size: self.size[0]/5, self.size[1]/2
+                            pos: self.pos[0]+5, self.pos[1]+10
+                    BoxLayout:
+                        size_hint: 1, 1
+                        orientation: 'vertical'
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H4'
+                            text: 'lvl ' + str(root.guns1)
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'Плазмопушка'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                    Button:
+                        id: d1
+                        size_hint: 0.5, 1.7
+                        pos_hint: {'center_x': 0.75, 'center_y': 0.45}
+                        text: 'Купить  '
+                        background_normal: 'img/btn1.png'
+                        background_down: 'img/btn1.png'
+                        font_size: 15
+                        on_press: root.up_guns1()
         BoxLayout:
             spacing: 20
             pos_hint: {'center_x': 0.8, 'center_y': 0.1}
-            size_hint: .2, .1
+            size_hint: .25, .15
             Button:
                 text: 'назад'
                 background_normal: 'img/btn1.png'
