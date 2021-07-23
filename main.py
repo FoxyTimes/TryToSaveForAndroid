@@ -31,18 +31,14 @@ def count(number):
 temp = """
 <ScreenOne>:
     AnchorLayout:
-        id: anch1
         spacing: 20
         canvas:
             Rectangle:
-                id: rec1
                 source: 'img/darkPurple.png'
                 size: self.size
                 pos: self.pos
     FloatLayout:
-        id: fl1
         Button:
-            id: bt1
             size_hint: 0.7, 0.23
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             background_normal: 'img/button.png'
@@ -50,11 +46,9 @@ temp = """
             on_press:
                 root.manager.current = "screen2"
     AnchorLayout:
-        id: anch2
         anchor_x: 'center'
         anchor_y: 'top'
         BoxLayout:
-            id: box1
             orientation: 'vertical'
             size_hint: .4, .4
             Label:
@@ -64,7 +58,6 @@ temp = """
 
 <ScreenTwo>:
     AnchorLayout:
-        id: anch1
         canvas:
             Rectangle:
                 id: rec1
@@ -72,9 +65,7 @@ temp = """
                 size: self.size
                 pos: self.pos
     FloatLayout:
-        id: fl1
         Button:
-            id: bt1
             text: 'Меню'
             size_hint: 0.3, 0.1
             pos_hint: {'center_x': 0.15, 'center_y': 0.88}
@@ -85,62 +76,49 @@ temp = """
     FloatLayout:
         canvas:
             Rectangle:
-                id: rec2
                 source: 'img/bar_money.png'
                 size: self.width/3, self.height/12
                 pos: 0, self.height-self.height/2/2/2/1.5
             Rectangle:
-                id: rec3
-                source: 'img/bar_lvl.png'
+                source: 'img/bar_damage.png'
                 size: self.width/3, self.height/12
                 pos: self.width/3, self.height-self.height/2/2/2/1.5
             Rectangle:
-                id: rec4
                 source: 'img/bar_mana.png'
                 size: self.width/3, self.height/12
                 pos: 2*(self.width/3), self.height-self.height/2/2/2/1.5
             Rectangle:
-                id: rec5
                 source: 'img/money_icon.png'
                 size: root.width/12, root.height/20
-                pos: 10, self.height-self.height/2/2/2/2
+                pos: 5, self.height-self.height/2/2/2/2
             Rectangle:
-                id: rec6
-                source: 'img/lvl_icon.png'
+                source: 'img/damage_icon.png'
                 size: root.width/12, root.height/20
-                pos: 10+root.width/3, self.height-self.height/2/2/2/2
+                pos: 5+root.width/3, self.height-self.height/2/2/2/2
             Rectangle:
-                id: rec7
                 source: 'img/mana_icon.png'
                 size: root.width/12, root.height/20
-                pos: 10+root.width/3+root.width/3, self.height-self.height/2/2/2/1.8
+                pos: 5+root.width/3+root.width/3, self.height-self.height/2/2/2/1.8
     FloatLayout:
         BoxLayout:
-            pos: self.width/16, self.height/3+self.height/2/2/1.65
+            pos: self.width/11.5, self.height/3+self.height/2/2/1.65
             size_hint: 1, 1
             MDLabel:
                 color: 1, 1, 1, 1
                 text: str(app.return_money)
-                text_size: self.width/1.5, self.height/12
-                font_size: 20
-                size_hint: 1, 1
-                font_style: 'H6'
+                text_size: self.width/1.1, self.height/12
+                font_size: 18
             MDLabel:
                 color: 1, 1, 1, 1
                 text: str(app.return_damage)
-                text_size: self.width/1.5, self.height/12
-                font_size: 20
-                size_hint: 1, 1
-                font_style: 'H6'
+                text_size: self.width/1.1, self.height/12
+                font_size: 18
             MDLabel:
                 color: 1, 1, 1, 1
                 text: str(root.return_mana)
-                text_size: self.width/1.5, self.height/12
-                font_size: 20
-                size_hint: 1, 1
-                font_style: 'H6'
+                text_size: self.width/1.1, self.height/12
+                font_size: 18
     FloatLayout:
-        id: fl3
         BoxLayout:
             orientation: 'vertical'
             padding: 20
@@ -153,7 +131,6 @@ temp = """
                 font_size: 25
                 on_press: root.manager.current = "screen3"
     FloatLayout:
-        id: fl4
         BoxLayout:
             orientation: 'vertical'
             size_hint: 0.95, 0.7
@@ -184,10 +161,41 @@ temp = """
     FloatLayout:
         canvas:
             Rectangle:
-                id: rec1
                 source: 'img/darkPurple.png'
                 size: self.size
                 pos: self.pos
+            Rectangle:
+                source: 'img/bar_money.png'
+                size: self.width/3, self.height/12
+                pos: self.width/20, self.height-self.height/1.07
+            Rectangle:
+                source: 'img/bar_damage.png'
+                size: self.width/3, self.height/12
+                pos: self.width/2.5, self.height-self.height/1.07
+            Rectangle:
+                source: 'img/money_icon.png'
+                size: self.width/12, self.height/20
+                pos: self.width/18, self.height-self.height/1.09
+            Rectangle:
+                source: 'img/damage_icon.png'
+                size: self.width/12, self.height/20
+                pos: self.width/2.4, self.height-self.height/1.09
+        MDLabel:
+            halign: 'center'
+            font_style: 'H6'
+            text: app.return_money
+            color: 1, 1, 1, 1
+            size_hint: 1, 1
+            font_size: 15
+            pos_hint: {'center_x': 0.2, 'center_y': 0.11}
+        MDLabel:
+            halign: 'center'
+            font_style: 'H6'
+            text: app.return_damage
+            color: 1, 1, 1, 1
+            size_hint: 1, 1
+            font_size: 15
+            pos_hint: {'center_x': 0.55, 'center_y': 0.11}
         BoxLayout:
             pos_hint: {'center_x': 0.5, 'center_y': 0.9}
             size_hint: 1, .09
@@ -224,36 +232,39 @@ temp = """
                 height: self.minimum_height
                 canvas:
                     Rectangle:
-                        id: rec1
                         source: 'img/background.jpg'
                         size: self.size
                         pos: self.pos
                 FloatLayout:
                     canvas:
                         Rectangle:
-                            id: rec1
                             source: 'img/page.jpg'
-                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2/2
+                            size: self.size[0]-self.width/3, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
-                            id: rec1
                             source: 'img/fon.jpg'
-                            size: self.size[0]/5, self.size[1]/1.4
+                            size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
-                            id: rec1
                             source: 'img/upgrade1.png'
-                            size: self.size[0]/5.5, self.size[1]/2
-                            pos: self.pos[0]+self.width/2/3/2/2/1.2, self.pos[1]+self.height/2/2
+                            size: self.size[0]/3.7, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
-                            id: rec1
                             source: 'img/page1.png'
-                            size: self.size[0]/3.5, self.size[1]+self.height/2/2
+                            size: self.size[0]/2.5, self.size[1]+self.height/2/2
                             pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
+                        Rectangle:
+                            source: 'img/fon2.jpg'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
+                        Rectangle:
+                            source: 'img/page2.png'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
                     BoxLayout:
                         size_hint: 1, 0.5
                         orientation: 'vertical'
-                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        pos_hint: {'center_x': 0.65, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
                             font_style: 'H4'
@@ -279,41 +290,45 @@ temp = """
                             font_size: 15
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
-                        id: d1
                         size_hint: None, None
-                        size: root.width/2.2, root.height/5
-                        pos_hint: {'center_x': 0.75, 'center_y': 0.5}
+                        size: root.width/3, root.height/5
+                        pos_hint: {'center_x': 0.835, 'center_y': 0.5}
                         text: str(root.return_price1)
+                        color: 1, 0.85, 0.1, 1
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
-                        font_size: 15
+                        font_size: 20
                         on_press: root.up_guns1()
                 FloatLayout:
                     canvas:
                         Rectangle:
-                            id: rec1
                             source: 'img/page.jpg'
-                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2/2
+                            size: self.size[0]-self.width/3, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
-                            id: rec1
                             source: 'img/fon.jpg'
-                            size: self.size[0]/5, self.size[1]/1.4
+                            size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
-                            id: rec1
                             source: 'img/upgrade2.png'
-                            size: self.size[0]/5.5, self.size[1]/2
-                            pos: self.pos[0]+self.width/2/3/2/2/1.2, self.pos[1]+self.height/2/2
+                            size: self.size[0]/3.7, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
-                            id: rec1
                             source: 'img/page1.png'
-                            size: self.size[0]/3.5, self.size[1]+self.height/2/2
+                            size: self.size[0]/2.5, self.size[1]+self.height/2/2
                             pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
+                        Rectangle:
+                            source: 'img/fon2.jpg'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
+                        Rectangle:
+                            source: 'img/page2.png'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
                     BoxLayout:
                         size_hint: 1, 0.5
                         orientation: 'vertical'
-                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        pos_hint: {'center_x': 0.65, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
                             font_style: 'H4'
@@ -339,41 +354,45 @@ temp = """
                             font_size: 15
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
-                        id: d1
                         size_hint: None, None
-                        size: root.width/2.2, root.height/5
-                        pos_hint: {'center_x': 0.75, 'center_y': 0.5}
+                        size: root.width/3, root.height/5
+                        pos_hint: {'center_x': 0.835, 'center_y': 0.5}
                         text: str(root.return_price2)
+                        color: 1, 0.85, 0.1, 1
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
-                        font_size: 15
+                        font_size: 20
                         on_press: root.up_guns2()
                 FloatLayout:
                     canvas:
                         Rectangle:
-                            id: rec1
                             source: 'img/page.jpg'
-                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2/2
+                            size: self.size[0]-self.width/3, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
-                            id: rec1
                             source: 'img/fon.jpg'
-                            size: self.size[0]/5, self.size[1]/1.4
+                            size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
-                            id: rec1
                             source: 'img/upgrade3.png'
-                            size: self.size[0]/5.5, self.size[1]/2
-                            pos: self.pos[0]+self.width/2/3/2/2/1.2, self.pos[1]+self.height/2/2
+                            size: self.size[0]/3.7, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
-                            id: rec1
                             source: 'img/page1.png'
-                            size: self.size[0]/3.5, self.size[1]+self.height/2/2
+                            size: self.size[0]/2.5, self.size[1]+self.height/2/2
                             pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
+                        Rectangle:
+                            source: 'img/fon2.jpg'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
+                        Rectangle:
+                            source: 'img/page2.png'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
                     BoxLayout:
                         size_hint: 1, 0.5
                         orientation: 'vertical'
-                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        pos_hint: {'center_x': 0.65, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
                             font_style: 'H4'
@@ -399,41 +418,45 @@ temp = """
                             font_size: 15
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
-                        id: d1
                         size_hint: None, None
-                        size: root.width/2.2, root.height/5
-                        pos_hint: {'center_x': 0.75, 'center_y': 0.5}
+                        size: root.width/3, root.height/5
+                        pos_hint: {'center_x': 0.835, 'center_y': 0.5}
                         text: str(root.return_price3)
+                        color: 1, 0.85, 0.1, 1
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
-                        font_size: 15
+                        font_size: 20
                         on_press: root.up_guns3()
                 FloatLayout:
                     canvas:
                         Rectangle:
-                            id: rec1
                             source: 'img/page.jpg'
-                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2/2
+                            size: self.size[0]-self.width/3, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
-                            id: rec1
                             source: 'img/fon.jpg'
-                            size: self.size[0]/5, self.size[1]/1.4
+                            size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
-                            id: rec1
                             source: 'img/upgrade4.png'
-                            size: self.size[0]/5.5, self.size[1]/2
-                            pos: self.pos[0]+self.width/2/3/2/2/1.2, self.pos[1]+self.height/2/2
+                            size: self.size[0]/3.7, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
-                            id: rec1
                             source: 'img/page1.png'
-                            size: self.size[0]/3.5, self.size[1]+self.height/2/2
+                            size: self.size[0]/2.5, self.size[1]+self.height/2/2
                             pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
+                        Rectangle:
+                            source: 'img/fon2.jpg'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
+                        Rectangle:
+                            source: 'img/page2.png'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
                     BoxLayout:
                         size_hint: 1, 0.5
                         orientation: 'vertical'
-                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        pos_hint: {'center_x': 0.65, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
                             font_style: 'H4'
@@ -459,41 +482,45 @@ temp = """
                             font_size: 15
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
-                        id: d1
                         size_hint: None, None
-                        size: root.width/2.2, root.height/5
-                        pos_hint: {'center_x': 0.75, 'center_y': 0.5}
+                        size: root.width/3, root.height/5
+                        pos_hint: {'center_x': 0.835, 'center_y': 0.5}
                         text: str(root.return_price4)
+                        color: 1, 0.85, 0.1, 1
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
-                        font_size: 15
+                        font_size: 20
                         on_press: root.up_guns4()
                 FloatLayout:
                     canvas:
                         Rectangle:
-                            id: rec1
                             source: 'img/page.jpg'
-                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2/2
+                            size: self.size[0]-self.width/3, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
-                            id: rec1
                             source: 'img/fon.jpg'
-                            size: self.size[0]/5, self.size[1]/1.4
+                            size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
-                            id: rec1
                             source: 'img/upgrade5.png'
-                            size: self.size[0]/5.5, self.size[1]/2
-                            pos: self.pos[0]+self.width/2/3/2/2/1.2, self.pos[1]+self.height/2/2
+                            size: self.size[0]/3.7, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
-                            id: rec1
                             source: 'img/page1.png'
-                            size: self.size[0]/3.5, self.size[1]+self.height/2/2
+                            size: self.size[0]/2.5, self.size[1]+self.height/2/2
                             pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
+                        Rectangle:
+                            source: 'img/fon2.jpg'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
+                        Rectangle:
+                            source: 'img/page2.png'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
                     BoxLayout:
                         size_hint: 1, 0.5
                         orientation: 'vertical'
-                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        pos_hint: {'center_x': 0.65, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
                             font_style: 'H4'
@@ -519,41 +546,45 @@ temp = """
                             font_size: 15
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
-                        id: d1
                         size_hint: None, None
-                        size: root.width/2.2, root.height/5
-                        pos_hint: {'center_x': 0.75, 'center_y': 0.5}
+                        size: root.width/3, root.height/5
+                        pos_hint: {'center_x': 0.835, 'center_y': 0.5}
                         text: str(root.return_price5)
+                        color: 1, 0.85, 0.1, 1
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
-                        font_size: 15
+                        font_size: 20
                         on_press: root.up_guns5()
                 FloatLayout:
                     canvas:
                         Rectangle:
-                            id: rec1
                             source: 'img/page.jpg'
-                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2/2
+                            size: self.size[0]-self.width/3, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
-                            id: rec1
                             source: 'img/fon.jpg'
-                            size: self.size[0]/5, self.size[1]/1.4
+                            size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
-                            id: rec1
                             source: 'img/upgrade6.png'
-                            size: self.size[0]/5.5, self.size[1]/2
-                            pos: self.pos[0]+self.width/2/3/2/2/1.2, self.pos[1]+self.height/2/2
+                            size: self.size[0]/3.7, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
-                            id: rec1
                             source: 'img/page1.png'
-                            size: self.size[0]/3.5, self.size[1]+self.height/2/2
+                            size: self.size[0]/2.5, self.size[1]+self.height/2/2
                             pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
+                        Rectangle:
+                            source: 'img/fon2.jpg'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
+                        Rectangle:
+                            source: 'img/page2.png'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
                     BoxLayout:
                         size_hint: 1, 0.7
                         orientation: 'vertical'
-                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        pos_hint: {'center_x': 0.65, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
                             font_style: 'H4'
@@ -587,41 +618,45 @@ temp = """
                             font_size: 15
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
-                        id: d1
                         size_hint: None, None
-                        size: root.width/2.2, root.height/5
-                        pos_hint: {'center_x': 0.75, 'center_y': 0.5}
+                        size: root.width/3, root.height/5
+                        pos_hint: {'center_x': 0.835, 'center_y': 0.5}
                         text: str(root.return_price6)
+                        color: 1, 0.85, 0.1, 1
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
-                        font_size: 15
+                        font_size: 20
                         on_press: root.up_guns6()
                 FloatLayout:
                     canvas:
                         Rectangle:
-                            id: rec1
                             source: 'img/page.jpg'
-                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2/2
+                            size: self.size[0]-self.width/3, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
-                            id: rec1
                             source: 'img/fon.jpg'
-                            size: self.size[0]/5, self.size[1]/1.4
+                            size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
-                            id: rec1
                             source: 'img/upgrade7.png'
-                            size: self.size[0]/5.5, self.size[1]/2
-                            pos: self.pos[0]+self.width/2/3/2/2/1.2, self.pos[1]+self.height/2/2
+                            size: self.size[0]/3.7, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
-                            id: rec1
                             source: 'img/page1.png'
-                            size: self.size[0]/3.5, self.size[1]+self.height/2/2
+                            size: self.size[0]/2.5, self.size[1]+self.height/2/2
                             pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
+                        Rectangle:
+                            source: 'img/fon2.jpg'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
+                        Rectangle:
+                            source: 'img/page2.png'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
                     BoxLayout:
                         size_hint: 1, 0.5
                         orientation: 'vertical'
-                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        pos_hint: {'center_x': 0.65, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
                             font_style: 'H4'
@@ -644,14 +679,14 @@ temp = """
                             text: '+ 500 урон'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 15
+                            font_size: 20
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
-                        id: d1
                         size_hint: None, None
-                        size: root.width/2.2, root.height/5
-                        pos_hint: {'center_x': 0.75, 'center_y': 0.5}
+                        size: root.width/3, root.height/5
+                        pos_hint: {'center_x': 0.835, 'center_y': 0.5}
                         text: str(root.return_price7)
+                        color: 1, 0.85, 0.1, 1
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
                         font_size: 15
@@ -659,29 +694,33 @@ temp = """
                 FloatLayout:
                     canvas:
                         Rectangle:
-                            id: rec1
                             source: 'img/page.jpg'
-                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2/2
+                            size: self.size[0]-self.width/3, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
-                            id: rec1
                             source: 'img/fon.jpg'
-                            size: self.size[0]/5, self.size[1]/1.4
+                            size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
-                            id: rec1
                             source: 'img/upgrade8.png'
-                            size: self.size[0]/5.5, self.size[1]/2
-                            pos: self.pos[0]+self.width/2/3/2/2/1.2, self.pos[1]+self.height/2/2
+                            size: self.size[0]/3.7, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
-                            id: rec1
                             source: 'img/page1.png'
-                            size: self.size[0]/3.5, self.size[1]+self.height/2/2
+                            size: self.size[0]/2.5, self.size[1]+self.height/2/2
                             pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
+                        Rectangle:
+                            source: 'img/fon2.jpg'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
+                        Rectangle:
+                            source: 'img/page2.png'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
                     BoxLayout:
                         size_hint: 1, 0.5
                         orientation: 'vertical'
-                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        pos_hint: {'center_x': 0.65, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
                             font_style: 'H4'
@@ -707,41 +746,45 @@ temp = """
                             font_size: 15
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
-                        id: d1
                         size_hint: None, None
-                        size: root.width/2.2, root.height/5
-                        pos_hint: {'center_x': 0.75, 'center_y': 0.5}
+                        size: root.width/3, root.height/5
+                        pos_hint: {'center_x': 0.835, 'center_y': 0.5}
                         text: str(root.return_price8)
+                        color: 1, 0.85, 0.1, 1
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
-                        font_size: 15
+                        font_size: 20
                         on_press: root.up_guns8()
                 FloatLayout:
                     canvas:
                         Rectangle:
-                            id: rec1
                             source: 'img/page.jpg'
-                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2/2
+                            size: self.size[0]-self.width/3, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
-                            id: rec1
                             source: 'img/fon.jpg'
-                            size: self.size[0]/5, self.size[1]/1.4
+                            size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
-                            id: rec1
                             source: 'img/upgrade9.png'
-                            size: self.size[0]/5.5, self.size[1]/2
-                            pos: self.pos[0]+self.width/2/3/2/2/1.2, self.pos[1]+self.height/2/2
+                            size: self.size[0]/3.7, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
-                            id: rec1
                             source: 'img/page1.png'
-                            size: self.size[0]/3.5, self.size[1]+self.height/2/2
+                            size: self.size[0]/2.5, self.size[1]+self.height/2/2
                             pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
+                        Rectangle:
+                            source: 'img/fon2.jpg'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
+                        Rectangle:
+                            source: 'img/page2.png'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
                     BoxLayout:
                         size_hint: 1, 0.7
                         orientation: 'vertical'
-                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        pos_hint: {'center_x': 0.65, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
                             font_style: 'H4'
@@ -775,41 +818,45 @@ temp = """
                             font_size: 15
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
-                        id: d1
                         size_hint: None, None
-                        size: root.width/2.2, root.height/5
-                        pos_hint: {'center_x': 0.75, 'center_y': 0.5}
+                        size: root.width/3, root.height/5
+                        pos_hint: {'center_x': 0.835, 'center_y': 0.5}
                         text: str(root.return_price9)
+                        color: 1, 0.85, 0.1, 1
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
-                        font_size: 15
+                        font_size: 20
                         on_press: root.up_guns9()
                 FloatLayout:
                     canvas:
                         Rectangle:
-                            id: rec1
                             source: 'img/page.jpg'
-                            size: self.size[0]-self.width/2, self.size[1]+self.height/2/2/2
+                            size: self.size[0]-self.width/3, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
-                            id: rec1
                             source: 'img/fon.jpg'
-                            size: self.size[0]/5, self.size[1]/1.4
+                            size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
-                            id: rec1
                             source: 'img/upgrade10.png'
-                            size: self.size[0]/5.5, self.size[1]/2
-                            pos: self.pos[0]+self.width/2/3/2/2/1.2, self.pos[1]+self.height/2/2
+                            size: self.size[0]/3.7, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
-                            id: rec1
                             source: 'img/page1.png'
-                            size: self.size[0]/3.5, self.size[1]+self.height/2/2
+                            size: self.size[0]/2.5, self.size[1]+self.height/2/2
                             pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
+                        Rectangle:
+                            source: 'img/fon2.jpg'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
+                        Rectangle:
+                            source: 'img/page2.png'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
                     BoxLayout:
                         size_hint: 1, 0.5
                         orientation: 'vertical'
-                        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                        pos_hint: {'center_x': 0.65, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
                             font_style: 'H4'
@@ -835,21 +882,22 @@ temp = """
                             font_size: 15
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                     Button:
-                        id: d1
                         size_hint: None, None
-                        size: root.width/2.2, root.height/5
-                        pos_hint: {'center_x': 0.75, 'center_y': 0.5}
+                        size: root.width/3, root.height/5
+                        pos_hint: {'center_x': 0.835, 'center_y': 0.5}
                         text: str(root.return_price10)
+                        color: 1, 0.85, 0.1, 1
                         background_normal: 'img/btn1.png'
                         background_down: 'img/btn1.png'
-                        font_size: 15
+                        font_size: 20
                         on_press: root.up_guns10()
-        
         BoxLayout:
             spacing: 20
-            pos_hint: {'center_x': 0.8, 'center_y': 0.1}
-            size_hint: .25, .15
+            pos_hint: {'center_x': 0.85, 'center_y': 0.1}
+            spacing: 10
+            size_hint: .2, .15
             Button:
+                size_hint: 0.6, 1
                 text: 'назад'
                 background_normal: 'img/btn1.png'
                 background_down: 'img/btn1.png'
@@ -888,7 +936,6 @@ class ScreenTwo(Screen):
     return_health = StringProperty('300')
     return_money = StringProperty('0')
     plus = ObjectProperty(1)
-    lvl = ObjectProperty(1)
     return_mana = StringProperty('10')
     health = ObjectProperty(300)
     def __init__(self, **kwargs):
