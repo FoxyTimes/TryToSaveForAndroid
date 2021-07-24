@@ -200,7 +200,7 @@ temp = """
             pos_hint: {'center_x': 0.5, 'center_y': 0.85}
             size_hint: 1, .09
             Button:
-                text: 'урон'
+                text: 'скилы'
                 background_normal: 'img/btn1.png'
                 background_down: 'img/btn1_pressed.png'
                 size_hint: 1, 1.7
@@ -208,7 +208,7 @@ temp = """
                 on_press:
                     root.manager.current = "screen3"
             Button:
-                text: 'способности'
+                text: 'Урон'
                 background_normal: 'img/btn1.png'
                 background_down: 'img/btn1_pressed.png'
                 size_hint: 1.5, 1.7
@@ -921,17 +921,17 @@ temp = """
                 size: self.width/3, self.height/12
                 pos: self.width/20, self.height-self.height/1.07
             Rectangle:
-                source: 'img/bar_damage.png'
-                size: self.width/3, self.height/12
-                pos: self.width/2.5, self.height-self.height/1.07
+                source: 'img/fon3.jpg'
+                size: self.size[0]-self.width/1.35, self.size[1]/2/2/1.7
+                pos: self.pos[0]+self.width/2/1.2, self.pos[1]+self.height/2/2/2/2/2
+            Rectangle:
+                source: 'img/page3.png'
+                size: self.size[0]-self.width/1.35, self.size[1]/2/2/1.7
+                pos: self.pos[0]+self.width/2/1.2, self.pos[1]+self.height/2/2/2/2/2
             Rectangle:
                 source: 'img/money_icon.png'
                 size: self.width/12, self.height/20
                 pos: self.width/18, self.height-self.height/1.09
-            Rectangle:
-                source: 'img/damage_icon.png'
-                size: self.width/12, self.height/20
-                pos: self.width/2.4, self.height-self.height/1.09
         MDLabel:
             halign: 'center'
             font_style: 'H6'
@@ -943,8 +943,8 @@ temp = """
         MDLabel:
             halign: 'center'
             font_style: 'H6'
-            text: app.return_damage
-            color: 1, 1, 1, 1
+            text: app.return_plus + '/клик'
+            color: 1, 0.5, 1, 1
             size_hint: 1, 1
             font_size: 15
             pos_hint: {'center_x': 0.55, 'center_y': 0.11}
@@ -960,13 +960,13 @@ temp = """
                 on_press:
                     root.manager.current = "screen3"
             Button:
-                text: 'способности'
+                text: 'Деньги'
                 background_normal: 'img/btn1.png'
                 background_down: 'img/btn1_pressed.png'
                 size_hint: 1.5, 1.7
                 font_size: 15
             Button:
-                text: 'деньги'
+                text: 'скиллы'
                 background_normal: 'img/btn1.png'
                 background_down: 'img/btn1_pressed.png'
                 size_hint: 1, 1.7
@@ -998,7 +998,7 @@ temp = """
                             size: self.size[0]-self.width/3, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
-                            source: 'img/fon.jpg'
+                            source: 'img/fon5.jpg'
                             size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
@@ -1006,11 +1006,11 @@ temp = """
                             size: self.size[0]/3.7, self.size[1]/2
                             pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
-                            source: 'img/page1.png'
+                            source: 'img/page5.png'
                             size: self.size[0]/2.5, self.size[1]+self.height/2/2
                             pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
                         Rectangle:
-                            source: 'img/fon2.jpg'
+                            source: 'img/fon4.jpg'
                             size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
                             pos: self.pos[0]+self.width/2/1.35, self.pos[1]
                         Rectangle:
@@ -1035,7 +1035,7 @@ temp = """
                             text: 'Мини-реактор'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -1062,7 +1062,7 @@ temp = """
                             size: self.size[0]-self.width/3, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
-                            source: 'img/fon.jpg'
+                            source: 'img/fon5.jpg'
                             size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
@@ -1070,11 +1070,11 @@ temp = """
                             size: self.size[0]/3.7, self.size[1]/2
                             pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
-                            source: 'img/page1.png'
+                            source: 'img/page5.png'
                             size: self.size[0]/2.5, self.size[1]+self.height/2/2
                             pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
                         Rectangle:
-                            source: 'img/fon2.jpg'
+                            source: 'img/fon4.jpg'
                             size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
                             pos: self.pos[0]+self.width/2/1.35, self.pos[1]
                         Rectangle:
@@ -1099,7 +1099,7 @@ temp = """
                             text: 'Малый-реактор'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -1126,7 +1126,7 @@ temp = """
                             size: self.size[0]-self.width/3, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
-                            source: 'img/fon.jpg'
+                            source: 'img/fon5.jpg'
                             size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
@@ -1134,11 +1134,11 @@ temp = """
                             size: self.size[0]/3.7, self.size[1]/2
                             pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
-                            source: 'img/page1.png'
+                            source: 'img/page5.png'
                             size: self.size[0]/2.5, self.size[1]+self.height/2/2
                             pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
                         Rectangle:
-                            source: 'img/fon2.jpg'
+                            source: 'img/fon4.jpg'
                             size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
                             pos: self.pos[0]+self.width/2/1.35, self.pos[1]
                         Rectangle:
@@ -1163,7 +1163,7 @@ temp = """
                             text: 'Средний-реактор'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -1190,7 +1190,7 @@ temp = """
                             size: self.size[0]-self.width/3, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
-                            source: 'img/fon.jpg'
+                            source: 'img/fon5.jpg'
                             size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
@@ -1198,11 +1198,11 @@ temp = """
                             size: self.size[0]/3.7, self.size[1]/2
                             pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
-                            source: 'img/page1.png'
+                            source: 'img/page5.png'
                             size: self.size[0]/2.5, self.size[1]+self.height/2/2
                             pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
                         Rectangle:
-                            source: 'img/fon2.jpg'
+                            source: 'img/fon4.jpg'
                             size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
                             pos: self.pos[0]+self.width/2/1.35, self.pos[1]
                         Rectangle:
@@ -1227,7 +1227,7 @@ temp = """
                             text: 'Большой-реактор'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -1254,7 +1254,7 @@ temp = """
                             size: self.size[0]-self.width/3, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
-                            source: 'img/fon.jpg'
+                            source: 'img/fon5.jpg'
                             size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
@@ -1262,11 +1262,11 @@ temp = """
                             size: self.size[0]/3.7, self.size[1]/2
                             pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
-                            source: 'img/page1.png'
+                            source: 'img/page5.png'
                             size: self.size[0]/2.5, self.size[1]+self.height/2/2
                             pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
                         Rectangle:
-                            source: 'img/fon2.jpg'
+                            source: 'img/fon4.jpg'
                             size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
                             pos: self.pos[0]+self.width/2/1.35, self.pos[1]
                         Rectangle:
@@ -1291,7 +1291,7 @@ temp = """
                             text: 'Гипер-реактор'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -1318,7 +1318,7 @@ temp = """
                             size: self.size[0]-self.width/3, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
-                            source: 'img/fon.jpg'
+                            source: 'img/fon5.jpg'
                             size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
@@ -1326,11 +1326,11 @@ temp = """
                             size: self.size[0]/3.7, self.size[1]/2
                             pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
-                            source: 'img/page1.png'
+                            source: 'img/page5.png'
                             size: self.size[0]/2.5, self.size[1]+self.height/2/2
                             pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
                         Rectangle:
-                            source: 'img/fon2.jpg'
+                            source: 'img/fon4.jpg'
                             size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
                             pos: self.pos[0]+self.width/2/1.35, self.pos[1]
                         Rectangle:
@@ -1352,18 +1352,10 @@ temp = """
                         MDLabel:
                             halign: 'center'
                             font_style: 'H6'
-                            text: 'Ультра'
+                            text: 'Энергощит'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
-                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
-                        MDLabel:
-                            halign: 'center'
-                            font_style: 'H6'
-                            text: 'Плазмопушка'
-                            color: 0.5, 1, 0.5, 1
-                            size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -1390,7 +1382,7 @@ temp = """
                             size: self.size[0]-self.width/3, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
-                            source: 'img/fon.jpg'
+                            source: 'img/fon5.jpg'
                             size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
@@ -1398,11 +1390,11 @@ temp = """
                             size: self.size[0]/3.7, self.size[1]/2
                             pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
-                            source: 'img/page1.png'
+                            source: 'img/page5.png'
                             size: self.size[0]/2.5, self.size[1]+self.height/2/2
                             pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
                         Rectangle:
-                            source: 'img/fon2.jpg'
+                            source: 'img/fon4.jpg'
                             size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
                             pos: self.pos[0]+self.width/2/1.35, self.pos[1]
                         Rectangle:
@@ -1424,10 +1416,10 @@ temp = """
                         MDLabel:
                             halign: 'center'
                             font_style: 'H6'
-                            text: 'Торпеда'
+                            text: 'Сильный энергощит'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -1454,7 +1446,7 @@ temp = """
                             size: self.size[0]-self.width/3, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
-                            source: 'img/fon.jpg'
+                            source: 'img/fon5.jpg'
                             size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
@@ -1462,11 +1454,11 @@ temp = """
                             size: self.size[0]/3.7, self.size[1]/2
                             pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
-                            source: 'img/page1.png'
+                            source: 'img/page5.png'
                             size: self.size[0]/2.5, self.size[1]+self.height/2/2
                             pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
                         Rectangle:
-                            source: 'img/fon2.jpg'
+                            source: 'img/fon4.jpg'
                             size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
                             pos: self.pos[0]+self.width/2/1.35, self.pos[1]
                         Rectangle:
@@ -1488,10 +1480,26 @@ temp = """
                         MDLabel:
                             halign: 'center'
                             font_style: 'H6'
-                            text: 'ЭМИ орудие'
+                            text: 'Генератор'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'сверх'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 10
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'топлива'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -1518,7 +1526,7 @@ temp = """
                             size: self.size[0]-self.width/3, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
-                            source: 'img/fon.jpg'
+                            source: 'img/fon5.jpg'
                             size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
@@ -1526,11 +1534,11 @@ temp = """
                             size: self.size[0]/3.7, self.size[1]/2
                             pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
-                            source: 'img/page1.png'
+                            source: 'img/page5.png'
                             size: self.size[0]/2.5, self.size[1]+self.height/2/2
                             pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
                         Rectangle:
-                            source: 'img/fon2.jpg'
+                            source: 'img/fon4.jpg'
                             size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
                             pos: self.pos[0]+self.width/2/1.35, self.pos[1]
                         Rectangle:
@@ -1552,18 +1560,18 @@ temp = """
                         MDLabel:
                             halign: 'center'
                             font_style: 'H6'
-                            text: 'ускоритель'
+                            text: 'генератор'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
                             font_style: 'H6'
-                            text: 'частиц'
+                            text: 'материи'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -1590,7 +1598,7 @@ temp = """
                             size: self.size[0]-self.width/3, self.size[1]+self.height/2/2/2
                             pos: self.pos[0], self.pos[1]-5
                         Rectangle:
-                            source: 'img/fon.jpg'
+                            source: 'img/fon5.jpg'
                             size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
@@ -1598,11 +1606,11 @@ temp = """
                             size: self.size[0]/3.7, self.size[1]/2
                             pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
-                            source: 'img/page1.png'
+                            source: 'img/page5.png'
                             size: self.size[0]/2.5, self.size[1]+self.height/2/2
                             pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
                         Rectangle:
-                            source: 'img/fon2.jpg'
+                            source: 'img/fon4.jpg'
                             size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
                             pos: self.pos[0]+self.width/2/1.35, self.pos[1]
                         Rectangle:
@@ -1624,10 +1632,18 @@ temp = """
                         MDLabel:
                             halign: 'center'
                             font_style: 'H6'
-                            text: 'Гипер ракета'
+                            text: 'Генератор'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'гравитации'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -1917,7 +1933,6 @@ class ScreenFour(Screen):
     return_price_money8 = StringProperty('1.0B')
     return_price_money9 = StringProperty('10.0B')
     return_price_money10 = StringProperty('100.0B')
-    return_plus = StringProperty('1')
     def __init__(self, **kwargs):
         super(ScreenFour, self).__init__(**kwargs)
         self.money1 = 1
@@ -2083,11 +2098,12 @@ class Manager(ScreenManager):
     screen_four = ObjectProperty(None)
 
 class ScreensApp(MDApp):
-    money = ObjectProperty(100000000000000)
+    money = ObjectProperty(0)
     damage = ObjectProperty(1)
     return_damage = StringProperty('1')
     return_money = StringProperty('0')
     plus = ObjectProperty(1)
+    return_plus = StringProperty('1')
     def build(self):
         m = Manager(transition=NoTransition())
         return m
