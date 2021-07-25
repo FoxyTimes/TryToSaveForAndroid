@@ -283,7 +283,7 @@ temp = """
                             text: 'Плазмопушка'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -347,7 +347,7 @@ temp = """
                             text: 'Лазер'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -411,7 +411,7 @@ temp = """
                             text: 'Ракета'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -472,10 +472,18 @@ temp = """
                         MDLabel:
                             halign: 'center'
                             font_style: 'H6'
-                            text: 'Ультра Лазер'
+                            text: 'Ультра'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'лазер'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -539,7 +547,7 @@ temp = """
                             text: 'Бластер'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -603,7 +611,7 @@ temp = """
                             text: 'Ультра'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -611,7 +619,7 @@ temp = """
                             text: 'Плазмопушка'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -675,7 +683,7 @@ temp = """
                             text: 'Торпеда'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -739,7 +747,7 @@ temp = """
                             text: 'ЭМИ орудие'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -803,7 +811,7 @@ temp = """
                             text: 'ускоритель'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -811,7 +819,7 @@ temp = """
                             text: 'частиц'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -872,10 +880,18 @@ temp = """
                         MDLabel:
                             halign: 'center'
                             font_style: 'H6'
-                            text: 'Гипер ракета'
+                            text: 'Гипер'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
-                            font_size: 12
+                            font_size: 10
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'ракета'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 10
                             pos_hint: {'center_x': 0.35, 'center_y': 0.5}
                         MDLabel:
                             halign: 'center'
@@ -1002,7 +1018,7 @@ temp = """
                             size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
-                            source: 'img/upgrade1.png'
+                            source: 'img/upgrade_money1.png'
                             size: self.size[0]/3.7, self.size[1]/2
                             pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
@@ -1032,7 +1048,15 @@ temp = """
                         MDLabel:
                             halign: 'center'
                             font_style: 'H6'
-                            text: 'Мини-реактор'
+                            text: 'Мини'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 10
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'реактор'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
                             font_size: 10
@@ -1066,7 +1090,7 @@ temp = """
                             size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
-                            source: 'img/upgrade2.png'
+                            source: 'img/upgrade_money2.png'
                             size: self.size[0]/3.7, self.size[1]/2
                             pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
@@ -1096,7 +1120,15 @@ temp = """
                         MDLabel:
                             halign: 'center'
                             font_style: 'H6'
-                            text: 'Малый-реактор'
+                            text: 'Малый'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 10
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'реактор'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
                             font_size: 10
@@ -1130,7 +1162,7 @@ temp = """
                             size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
-                            source: 'img/upgrade3.png'
+                            source: 'img/upgrade_money3.png'
                             size: self.size[0]/3.7, self.size[1]/2
                             pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
@@ -1160,7 +1192,15 @@ temp = """
                         MDLabel:
                             halign: 'center'
                             font_style: 'H6'
-                            text: 'Средний-реактор'
+                            text: 'Средний'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 10
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'реактор'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
                             font_size: 10
@@ -1194,7 +1234,7 @@ temp = """
                             size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
-                            source: 'img/upgrade4.png'
+                            source: 'img/upgrade_money4.png'
                             size: self.size[0]/3.7, self.size[1]/2
                             pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
@@ -1224,7 +1264,15 @@ temp = """
                         MDLabel:
                             halign: 'center'
                             font_style: 'H6'
-                            text: 'Большой-реактор'
+                            text: 'Большой'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 10
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'реактор'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
                             font_size: 10
@@ -1258,7 +1306,7 @@ temp = """
                             size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
-                            source: 'img/upgrade5.png'
+                            source: 'img/upgrade_money5.png'
                             size: self.size[0]/3.7, self.size[1]/2
                             pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
                         Rectangle:
@@ -1288,7 +1336,15 @@ temp = """
                         MDLabel:
                             halign: 'center'
                             font_style: 'H6'
-                            text: 'Гипер-реактор'
+                            text: 'Гипер'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 10
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'реактор'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
                             font_size: 10
@@ -1322,9 +1378,9 @@ temp = """
                             size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
-                            source: 'img/upgrade6.png'
-                            size: self.size[0]/3.7, self.size[1]/2
-                            pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
+                            source: 'img/upgrade_money6.png'
+                            size: self.size[0]/4.5, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/1.2, self.pos[1]+self.height/2/2
                         Rectangle:
                             source: 'img/page5.png'
                             size: self.size[0]/2.5, self.size[1]+self.height/2/2
@@ -1386,9 +1442,9 @@ temp = """
                             size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
-                            source: 'img/upgrade7.png'
-                            size: self.size[0]/3.7, self.size[1]/2
-                            pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
+                            source: 'img/upgrade_money7.png'
+                            size: self.size[0]/4.5, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/1.2, self.pos[1]+self.height/2/2
                         Rectangle:
                             source: 'img/page5.png'
                             size: self.size[0]/2.5, self.size[1]+self.height/2/2
@@ -1416,7 +1472,15 @@ temp = """
                         MDLabel:
                             halign: 'center'
                             font_style: 'H6'
-                            text: 'Сильный энергощит'
+                            text: 'Сильный'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 10
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'энергощит'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
                             font_size: 10
@@ -1450,9 +1514,9 @@ temp = """
                             size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
-                            source: 'img/upgrade8.png'
-                            size: self.size[0]/3.7, self.size[1]/2
-                            pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
+                            source: 'img/upgrade_money8.png'
+                            size: self.size[0]/4.5, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/1.2, self.pos[1]+self.height/2/2
                         Rectangle:
                             source: 'img/page5.png'
                             size: self.size[0]/2.5, self.size[1]+self.height/2/2
@@ -1530,9 +1594,9 @@ temp = """
                             size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
-                            source: 'img/upgrade9.png'
-                            size: self.size[0]/3.7, self.size[1]/2
-                            pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
+                            source: 'img/upgrade_money9.png'
+                            size: self.size[0]/4.5, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/1.2, self.pos[1]+self.height/2/2
                         Rectangle:
                             source: 'img/page5.png'
                             size: self.size[0]/2.5, self.size[1]+self.height/2/2
@@ -1568,7 +1632,7 @@ temp = """
                         MDLabel:
                             halign: 'center'
                             font_style: 'H6'
-                            text: 'материи'
+                            text: 'гравитации'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
                             font_size: 10
@@ -1602,9 +1666,9 @@ temp = """
                             size: self.size[0]/3.4, self.size[1]/1.4
                             pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
                         Rectangle:
-                            source: 'img/upgrade10.png'
-                            size: self.size[0]/3.7, self.size[1]/2
-                            pos: self.pos[0]+self.width/2/3/2/1.6, self.pos[1]+self.height/2/2
+                            source: 'img/upgrade_money10.png'
+                            size: self.size[0]/4.5, self.size[1]/2
+                            pos: self.pos[0]+self.width/2/3/2/1.2, self.pos[1]+self.height/2/2
                         Rectangle:
                             source: 'img/page5.png'
                             size: self.size[0]/2.5, self.size[1]+self.height/2/2
@@ -1640,7 +1704,7 @@ temp = """
                         MDLabel:
                             halign: 'center'
                             font_style: 'H6'
-                            text: 'гравитации'
+                            text: 'материи'
                             color: 0.5, 1, 0.5, 1
                             size_hint: 1, 1
                             font_size: 10
