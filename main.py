@@ -12,7 +12,8 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS data(
     id INTEGER,
     sql_money INTEGER,
     sql_damage INTEGER,
-    sql_plus INTEGER
+    sql_plus INTEGER,
+    sql_health INTEGER
     )
 """)
 connect.commit()
@@ -1906,20 +1907,25 @@ class ScreenOne(Screen):
 
 
 class ScreenTwo(Screen):
-    return_health = StringProperty('300')
+    if not sql_search_data():
+        return_health = StringProperty('300')
+    else:
+        return_health = StringProperty(count(sql_search_data()[0][4]))
     return_mana = StringProperty('10')
-    health = ObjectProperty(300)
     def __init__(self, **kwargs):
         super(ScreenTwo, self).__init__(**kwargs)
         self.damage = App.get_running_app().damage
-        self.health = 300
+        if not sql_search_data():
+            self.health = 300
+        else:
+            self.health = sql_search_data()[0][4]
         self.money = App.get_running_app().money
         self.mana = 10
         self.return_mana = count(self.mana)
         if not sql_search_data():
             cursor = connect.cursor()
-            sql_list = [1, self.money, self.damage, App.get_running_app().plus]
-            cursor.execute("INSERT INTO data VALUES(?, ?, ?, ?);", sql_list)
+            sql_list = [1, self.money, self.damage, App.get_running_app().plus, self.health]
+            cursor.execute("INSERT INTO data VALUES(?, ?, ?, ?, ?);", sql_list)
             connect.commit()
             cursor.close()
     def plus_money(self):
@@ -1936,6 +1942,7 @@ class ScreenTwo(Screen):
         self.health -= self.get_damage()
         self.return_health = count(self.health)
         App.get_running_app().return_money = count(App.get_running_app().money)
+        self.update_sql_health()
     def get_damage(self):
         return App.get_running_app().damage
     def update_sql_money(self):
@@ -1945,6 +1952,14 @@ class ScreenTwo(Screen):
         cursor.execute(sql_update_money, data)
         connect.commit()
         cursor.close()
+    def update_sql_health(self):
+        cursor = connect.cursor()
+        sql_update_health = """Update data set sql_health = ? where id = ?"""
+        data = (self.health, 1)
+        cursor.execute(sql_update_health, data)
+        connect.commit()
+        cursor.close()
+        print(sql_search_data())
 class ScreenThree(Screen):
     if not sql_search_data_guns():
         return_guns1 = StringProperty('1')
@@ -2340,7 +2355,6 @@ class ScreenFour(Screen):
         return_price_money9 = StringProperty('10.0B')
         return_price_money10 = StringProperty('100.0B')
     else:
-        print(sql_search_data_price_moneys())
         return_price_money1 = StringProperty(str(count(sql_search_data_price_moneys()[0][1])))
         return_price_money2 = StringProperty(str(count(sql_search_data_price_moneys()[0][2])))
         return_price_money3 = StringProperty(str(count(sql_search_data_price_moneys()[0][3])))
@@ -2717,8 +2731,3 @@ class ScreensApp(MDApp):
 
 if __name__ == "__main__":
     ScreensApp().run()
-
-
-
-
-
