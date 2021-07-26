@@ -3,7 +3,138 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.screenmanager import ScreenManager, Screen, NoTransition
+import sqlite3
 
+connect = sqlite3.connect('money.db')
+
+cursor = connect.cursor()
+cursor.execute("""CREATE TABLE IF NOT EXISTS data(
+    id INTEGER,
+    sql_money INTEGER,
+    sql_damage INTEGER,
+    sql_plus INTEGER
+    )
+""")
+connect.commit()
+
+cursor.execute("""CREATE TABLE IF NOT EXISTS data_guns(
+    id INTEGER,
+    sql_gun1 INTEGER,
+    sql_gun2 INTEGER,
+    sql_gun3 INTEGER,
+    sql_gun4 INTEGER,
+    sql_gun5 INTEGER,
+    sql_gun6 INTEGER,
+    sql_gun7 INTEGER,
+    sql_gun8 INTEGER,
+    sql_gun9 INTEGER,
+    sql_gun10 INTEGER
+    )
+""")
+
+connect.commit()
+
+cursor.execute("""CREATE TABLE IF NOT EXISTS data_moneys(
+    id INTEGER,
+    sql_money1 INTEGER,
+    sql_money2 INTEGER,
+    sql_money3 INTEGER,
+    sql_money4 INTEGER,
+    sql_money5 INTEGER,
+    sql_money6 INTEGER,
+    sql_money7 INTEGER,
+    sql_money8 INTEGER,
+    sql_money9 INTEGER,
+    sql_money10 INTEGER
+    )
+""")
+
+connect.commit()
+
+cursor.execute("""CREATE TABLE IF NOT EXISTS data_price_guns(
+    id INTEGER,
+    sql_price_gun1 INTEGER,
+    sql_price_gun2 INTEGER,
+    sql_price_gun3 INTEGER,
+    sql_price_gun4 INTEGER,
+    sql_price_gun5 INTEGER,
+    sql_price_gun6 INTEGER,
+    sql_price_gun7 INTEGER,
+    sql_price_gun8 INTEGER,
+    sql_price_gun9 INTEGER,
+    sql_price_gun10 INTEGER
+    )
+""")
+
+connect.commit()
+
+cursor.execute("""CREATE TABLE IF NOT EXISTS data_price_guns(
+    id INTEGER,
+    sql_price_gun1 INTEGER,
+    sql_price_gun2 INTEGER,
+    sql_price_gun3 INTEGER,
+    sql_price_gun4 INTEGER,
+    sql_price_gun5 INTEGER,
+    sql_price_gun6 INTEGER,
+    sql_price_gun7 INTEGER,
+    sql_price_gun8 INTEGER,
+    sql_price_gun9 INTEGER,
+    sql_price_gun10 INTEGER
+    )
+""")
+
+connect.commit()
+
+cursor.execute("""CREATE TABLE IF NOT EXISTS data_price_moneys(
+    id INTEGER,
+    sql_price_money1 INTEGER,
+    sql_price_money2 INTEGER,
+    sql_price_money3 INTEGER,
+    sql_price_money4 INTEGER,
+    sql_price_money5 INTEGER,
+    sql_price_money6 INTEGER,
+    sql_price_money7 INTEGER,
+    sql_price_money8 INTEGER,
+    sql_price_money9 INTEGER,
+    sql_price_money10 INTEGER
+    )
+""")
+
+connect.commit()
+
+
+cursor.close()
+
+def sql_search_data():
+    cursor = connect.cursor()
+    cursor.execute("SELECT * FROM data")
+    sql_all = cursor.fetchall()
+    cursor.close()
+    return sql_all
+def sql_search_data_guns():
+    cursor = connect.cursor()
+    cursor.execute("SELECT * FROM data_guns")
+    sql_all = cursor.fetchall()
+    cursor.close()
+    return sql_all
+def sql_search_data_moneys():
+    cursor = connect.cursor()
+    cursor.execute("SELECT * FROM data_moneys")
+    sql_all = cursor.fetchall()
+    cursor.close()
+    return sql_all
+def sql_search_data_price_guns():
+    cursor = connect.cursor()
+    cursor.execute("SELECT * FROM data_price_guns")
+    sql_all = cursor.fetchall()
+    cursor.close()
+    return sql_all
+def sql_search_data_price_moneys():
+    cursor = connect.cursor()
+    cursor.execute("SELECT * FROM data_price_moneys")
+    sql_all = cursor.fetchall()
+    cursor.close()
+    return sql_all
 
 def count(number):
     if number / 1000000000000000000000000000000 > 1.0:
@@ -84,7 +215,7 @@ temp = """
                 size: self.width/3, self.height/12
                 pos: self.width/3, self.height-self.height/2/2/2/1.5
             Rectangle:
-                source: 'img/bar_mana.png'
+                source: 'img/bar_stamina.png'
                 size: self.width/3, self.height/12
                 pos: 2*(self.width/3), self.height-self.height/2/2/2/1.5
             Rectangle:
@@ -96,7 +227,7 @@ temp = """
                 size: root.width/12, root.height/20
                 pos: 5+root.width/3, self.height-self.height/2/2/2/2
             Rectangle:
-                source: 'img/mana_icon.png'
+                source: 'img/stamina_icon.png'
                 size: root.width/12, root.height/20
                 pos: 5+root.width/3+root.width/3, self.height-self.height/2/2/2/1.8
     FloatLayout:
@@ -938,12 +1069,12 @@ temp = """
                 pos: self.width/20, self.height-self.height/1.07
             Rectangle:
                 source: 'img/fon3.jpg'
-                size: self.size[0]-self.width/1.35, self.size[1]/2/2/1.7
-                pos: self.pos[0]+self.width/2/1.2, self.pos[1]+self.height/2/2/2/2/2
+                size: self.size[0]-self.width/1.35, self.size[1]/2/2/3
+                pos: self.pos[0]+self.width/2/1.2, self.pos[1]+self.height/2/2/2/2
             Rectangle:
                 source: 'img/page3.png'
-                size: self.size[0]-self.width/1.35, self.size[1]/2/2/1.7
-                pos: self.pos[0]+self.width/2/1.2, self.pos[1]+self.height/2/2/2/2/2
+                size: self.size[0]-self.width/1.35, self.size[1]/2/2/3
+                pos: self.pos[0]+self.width/2/1.2, self.pos[1]+self.height/2/2/2/2
             Rectangle:
                 source: 'img/money_icon.png'
                 size: self.width/12, self.height/20
@@ -1773,9 +1904,9 @@ Builder.load_string(temp)
 class ScreenOne(Screen):
     pass
 
+
 class ScreenTwo(Screen):
     return_health = StringProperty('300')
-    return_money = StringProperty('0')
     return_mana = StringProperty('10')
     health = ObjectProperty(300)
     def __init__(self, **kwargs):
@@ -1785,11 +1916,18 @@ class ScreenTwo(Screen):
         self.money = App.get_running_app().money
         self.mana = 10
         self.return_mana = count(self.mana)
+        if not sql_search_data():
+            cursor = connect.cursor()
+            sql_list = [1, self.money, self.damage, App.get_running_app().plus]
+            cursor.execute("INSERT INTO data VALUES(?, ?, ?, ?);", sql_list)
+            connect.commit()
+            cursor.close()
     def plus_money(self):
         self.money = App.get_running_app().money
         self.money += App.get_running_app().plus
         App.get_running_app().money = self.money
         App.get_running_app().return_money = count(self.money)
+        self.update_sql_money()
     def minus_health(self):
         check = self.health - self.get_damage()
         if check <= 0:
@@ -1800,51 +1938,137 @@ class ScreenTwo(Screen):
         App.get_running_app().return_money = count(App.get_running_app().money)
     def get_damage(self):
         return App.get_running_app().damage
-
+    def update_sql_money(self):
+        cursor = connect.cursor()
+        sql_update_money = """Update data set sql_money = ? where id = ?"""
+        data = (self.money, 1)
+        cursor.execute(sql_update_money, data)
+        connect.commit()
+        cursor.close()
 class ScreenThree(Screen):
-    return_guns1 = StringProperty('1')
-    return_guns2 = StringProperty('0')
-    return_guns3 = StringProperty('0')
-    return_guns4 = StringProperty('0')
-    return_guns5 = StringProperty('0')
-    return_guns6 = StringProperty('0')
-    return_guns7 = StringProperty('0')
-    return_guns8 = StringProperty('0')
-    return_guns9 = StringProperty('0')
-    return_guns10 = StringProperty('0')
-    return_price1 = StringProperty('100')
-    return_price2 = StringProperty('1.0K')
-    return_price3 = StringProperty('10.0K')
-    return_price4 = StringProperty('100.0K')
-    return_price5 = StringProperty('1.0M')
-    return_price6 = StringProperty('10.0M')
-    return_price7 = StringProperty('100.0M')
-    return_price8 = StringProperty('1.0B')
-    return_price9 = StringProperty('10.0B')
-    return_price10 = StringProperty('100.0B')
+    if not sql_search_data_guns():
+        return_guns1 = StringProperty('1')
+        return_guns2 = StringProperty('0')
+        return_guns3 = StringProperty('0')
+        return_guns4 = StringProperty('0')
+        return_guns5 = StringProperty('0')
+        return_guns6 = StringProperty('0')
+        return_guns7 = StringProperty('0')
+        return_guns8 = StringProperty('0')
+        return_guns9 = StringProperty('0')
+        return_guns10 = StringProperty('0')
+    else:
+        return_guns1 = StringProperty(str(count(sql_search_data_guns()[0][1])))
+        return_guns2 = StringProperty(str(count(sql_search_data_guns()[0][2])))
+        return_guns3 = StringProperty(str(count(sql_search_data_guns()[0][3])))
+        return_guns4 = StringProperty(str(count(sql_search_data_guns()[0][4])))
+        return_guns5 = StringProperty(str(count(sql_search_data_guns()[0][5])))
+        return_guns6 = StringProperty(str(count(sql_search_data_guns()[0][6])))
+        return_guns7 = StringProperty(str(count(sql_search_data_guns()[0][7])))
+        return_guns8 = StringProperty(str(count(sql_search_data_guns()[0][8])))
+        return_guns9 = StringProperty(str(count(sql_search_data_guns()[0][9])))
+        return_guns10 = StringProperty(str(count(sql_search_data_guns()[0][10])))
+    if not sql_search_data_price_guns():
+        return_price1 = StringProperty('100')
+        return_price2 = StringProperty('1.0K')
+        return_price3 = StringProperty('10.0K')
+        return_price4 = StringProperty('100.0K')
+        return_price5 = StringProperty('1.0M')
+        return_price6 = StringProperty('10.0M')
+        return_price7 = StringProperty('100.0M')
+        return_price8 = StringProperty('1.0B')
+        return_price9 = StringProperty('10.0B')
+        return_price10 = StringProperty('100.0B')
+    else:
+        return_price1 = StringProperty(str(count(sql_search_data_price_guns()[0][1])))
+        return_price2 = StringProperty(str(count(sql_search_data_price_guns()[0][2])))
+        return_price3 = StringProperty(str(count(sql_search_data_price_guns()[0][3])))
+        return_price4 = StringProperty(str(count(sql_search_data_price_guns()[0][4])))
+        return_price5 = StringProperty(str(count(sql_search_data_price_guns()[0][5])))
+        return_price6 = StringProperty(str(count(sql_search_data_price_guns()[0][6])))
+        return_price7 = StringProperty(str(count(sql_search_data_price_guns()[0][7])))
+        return_price8 = StringProperty(str(count(sql_search_data_price_guns()[0][8])))
+        return_price9 = StringProperty(str(count(sql_search_data_price_guns()[0][9])))
+        return_price10 = StringProperty(str(count(sql_search_data_price_guns()[0][10])))
     def __init__(self, **kwargs):
         super(ScreenThree, self).__init__(**kwargs)
-        self.guns1 = 1
-        self.guns2 = 0
-        self.guns3 = 0
-        self.guns4 = 0
-        self.guns5 = 0
-        self.guns6 = 0
-        self.guns7 = 0
-        self.guns8 = 0
-        self.guns9 = 0
-        self.guns10 = 0
-        self.price1 = 100
-        self.price2 = 1000
-        self.price3 = 10000
-        self.price4 = 100000
-        self.price5 = 1000000
-        self.price6 = 10000000
-        self.price7 = 100000000
-        self.price8 = 1000000000
-        self.price9 = 10000000000
-        self.price10 = 100000000000
+        if not sql_search_data_guns():
+            self.guns1 = 1
+            self.guns2 = 0
+            self.guns3 = 0
+            self.guns4 = 0
+            self.guns5 = 0
+            self.guns6 = 0
+            self.guns7 = 0
+            self.guns8 = 0
+            self.guns9 = 0
+            self.guns10 = 0
+        else:
+            self.guns1 = ObjectProperty(sql_search_data_guns()[0][1])
+            self.guns2 = ObjectProperty(sql_search_data_guns()[0][2])
+            self.guns3 = ObjectProperty(sql_search_data_guns()[0][3])
+            self.guns4 = ObjectProperty(sql_search_data_guns()[0][4])
+            self.guns5 = ObjectProperty(sql_search_data_guns()[0][5])
+            self.guns6 = ObjectProperty(sql_search_data_guns()[0][6])
+            self.guns7 = ObjectProperty(sql_search_data_guns()[0][7])
+            self.guns8 = ObjectProperty(sql_search_data_guns()[0][8])
+            self.guns9 = ObjectProperty(sql_search_data_guns()[0][9])
+            self.guns10 = ObjectProperty(sql_search_data_guns()[0][10])
+            self.guns1 = sql_search_data_guns()[0][1]
+            self.guns2 = sql_search_data_guns()[0][2]
+            self.guns3 = sql_search_data_guns()[0][3]
+            self.guns4 = sql_search_data_guns()[0][4]
+            self.guns5 = sql_search_data_guns()[0][5]
+            self.guns6 = sql_search_data_guns()[0][6]
+            self.guns7 = sql_search_data_guns()[0][7]
+            self.guns8 = sql_search_data_guns()[0][8]
+            self.guns9 = sql_search_data_guns()[0][9]
+            self.guns10 = sql_search_data_guns()[0][10]
+        if not sql_search_data_guns():
+            self.price1 = 100
+            self.price2 = 1000
+            self.price3 = 10000
+            self.price4 = 100000
+            self.price5 = 1000000
+            self.price6 = 10000000
+            self.price7 = 100000000
+            self.price8 = 1000000000
+            self.price9 = 10000000000
+            self.price10 = 100000000000
+        else:
+            self.price1 = ObjectProperty(sql_search_data_guns()[0][1])
+            self.price2 = ObjectProperty(sql_search_data_guns()[0][2])
+            self.price3 = ObjectProperty(sql_search_data_guns()[0][3])
+            self.price4 = ObjectProperty(sql_search_data_guns()[0][4])
+            self.price5 = ObjectProperty(sql_search_data_guns()[0][5])
+            self.price6 = ObjectProperty(sql_search_data_guns()[0][6])
+            self.price7 = ObjectProperty(sql_search_data_guns()[0][7])
+            self.price8 = ObjectProperty(sql_search_data_guns()[0][8])
+            self.price9 = ObjectProperty(sql_search_data_guns()[0][9])
+            self.price10 = ObjectProperty(sql_search_data_guns()[0][10])
+            self.price1 = sql_search_data_price_guns()[0][1]
+            self.price2 = sql_search_data_price_guns()[0][2]
+            self.price3 = sql_search_data_price_guns()[0][3]
+            self.price4 = sql_search_data_price_guns()[0][4]
+            self.price5 = sql_search_data_price_guns()[0][5]
+            self.price6 = sql_search_data_price_guns()[0][6]
+            self.price7 = sql_search_data_price_guns()[0][7]
+            self.price8 = sql_search_data_price_guns()[0][8]
+            self.price9 = sql_search_data_price_guns()[0][9]
+            self.price10 = sql_search_data_price_guns()[0][10]
         self.money = App.get_running_app().money
+        if not sql_search_data_guns():
+            cursor = connect.cursor()
+            sql_list = [1, self.guns1, self.guns2, self.guns3, self.guns4, self.guns5, self.guns6, self.guns7, self.guns8, self.guns9, self.guns10]
+            cursor.execute("INSERT INTO data_guns VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", sql_list)
+            connect.commit()
+            cursor.close()
+        if not sql_search_data_price_guns():
+            cursor = connect.cursor()
+            sql_list = [1, self.price1, self.price2, self.price3, self.price4, self.price5, self.price6, self.price7, self.price8, self.price9, self.price10]
+            cursor.execute("INSERT INTO data_price_guns VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", sql_list)
+            connect.commit()
+            cursor.close()
     def up_guns1(self):
         self.money = App.get_running_app().money
         if self.money > self.price1:
@@ -1858,6 +2082,9 @@ class ScreenThree(Screen):
             self.price1 = int(self.price1)
             App.get_running_app().return_money = count(self.money)
             self.return_price1 = count(self.price1)
+            self.update_sql_damage()
+            self.update_guns()
+            self.update_prices()
     def up_guns2(self):
         self.money = App.get_running_app().money
         if self.money > self.price2:
@@ -1871,6 +2098,9 @@ class ScreenThree(Screen):
             self.price2 = int(self.price2)
             App.get_running_app().return_money = count(self.money)
             self.return_price2 = count(self.price2)
+            self.update_sql_damage()
+            self.update_guns()
+            self.update_prices()
     def up_guns3(self):
         self.money = App.get_running_app().money
         if self.money > self.price3:
@@ -1884,6 +2114,9 @@ class ScreenThree(Screen):
             self.price3 = int(self.price3)
             App.get_running_app().return_money = count(self.money)
             self.return_price3 = count(self.price3)
+            self.update_sql_damage()
+            self.update_guns()
+            self.update_prices()
     def up_guns4(self):
         self.money = App.get_running_app().money
         if self.money > self.price4:
@@ -1897,6 +2130,9 @@ class ScreenThree(Screen):
             self.price4 = int(self.price4)
             App.get_running_app().return_money = count(self.money)
             self.return_price4 = count(self.price4)
+            self.update_sql_damage()
+            self.update_guns()
+            self.update_prices()
     def up_guns5(self):
         self.money = App.get_running_app().money
         if self.money > self.price5:
@@ -1910,6 +2146,9 @@ class ScreenThree(Screen):
             self.price5 = int(self.price5)
             App.get_running_app().return_money = count(self.money)
             self.return_price5 = count(self.price5)
+            self.update_sql_damage()
+            self.update_guns()
+            self.update_prices()
     def up_guns6(self):
         self.money = App.get_running_app().money
         if self.money > self.price6:
@@ -1923,6 +2162,9 @@ class ScreenThree(Screen):
             self.price6 = int(self.price6)
             App.get_running_app().return_money = count(self.money)
             self.return_price6 = count(self.price6)
+            self.update_sql_damage()
+            self.update_guns()
+            self.update_prices()
     def up_guns7(self):
         self.money = App.get_running_app().money
         if self.money > self.price7:
@@ -1936,6 +2178,9 @@ class ScreenThree(Screen):
             self.price7 = int(self.price7)
             App.get_running_app().return_money = count(self.money)
             self.return_price7 = count(self.price7)
+            self.update_sql_damage()
+            self.update_guns()
+            self.update_prices()
     def up_guns8(self):
         self.money = App.get_running_app().money
         if self.money > self.price8:
@@ -1949,6 +2194,9 @@ class ScreenThree(Screen):
             self.price8 = int(self.price8)
             App.get_running_app().return_money = count(self.money)
             self.return_price8 = count(self.price8)
+            self.update_sql_damage()
+            self.update_guns()
+            self.update_prices()
     def up_guns9(self):
         self.money = App.get_running_app().money
         if self.money > self.price9:
@@ -1962,6 +2210,9 @@ class ScreenThree(Screen):
             self.price9 = int(self.price9)
             App.get_running_app().return_money = count(self.money)
             self.return_price9 = count(self.price9)
+            self.update_sql_damage()
+            self.update_guns()
+            self.update_prices()
     def up_guns10(self):
         self.money = App.get_running_app().money
         if self.money > self.price10:
@@ -1975,51 +2226,220 @@ class ScreenThree(Screen):
             self.price10 = int(self.price10)
             App.get_running_app().return_money = count(self.money)
             self.return_price10 = count(self.price10)
+            self.update_sql_damage()
+            self.update_guns()
+            self.update_prices()
+    def update_sql_damage(self):
+        cursor = connect.cursor()
+        sql_update_damage = """Update data set sql_damage = ? where id = ?"""
+        data = (App.get_running_app().damage, 1)
+        cursor.execute(sql_update_damage, data)
+        connect.commit()
+        cursor.close()
+    def update_guns(self):
+        cursor = connect.cursor()
+        sql_update_gun = """Update data_guns set sql_gun1 = ? where id = ?"""
+        data = (self.guns1, 1)
+        cursor.execute(sql_update_gun, data)
+        sql_update_gun = """Update data_guns set sql_gun2 = ? where id = ?"""
+        data = (self.guns2, 1)
+        cursor.execute(sql_update_gun, data)
+        sql_update_gun = """Update data_guns set sql_gun3 = ? where id = ?"""
+        data = (self.guns3, 1)
+        cursor.execute(sql_update_gun, data)
+        sql_update_gun = """Update data_guns set sql_gun4 = ? where id = ?"""
+        data = (self.guns4, 1)
+        cursor.execute(sql_update_gun, data)
+        sql_update_gun = """Update data_guns set sql_gun5 = ? where id = ?"""
+        data = (self.guns5, 1)
+        cursor.execute(sql_update_gun, data)
+        sql_update_gun = """Update data_guns set sql_gun6 = ? where id = ?"""
+        data = (self.guns6, 1)
+        cursor.execute(sql_update_gun, data)
+        sql_update_gun = """Update data_guns set sql_gun7 = ? where id = ?"""
+        data = (self.guns7, 1)
+        cursor.execute(sql_update_gun, data)
+        sql_update_gun = """Update data_guns set sql_gun8 = ? where id = ?"""
+        data = (self.guns8, 1)
+        cursor.execute(sql_update_gun, data)
+        sql_update_gun = """Update data_guns set sql_gun9 = ? where id = ?"""
+        data = (self.guns9, 1)
+        cursor.execute(sql_update_gun, data)
+        sql_update_gun = """Update data_guns set sql_gun10 = ? where id = ?"""
+        data = (self.guns10, 1)
+        cursor.execute(sql_update_gun, data)
+        connect.commit()
+        cursor.close()
+    def update_prices(self):
+        cursor = connect.cursor()
+        sql_update_price = """Update data_price_guns set sql_price_gun1 = ? where id = ?"""
+        data = (self.price1, 1)
+        cursor.execute(sql_update_price, data)
+        sql_update_price = """Update data_price_guns set sql_price_gun2 = ? where id = ?"""
+        data = (self.price2, 1)
+        cursor.execute(sql_update_price, data)
+        sql_update_price = """Update data_price_guns set sql_price_gun3 = ? where id = ?"""
+        data = (self.price3, 1)
+        cursor.execute(sql_update_price, data)
+        sql_update_price = """Update data_price_guns set sql_price_gun4 = ? where id = ?"""
+        data = (self.price4, 1)
+        cursor.execute(sql_update_price, data)
+        sql_update_price = """Update data_price_guns set sql_price_gun5 = ? where id = ?"""
+        data = (self.price5, 1)
+        cursor.execute(sql_update_price, data)
+        sql_update_price = """Update data_price_guns set sql_price_gun6 = ? where id = ?"""
+        data = (self.price6, 1)
+        cursor.execute(sql_update_price, data)
+        sql_update_price = """Update data_price_guns set sql_price_gun7 = ? where id = ?"""
+        data = (self.price7, 1)
+        cursor.execute(sql_update_price, data)
+        sql_update_price = """Update data_price_guns set sql_price_gun8 = ? where id = ?"""
+        data = (self.price8, 1)
+        cursor.execute(sql_update_price, data)
+        sql_update_price = """Update data_price_guns set sql_price_gun9 = ? where id = ?"""
+        data = (self.price9, 1)
+        cursor.execute(sql_update_price, data)
+        sql_update_price = """Update data_price_guns set sql_price_gun10 = ? where id = ?"""
+        data = (self.price10, 1)
+        cursor.execute(sql_update_price, data)
+        connect.commit()
+        cursor.close()
 
 class ScreenFour(Screen):
-    return_money1 = StringProperty('1')
-    return_money2 = StringProperty('0')
-    return_money3 = StringProperty('0')
-    return_money4 = StringProperty('0')
-    return_money5 = StringProperty('0')
-    return_money6 = StringProperty('0')
-    return_money7 = StringProperty('0')
-    return_money8 = StringProperty('0')
-    return_money9 = StringProperty('0')
-    return_money10 = StringProperty('0')
-    return_price_money1 = StringProperty('100')
-    return_price_money2 = StringProperty('1.0K')
-    return_price_money3 = StringProperty('10.0K')
-    return_price_money4 = StringProperty('100.0K')
-    return_price_money5 = StringProperty('1.0M')
-    return_price_money6 = StringProperty('10.0M')
-    return_price_money7 = StringProperty('100.0M')
-    return_price_money8 = StringProperty('1.0B')
-    return_price_money9 = StringProperty('10.0B')
-    return_price_money10 = StringProperty('100.0B')
+    if not sql_search_data_moneys():
+        return_money1 = StringProperty('1')
+        return_money2 = StringProperty('0')
+        return_money3 = StringProperty('0')
+        return_money4 = StringProperty('0')
+        return_money5 = StringProperty('0')
+        return_money6 = StringProperty('0')
+        return_money7 = StringProperty('0')
+        return_money8 = StringProperty('0')
+        return_money9 = StringProperty('0')
+        return_money10 = StringProperty('0')
+    else:
+        return_money1 = StringProperty(str(count(sql_search_data_moneys()[0][1])))
+        return_money2 = StringProperty(str(count(sql_search_data_moneys()[0][2])))
+        return_money3 = StringProperty(str(count(sql_search_data_moneys()[0][3])))
+        return_money4 = StringProperty(str(count(sql_search_data_moneys()[0][4])))
+        return_money5 = StringProperty(str(count(sql_search_data_moneys()[0][5])))
+        return_money6 = StringProperty(str(count(sql_search_data_moneys()[0][6])))
+        return_money7 = StringProperty(str(count(sql_search_data_moneys()[0][7])))
+        return_money8 = StringProperty(str(count(sql_search_data_moneys()[0][8])))
+        return_money9 = StringProperty(str(count(sql_search_data_moneys()[0][9])))
+        return_money10 = StringProperty(str(count(sql_search_data_moneys()[0][10])))
+    if not sql_search_data_guns():
+        return_price_money1 = StringProperty('100')
+        return_price_money2 = StringProperty('1.0K')
+        return_price_money3 = StringProperty('10.0K')
+        return_price_money4 = StringProperty('100.0K')
+        return_price_money5 = StringProperty('1.0M')
+        return_price_money6 = StringProperty('10.0M')
+        return_price_money7 = StringProperty('100.0M')
+        return_price_money8 = StringProperty('1.0B')
+        return_price_money9 = StringProperty('10.0B')
+        return_price_money10 = StringProperty('100.0B')
+    else:
+        print(sql_search_data_price_moneys())
+        return_price_money1 = StringProperty(str(count(sql_search_data_price_moneys()[0][1])))
+        return_price_money2 = StringProperty(str(count(sql_search_data_price_moneys()[0][2])))
+        return_price_money3 = StringProperty(str(count(sql_search_data_price_moneys()[0][3])))
+        return_price_money4 = StringProperty(str(count(sql_search_data_price_moneys()[0][4])))
+        return_price_money5 = StringProperty(str(count(sql_search_data_price_moneys()[0][5])))
+        return_price_money6 = StringProperty(str(count(sql_search_data_price_moneys()[0][6])))
+        return_price_money7 = StringProperty(str(count(sql_search_data_price_moneys()[0][7])))
+        return_price_money8 = StringProperty(str(count(sql_search_data_price_moneys()[0][8])))
+        return_price_money9 = StringProperty(str(count(sql_search_data_price_moneys()[0][9])))
+        return_price_money10 = StringProperty(str(count(sql_search_data_price_moneys()[0][10])))
     def __init__(self, **kwargs):
         super(ScreenFour, self).__init__(**kwargs)
-        self.money1 = 1
-        self.money2 = 0
-        self.money3 = 0
-        self.money4 = 0
-        self.money5 = 0
-        self.money6 = 0
-        self.money7 = 0
-        self.money8 = 0
-        self.money9 = 0
-        self.money10 = 0
-        self.price_money1 = 100
-        self.price_money2 = 1000
-        self.price_money3 = 10000
-        self.price_money4 = 100000
-        self.price_money5 = 1000000
-        self.price_money6 = 10000000
-        self.price_money7 = 100000000
-        self.price_money8 = 1000000000
-        self.price_money9 = 10000000000
-        self.price_money10 = 100000000000
+        if not sql_search_data_moneys():
+            self.money1 = ObjectProperty(1)
+            self.money2 = ObjectProperty(0)
+            self.money3 = ObjectProperty(0)
+            self.money4 = ObjectProperty(0)
+            self.money5 = ObjectProperty(0)
+            self.money6 = ObjectProperty(0)
+            self.money7 = ObjectProperty(0)
+            self.money8 = ObjectProperty(0)
+            self.money9 = ObjectProperty(0)
+            self.money10 = ObjectProperty(0)
+        else:
+            self.money1 = ObjectProperty(sql_search_data_moneys()[0][1])
+            self.money2 = ObjectProperty(sql_search_data_moneys()[0][2])
+            self.money3 = ObjectProperty(sql_search_data_moneys()[0][3])
+            self.money4 = ObjectProperty(sql_search_data_moneys()[0][4])
+            self.money5 = ObjectProperty(sql_search_data_moneys()[0][5])
+            self.money6 = ObjectProperty(sql_search_data_moneys()[0][6])
+            self.money7 = ObjectProperty(sql_search_data_moneys()[0][7])
+            self.money8 = ObjectProperty(sql_search_data_moneys()[0][8])
+            self.money9 = ObjectProperty(sql_search_data_moneys()[0][9])
+            self.money10 = ObjectProperty(sql_search_data_moneys()[0][10])
+            self.money1 = sql_search_data_moneys()[0][1]
+            self.money2 = sql_search_data_moneys()[0][2]
+            self.money3 = sql_search_data_moneys()[0][3]
+            self.money4 = sql_search_data_moneys()[0][4]
+            self.money5 = sql_search_data_moneys()[0][5]
+            self.money6 = sql_search_data_moneys()[0][6]
+            self.money7 = sql_search_data_moneys()[0][7]
+            self.money8 = sql_search_data_moneys()[0][8]
+            self.money9 = sql_search_data_moneys()[0][9]
+            self.money10 = sql_search_data_moneys()[0][10]
+        if not sql_search_data_price_moneys():
+            self.price_money1 = 100
+            self.price_money2 = 1000
+            self.price_money3 = 10000
+            self.price_money4 = 100000
+            self.price_money5 = 1000000
+            self.price_money6 = 10000000
+            self.price_money7 = 100000000
+            self.price_money8 = 1000000000
+            self.price_money9 = 10000000000
+            self.price_money10 = 100000000000
+        else:
+            self.price_money1 = ObjectProperty(sql_search_data_price_moneys()[0][1])
+            self.price_money2 = ObjectProperty(sql_search_data_price_moneys()[0][2])
+            self.price_money3 = ObjectProperty(sql_search_data_price_moneys()[0][3])
+            self.price_money4 = ObjectProperty(sql_search_data_price_moneys()[0][4])
+            self.price_money5 = ObjectProperty(sql_search_data_price_moneys()[0][5])
+            self.price_money6 = ObjectProperty(sql_search_data_price_moneys()[0][6])
+            self.price_money7 = ObjectProperty(sql_search_data_price_moneys()[0][7])
+            self.price_money8 = ObjectProperty(sql_search_data_price_moneys()[0][8])
+            self.price_money9 = ObjectProperty(sql_search_data_price_moneys()[0][9])
+            self.price_money10 = ObjectProperty(sql_search_data_price_moneys()[0][10])
+            self.price_money1 = sql_search_data_price_moneys()[0][1]
+            self.price_money2 = sql_search_data_price_moneys()[0][2]
+            self.price_money3 = sql_search_data_price_moneys()[0][3]
+            self.price_money4 = sql_search_data_price_moneys()[0][4]
+            self.price_money5 = sql_search_data_price_moneys()[0][5]
+            self.price_money6 = sql_search_data_price_moneys()[0][6]
+            self.price_money7 = sql_search_data_price_moneys()[0][7]
+            self.price_money8 = sql_search_data_price_moneys()[0][8]
+            self.price_money9 = sql_search_data_price_moneys()[0][9]
+            self.price_money10 = sql_search_data_price_moneys()[0][10]
         self.money = App.get_running_app().money
+        if not sql_search_data_moneys():
+            self.money1 = 1
+            self.money2 = 0
+            self.money3 = 0
+            self.money4 = 0
+            self.money5 = 0
+            self.money6 = 0
+            self.money7 = 0
+            self.money8 = 0
+            self.money9 = 0
+            self.money10 = 0
+            cursor = connect.cursor()
+            sql_list = [1, self.money1, self.money2, self.money3, self.money4, self.money5, self.money6, self.money7, self.money8, self.money9, self.money10]
+            cursor.execute("INSERT INTO data_moneys VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", sql_list)
+            connect.commit()
+            cursor.close()
+        if not sql_search_data_price_moneys():
+            cursor = connect.cursor()
+            sql_list = [1, self.price_money1, self.price_money2, self.price_money3, self.price_money4, self.price_money5, self.price_money6, self.price_money7, self.price_money8, self.price_money9, self.price_money10]
+            cursor.execute("INSERT INTO data_price_moneys VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", sql_list)
+            connect.commit()
+            cursor.close()
     def up_money1(self):
         self.money = App.get_running_app().money
         if self.money > self.price_money1:
@@ -2033,6 +2453,9 @@ class ScreenFour(Screen):
             self.price_money1 = int(self.price_money1)
             App.get_running_app().return_money = count(self.money)
             self.return_price_money1 = count(self.price_money1)
+            self.sql_damage_update()
+            self.update_moneys()
+            self.update_prices()
     def up_money2(self):
         self.money = App.get_running_app().money
         if self.money > self.price_money2:
@@ -2046,6 +2469,9 @@ class ScreenFour(Screen):
             self.price_money2 = int(self.price_money2)
             App.get_running_app().return_money = count(self.money)
             self.return_price_money2 = count(self.price_money2)
+            self.sql_damage_update()
+            self.update_moneys()
+            self.update_prices()
     def up_money3(self):
         self.money = App.get_running_app().money
         if self.money > self.price_money3:
@@ -2059,6 +2485,9 @@ class ScreenFour(Screen):
             self.price_money3 = int(self.price_money3)
             App.get_running_app().return_money = count(self.money)
             self.return_price_money3 = count(self.price_money3)
+            self.sql_damage_update()
+            self.update_moneys()
+            self.update_prices()
     def up_money4(self):
         self.money = App.get_running_app().money
         if self.money > self.price_money4:
@@ -2072,6 +2501,9 @@ class ScreenFour(Screen):
             self.price_money4 = int(self.price_money4)
             App.get_running_app().return_money = count(self.money)
             self.return_price_money4 = count(self.price_money4)
+            self.sql_damage_update()
+            self.update_moneys()
+            self.update_prices()
     def up_money5(self):
         self.money = App.get_running_app().money
         if self.money > self.price_money5:
@@ -2085,6 +2517,9 @@ class ScreenFour(Screen):
             self.price_money5 = int(self.price_money5)
             App.get_running_app().return_money = count(self.money)
             self.return_price_money5 = count(self.price_money5)
+            self.sql_damage_update()
+            self.update_moneys()
+            self.update_prices()
     def up_money6(self):
         self.money = App.get_running_app().money
         if self.money > self.price_money6:
@@ -2098,6 +2533,9 @@ class ScreenFour(Screen):
             self.price_money6 = int(self.price_money6)
             App.get_running_app().return_money = count(self.money)
             self.return_price_money6 = count(self.price_money6)
+            self.sql_damage_update()
+            self.update_moneys()
+            self.update_prices()
     def up_money7(self):
         self.money = App.get_running_app().money
         if self.money > self.price_money7:
@@ -2111,6 +2549,9 @@ class ScreenFour(Screen):
             self.price_money7 = int(self.price_money7)
             App.get_running_app().return_money = count(self.money)
             self.return_price_money7 = count(self.price_money7)
+            self.sql_damage_update()
+            self.update_moneys()
+            self.update_prices()
     def up_money8(self):
         self.money = App.get_running_app().money
         if self.money > self.price_money8:
@@ -2124,6 +2565,9 @@ class ScreenFour(Screen):
             self.price_money8 = int(self.price_money8)
             App.get_running_app().return_money = count(self.money)
             self.return_price_money8 = count(self.price_money8)
+            self.sql_damage_update()
+            self.update_moneys()
+            self.update_prices()
     def up_money9(self):
         self.money = App.get_running_app().money
         if self.money > self.price_money9:
@@ -2137,6 +2581,9 @@ class ScreenFour(Screen):
             self.price_money9 = int(self.price_money9)
             App.get_running_app().return_money = count(self.money)
             self.return_price_money9 = count(self.price_money9)
+            self.sql_damage_update()
+            self.update_moneys()
+            self.update_prices()
     def up_money10(self):
         self.money = App.get_running_app().money
         if self.money > self.price_money10:
@@ -2150,6 +2597,84 @@ class ScreenFour(Screen):
             self.price_money10 = int(self.price_money10)
             App.get_running_app().return_money = count(self.money)
             self.return_price_money10 = count(self.price_money10)
+            self.sql_damage_update()
+            self.update_moneys()
+            self.update_prices()
+    def sql_damage_update(self):
+        cursor = connect.cursor()
+        sql_update_plus = """Update data set sql_plus = ? where id = ?"""
+        data = (App.get_running_app().plus, 1)
+        cursor.execute(sql_update_plus, data)
+        connect.commit()
+        cursor.close()
+    def update_moneys(self):
+        cursor = connect.cursor()
+        sql_update_money = """Update data_moneys set sql_money1 = ? where id = ?"""
+        data = (self.money1, 1)
+        cursor.execute(sql_update_money, data)
+        sql_update_money = """Update data_moneys set sql_money2 = ? where id = ?"""
+        data = (self.money2, 1)
+        cursor.execute(sql_update_money, data)
+        sql_update_money = """Update data_moneys set sql_money3 = ? where id = ?"""
+        data = (self.money3, 1)
+        cursor.execute(sql_update_money, data)
+        sql_update_money = """Update data_moneys set sql_money4 = ? where id = ?"""
+        data = (self.money4, 1)
+        cursor.execute(sql_update_money, data)
+        sql_update_money = """Update data_moneys set sql_money5 = ? where id = ?"""
+        data = (self.money5, 1)
+        cursor.execute(sql_update_money, data)
+        sql_update_money = """Update data_moneys set sql_money6 = ? where id = ?"""
+        data = (self.money6, 1)
+        cursor.execute(sql_update_money, data)
+        sql_update_money = """Update data_moneys set sql_money7 = ? where id = ?"""
+        data = (self.money7, 1)
+        cursor.execute(sql_update_money, data)
+        sql_update_money = """Update data_moneys set sql_money8 = ? where id = ?"""
+        data = (self.money8, 1)
+        cursor.execute(sql_update_money, data)
+        sql_update_money = """Update data_moneys set sql_money9 = ? where id = ?"""
+        data = (self.money9, 1)
+        cursor.execute(sql_update_money, data)
+        sql_update_money = """Update data_moneys set sql_money10 = ? where id = ?"""
+        data = (self.money10, 1)
+        cursor.execute(sql_update_money, data)
+        connect.commit()
+        cursor.close()
+    def update_prices(self):
+        cursor = connect.cursor()
+        sql_update_price = """Update data_price_moneys set sql_price_money1 = ? where id = ?"""
+        data = (self.price_money1, 1)
+        cursor.execute(sql_update_price, data)
+        sql_update_price = """Update data_price_moneys set sql_price_money2 = ? where id = ?"""
+        data = (self.price_money2, 1)
+        cursor.execute(sql_update_price, data)
+        sql_update_price = """Update data_price_moneys set sql_price_money3 = ? where id = ?"""
+        data = (self.price_money3, 1)
+        cursor.execute(sql_update_price, data)
+        sql_update_price = """Update data_price_moneys set sql_price_money4 = ? where id = ?"""
+        data = (self.price_money4, 1)
+        cursor.execute(sql_update_price, data)
+        sql_update_price = """Update data_price_moneys set sql_price_money5 = ? where id = ?"""
+        data = (self.price_money5, 1)
+        cursor.execute(sql_update_price, data)
+        sql_update_price = """Update data_price_moneys set sql_price_money6 = ? where id = ?"""
+        data = (self.price_money6, 1)
+        cursor.execute(sql_update_price, data)
+        sql_update_price = """Update data_price_moneys set sql_price_money7 = ? where id = ?"""
+        data = (self.price_money7, 1)
+        cursor.execute(sql_update_price, data)
+        sql_update_price = """Update data_price_moneys set sql_price_money8 = ? where id = ?"""
+        data = (self.price_money8, 1)
+        cursor.execute(sql_update_price, data)
+        sql_update_price = """Update data_price_moneys set sql_price_money9 = ? where id = ?"""
+        data = (self.price_money9, 1)
+        cursor.execute(sql_update_price, data)
+        sql_update_price = """Update data_price_moneys set sql_price_money10 = ? where id = ?"""
+        data = (self.price_money10, 1)
+        cursor.execute(sql_update_price, data)
+        connect.commit()
+        cursor.close()
 
 
 
@@ -2162,17 +2687,38 @@ class Manager(ScreenManager):
     screen_four = ObjectProperty(None)
 
 class ScreensApp(MDApp):
-    money = ObjectProperty(0)
-    damage = ObjectProperty(1)
-    return_damage = StringProperty('1')
-    return_money = StringProperty('0')
-    plus = ObjectProperty(1)
-    return_plus = StringProperty('1')
+    if not sql_search_data():
+        money = ObjectProperty(0)
+    else:
+        money = ObjectProperty(sql_search_data()[0][1])
+    if not sql_search_data():
+        damage = ObjectProperty(1)
+    else:
+        damage = ObjectProperty(sql_search_data()[0][2])
+    if not sql_search_data():
+        return_damage = StringProperty('1')
+    else:
+        return_damage = StringProperty(str(count(sql_search_data()[0][2])))
+    if not sql_search_data():
+        return_money = StringProperty('0')
+    else:
+        return_money = StringProperty(str(count(sql_search_data()[0][1])))
+    if not sql_search_data():
+        plus = ObjectProperty(1)
+    else:
+        plus = ObjectProperty(sql_search_data()[0][3])
+    if not sql_search_data():
+        return_plus = StringProperty('1')
+    else:
+        return_plus = StringProperty(str(count(sql_search_data()[0][3])))
     def build(self):
         m = Manager(transition=NoTransition())
         return m
 
 if __name__ == "__main__":
     ScreensApp().run()
+
+
+
 
 
