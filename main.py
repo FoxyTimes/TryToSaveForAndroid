@@ -3,7 +3,13 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.screenmanager import ScreenManager, Screen, NoTransition
+from kivy.clock import Clock
 import sqlite3
+import datetime
+
+
+
+
 
 connect = sqlite3.connect('money.db')
 
@@ -17,6 +23,14 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS data(
     )
 """)
 connect.commit()
+
+cursor.execute("""CREATE TABLE IF NOT EXISTS time(
+    id INTEGER,
+    last_start INTEGER
+    )
+""")
+connect.commit()
+
 
 cursor.execute("""CREATE TABLE IF NOT EXISTS data_guns(
     id INTEGER,
@@ -103,6 +117,21 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS data_price_moneys(
 
 connect.commit()
 
+cursor.execute("""CREATE TABLE IF NOT EXISTS data_skills(
+    id INTEGER,
+    sql_skill1 INTEGER
+    )
+""")
+
+connect.commit()
+
+cursor.execute("""CREATE TABLE IF NOT EXISTS data_price_skills(
+    id INTEGER,
+    sql_price_skill1 INTEGER
+    )
+""")
+
+connect.commit()
 
 cursor.close()
 
@@ -136,6 +165,32 @@ def sql_search_data_price_moneys():
     sql_all = cursor.fetchall()
     cursor.close()
     return sql_all
+def sql_search_data_skills():
+    cursor = connect.cursor()
+    cursor.execute("SELECT * FROM data_skills")
+    sql_all = cursor.fetchall()
+    cursor.close()
+    return sql_all
+def sql_search_data_price_skills():
+    cursor = connect.cursor()
+    cursor.execute("SELECT * FROM data_price_skills")
+    sql_all = cursor.fetchall()
+    cursor.close()
+    return sql_all
+def sql_search_time():
+    cursor = connect.cursor()
+    cursor.execute("SELECT * FROM time")
+    sql_all = cursor.fetchall()
+    cursor.close()
+    return sql_all
+
+
+if not sql_search_time():
+    cursor = connect.cursor()
+    sql_list = [1, datetime.datetime.today()]
+    cursor.execute("INSERT INTO time VALUES(?, ?);", sql_list)
+    connect.commit()
+    cursor.close()
 
 def count(number):
     if number / 1000000000000000000000000000000 > 1.0:
@@ -199,6 +254,7 @@ temp = """
     FloatLayout:
         Button:
             text: 'Меню'
+            font_size: self.width/2/2/1.5
             size_hint: 0.3, 0.1
             pos_hint: {'center_x': 0.15, 'center_y': 0.88}
             background_normal: 'img/btn1.png'
@@ -259,11 +315,13 @@ temp = """
             size_hint: 0.6, 0.2
             Button:
                 text: 'Улучшения'
+                font_size: self.width/2/2/2
                 background_normal: 'img/btn1.png'
-                font_size: 25
                 on_press: root.manager.current = "screen3"
     FloatLayout:
+        id: put1h
         BoxLayout:
+            id: put2h
             orientation: 'vertical'
             size_hint: 0.95, 0.7
             padding: 30
@@ -275,19 +333,57 @@ temp = """
                 color: 1, 0, 0, 1
                 size_hint: 0.5, 0.1
                 font_size: 20
-                pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+                pos_hint: {'center_x': 0.5, 'center_y': 0.9}
             MDProgressBar:
+                id: put3h
                 max: 300
-                value: root.health
-                size_hint: 0.5, 0.01
-                color: 1, 0, 0, 1
-                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                value: 0
+                pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+                size_hint: 0.5, 0.1
+                color: 0.16, 0.13, 0.175, 1
+                canvas:
+                    Color:
+                        rgb: 1, 1, 1, 0
+                    Rectangle:
+                        pos: self.x+self.width/2/2/1.5, self.center_y - self.height/2.7
+                        size: self.width/1.234 * (app.health / float(self.max)) if self.max else 0, 20
+                        source: 'img/bar_health2.jpg'
+                    Rectangle:
+                        pos: self.x, self.center_y - self.height/2
+                        size: self.width, 32
+                        source: 'img/bar_health1.png'
                 
             Button:
                 background_normal: 'img/mob1.png'
                 background_down: 'img/hit_mob1.png'
                 size_hint: 1, 1
                 on_release: root.plus_money(), root.minus_health()
+    FloatLayout:
+        id: screen2fl
+        canvas:
+            Color:
+                rgb: 1, 1, 1, 0
+            Rectangle:
+                pos: self.center_x/3, self.center_y/1.5
+                size: self.width/1.5, self.height/2
+                source: 'img/page_for_time_total.png'
+        MDLabel:
+            halign: 'center'
+            font_style: 'H6'
+            text: 'Вы получили ' + str(app.return_return_total_money_in_time)
+            color: 1, 0, 1, 0.5
+            size_hint: 1, 1
+            font_size: self.width/2/2/2/2
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+        Button:
+            text: 'Подвердить'
+            background_normal: 'img/btn1.png'
+            background_down: 'img/btn1_pressed.png'
+            size_hint: 0.5, 0.2
+            font_size: self.width/2/2/2
+            pos_hint: {'center_x': 0.5, 'center_y': 0.46}
+            on_press:
+                root.clear()
 
 <ScreenThree>:
     FloatLayout:
@@ -338,7 +434,7 @@ temp = """
                 size_hint: 1, 1.7
                 font_size: 15
                 on_press:
-                    root.manager.current = "screen3"
+                    root.manager.current = "screen5"
             Button:
                 text: 'Урон'
                 background_normal: 'img/btn1.png'
@@ -1120,7 +1216,7 @@ temp = """
                 size_hint: 1, 1.7
                 font_size: 15
                 on_press:
-                    root.manager.current = "screen4"
+                    root.manager.current = "screen5"
         ScrollView:
             size_hint_y: 0.6
             do_scroll_x: False
@@ -1871,7 +1967,174 @@ temp = """
                 background_down: 'img/btn1_pressed.png'
                 on_press:
                     root.manager.current = "screen2"
-
+<ScreenFive>:
+    FloatLayout:
+        canvas:
+            Rectangle:
+                source: 'img/darkPurple.png'
+                size: self.size
+                pos: self.pos
+            Rectangle:
+                source: 'img/bar_money.png'
+                size: self.width/3, self.height/12
+                pos: self.width/20, self.height-self.height/1.07
+            Rectangle:
+                source: 'img/fon3.jpg'
+                size: self.size[0]-self.width/1.35, self.size[1]/2/2/3
+                pos: self.pos[0]+self.width/2/1.2, self.pos[1]+self.height/2/2/2/2
+            Rectangle:
+                source: 'img/page3.png'
+                size: self.size[0]-self.width/1.35, self.size[1]/2/2/3
+                pos: self.pos[0]+self.width/2/1.2, self.pos[1]+self.height/2/2/2/2
+            Rectangle:
+                source: 'img/money_icon.png'
+                size: self.width/12, self.height/20
+                pos: self.width/18, self.height-self.height/1.09
+        MDLabel:
+            halign: 'center'
+            font_style: 'H6'
+            text: app.return_money
+            color: 1, 1, 1, 1
+            size_hint: 1, 1
+            font_size: 15
+            pos_hint: {'center_x': 0.2, 'center_y': 0.11}
+        MDLabel:
+            halign: 'center'
+            font_style: 'H6'
+            text: app.return_money_in_sec + '/сек'
+            color: 1, 0.5, 1, 1
+            size_hint: 1, 1
+            font_size: 15
+            pos_hint: {'center_x': 0.55, 'center_y': 0.11}
+        BoxLayout:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.85}
+            size_hint: 1, .09
+            Button:
+                text: 'деньги'
+                background_normal: 'img/btn1.png'
+                background_down: 'img/btn1_pressed.png'
+                size_hint: 1, 1.7
+                font_size: 15
+                on_press:
+                    root.manager.current = "screen4"
+            Button:
+                text: 'Скиллы'
+                background_normal: 'img/btn1.png'
+                background_down: 'img/btn1_pressed.png'
+                size_hint: 1.5, 1.7
+                font_size: 15
+                on_press:
+                    root.manager.current = "screen5"
+            Button:
+                text: 'урон'
+                background_normal: 'img/btn1.png'
+                background_down: 'img/btn1_pressed.png'
+                size_hint: 1, 1.7
+                font_size: 15
+                on_press:
+                    root.manager.current = "screen3"
+        ScrollView:
+            size_hint_y: 0.6
+            do_scroll_x: False
+            do_scroll_y: True
+            pos_hint: {'x':0.025, 'y': .2}
+            GridLayout:
+                size:(root.width/2+root.width/2/2+root.width/2/2/1.25, root.height/5)
+                size_hint_x: None
+                size_hint_y: None
+                spacing: 30
+                padding: 10
+                cols: 1
+                height: self.minimum_height
+                canvas:
+                    Rectangle:
+                        source: 'img/background.jpg'
+                        size: self.size
+                        pos: self.pos
+                FloatLayout:
+                    canvas:
+                        Rectangle:
+                            source: 'img/page.jpg'
+                            size: self.size[0]-self.width/3, self.size[1]+self.height/2/2/2
+                            pos: self.pos[0], self.pos[1]-5
+                        Rectangle:
+                            source: 'img/fon6.jpg'
+                            size: self.size[0]/3.4, self.size[1]/1.4
+                            pos: self.pos[0]+self.width/2/3/2/2/2, self.pos[1]+self.height/2/3
+                        Rectangle:
+                            source: 'img/upgrade_skill1.png'
+                            size: self.size[0]/4.5, self.size[1]/1.8
+                            pos: self.pos[0]+self.width/2/3/2/1.2, self.pos[1]+self.height/2/2
+                        Rectangle:
+                            source: 'img/page6.png'
+                            size: self.size[0]/2.5, self.size[1]+self.height/2/2
+                            pos: self.pos[0]-self.width/2/2/2/2/4, self.pos[1]-self.height/2/2/2
+                        Rectangle:
+                            source: 'img/fon7.jpg'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
+                        Rectangle:
+                            source: 'img/page2.png'
+                            size: self.size[0]-self.width/1.35, self.size[1]+self.height/2/2/8
+                            pos: self.pos[0]+self.width/2/1.35, self.pos[1]
+                    BoxLayout:
+                        size_hint: 1, 0.5
+                        orientation: 'vertical'
+                        pos_hint: {'center_x': 0.65, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H4'
+                            text: 'lvl ' + str(root.return_skill1)
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 15
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'Накопитель'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 10
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: 'энергии'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 10
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                        MDLabel:
+                            halign: 'center'
+                            font_style: 'H6'
+                            text: '+1/сек'
+                            color: 0.5, 1, 0.5, 1
+                            size_hint: 1, 1
+                            font_size: 12
+                            pos_hint: {'center_x': 0.35, 'center_y': 0.5}
+                    Button:
+                        size_hint: None, None
+                        size: root.width/3, root.height/5
+                        pos_hint: {'center_x': 0.835, 'center_y': 0.5}
+                        text: str(root.return_price_skill1)
+                        color: 1, 0.85, 0.1, 1
+                        background_normal: 'img/btn1.png'
+                        background_down: 'img/btn1_pressed.png'
+                        font_size: 20
+                        on_press: root.up_skill1()
+        BoxLayout:
+            spacing: 20
+            pos_hint: {'center_x': 0.85, 'center_y': 0.1}
+            spacing: 10
+            size_hint: .25, .15
+            Button:
+                size_hint: 1.4, 1
+                text: 'назад'
+                background_normal: 'img/btn1.png'
+                background_down: 'img/btn1_pressed.png'
+                on_press:
+                    root.manager.current = "screen2"
 
             
     
@@ -1881,6 +2144,7 @@ temp = """
     screen_one: screen_one
     screen_two: screen_two
     screen_three: screen_three
+    screen_four: screen_four
     ScreenOne:
         id: screen_one
         name: "screen1"
@@ -1897,15 +2161,17 @@ temp = """
         id: screen_four
         name: "screen4"
         manager: screen_manager
+    ScreenFive:
+        id: screen_five
+        name: "screen5"
+        manager: screen_manager
         """
 
 Builder.load_string(temp)
 
-
 class ScreenOne(Screen):
-    pass
-
-
+    def __init__(self, **kwargs):
+        super(ScreenOne, self).__init__(**kwargs)
 class ScreenTwo(Screen):
     if not sql_search_data():
         return_health = StringProperty('300')
@@ -1915,10 +2181,7 @@ class ScreenTwo(Screen):
     def __init__(self, **kwargs):
         super(ScreenTwo, self).__init__(**kwargs)
         self.damage = App.get_running_app().damage
-        if not sql_search_data():
-            self.health = 300
-        else:
-            self.health = sql_search_data()[0][4]
+        self.health = App.get_running_app().health
         self.money = App.get_running_app().money
         self.mana = 10
         self.return_mana = count(self.mana)
@@ -1928,6 +2191,9 @@ class ScreenTwo(Screen):
             cursor.execute("INSERT INTO data VALUES(?, ?, ?, ?, ?);", sql_list)
             connect.commit()
             cursor.close()
+    def clear(self):
+        self.ids.screen2fl.clear_widgets()
+        self.ids.screen2fl.canvas.clear()
     def plus_money(self):
         self.money = App.get_running_app().money
         self.money += App.get_running_app().plus
@@ -1943,6 +2209,7 @@ class ScreenTwo(Screen):
         self.return_health = count(self.health)
         App.get_running_app().return_money = count(App.get_running_app().money)
         self.update_sql_health()
+        App.get_running_app().health = self.health
     def get_damage(self):
         return App.get_running_app().damage
     def update_sql_money(self):
@@ -2100,6 +2367,8 @@ class ScreenThree(Screen):
             self.update_sql_damage()
             self.update_guns()
             self.update_prices()
+            App.get_running_app().money = self.money
+            self.update_sql_money()
     def up_guns2(self):
         self.money = App.get_running_app().money
         if self.money > self.price2:
@@ -2116,6 +2385,8 @@ class ScreenThree(Screen):
             self.update_sql_damage()
             self.update_guns()
             self.update_prices()
+            App.get_running_app().money = self.money
+            self.update_sql_money()
     def up_guns3(self):
         self.money = App.get_running_app().money
         if self.money > self.price3:
@@ -2132,6 +2403,8 @@ class ScreenThree(Screen):
             self.update_sql_damage()
             self.update_guns()
             self.update_prices()
+            App.get_running_app().money = self.money
+            self.update_sql_money()
     def up_guns4(self):
         self.money = App.get_running_app().money
         if self.money > self.price4:
@@ -2148,6 +2421,8 @@ class ScreenThree(Screen):
             self.update_sql_damage()
             self.update_guns()
             self.update_prices()
+            App.get_running_app().money = self.money
+            self.update_sql_money()
     def up_guns5(self):
         self.money = App.get_running_app().money
         if self.money > self.price5:
@@ -2164,6 +2439,8 @@ class ScreenThree(Screen):
             self.update_sql_damage()
             self.update_guns()
             self.update_prices()
+            App.get_running_app().money = self.money
+            self.update_sql_money()
     def up_guns6(self):
         self.money = App.get_running_app().money
         if self.money > self.price6:
@@ -2180,6 +2457,8 @@ class ScreenThree(Screen):
             self.update_sql_damage()
             self.update_guns()
             self.update_prices()
+            App.get_running_app().money = self.money
+            self.update_sql_money()
     def up_guns7(self):
         self.money = App.get_running_app().money
         if self.money > self.price7:
@@ -2196,6 +2475,8 @@ class ScreenThree(Screen):
             self.update_sql_damage()
             self.update_guns()
             self.update_prices()
+            App.get_running_app().money = self.money
+            self.update_sql_money()
     def up_guns8(self):
         self.money = App.get_running_app().money
         if self.money > self.price8:
@@ -2212,6 +2493,8 @@ class ScreenThree(Screen):
             self.update_sql_damage()
             self.update_guns()
             self.update_prices()
+            App.get_running_app().money = self.money
+            self.update_sql_money()
     def up_guns9(self):
         self.money = App.get_running_app().money
         if self.money > self.price9:
@@ -2228,6 +2511,8 @@ class ScreenThree(Screen):
             self.update_sql_damage()
             self.update_guns()
             self.update_prices()
+            App.get_running_app().money = self.money
+            self.update_sql_money()
     def up_guns10(self):
         self.money = App.get_running_app().money
         if self.money > self.price10:
@@ -2244,6 +2529,15 @@ class ScreenThree(Screen):
             self.update_sql_damage()
             self.update_guns()
             self.update_prices()
+            App.get_running_app().money = self.money
+            self.update_sql_money()
+    def update_sql_money(self):
+        cursor = connect.cursor()
+        sql_update_money = """Update data set sql_money = ? where id = ?"""
+        data = (self.money, 1)
+        cursor.execute(sql_update_money, data)
+        connect.commit()
+        cursor.close()
     def update_sql_damage(self):
         cursor = connect.cursor()
         sql_update_damage = """Update data set sql_damage = ? where id = ?"""
@@ -2470,6 +2764,8 @@ class ScreenFour(Screen):
             self.sql_damage_update()
             self.update_moneys()
             self.update_prices()
+            App.get_running_app().money = self.money
+            self.update_sql_money()
     def up_money2(self):
         self.money = App.get_running_app().money
         if self.money > self.price_money2:
@@ -2486,6 +2782,8 @@ class ScreenFour(Screen):
             self.sql_damage_update()
             self.update_moneys()
             self.update_prices()
+            App.get_running_app().money = self.money
+            self.update_sql_money()
     def up_money3(self):
         self.money = App.get_running_app().money
         if self.money > self.price_money3:
@@ -2502,6 +2800,8 @@ class ScreenFour(Screen):
             self.sql_damage_update()
             self.update_moneys()
             self.update_prices()
+            App.get_running_app().money = self.mone
+            self.update_sql_money()
     def up_money4(self):
         self.money = App.get_running_app().money
         if self.money > self.price_money4:
@@ -2518,6 +2818,8 @@ class ScreenFour(Screen):
             self.sql_damage_update()
             self.update_moneys()
             self.update_prices()
+            App.get_running_app().money = self.money
+            self.update_sql_money()
     def up_money5(self):
         self.money = App.get_running_app().money
         if self.money > self.price_money5:
@@ -2534,6 +2836,8 @@ class ScreenFour(Screen):
             self.sql_damage_update()
             self.update_moneys()
             self.update_prices()
+            App.get_running_app().money = self.money
+            self.update_sql_money()
     def up_money6(self):
         self.money = App.get_running_app().money
         if self.money > self.price_money6:
@@ -2550,6 +2854,8 @@ class ScreenFour(Screen):
             self.sql_damage_update()
             self.update_moneys()
             self.update_prices()
+            App.get_running_app().money = self.money
+            self.update_sql_money()
     def up_money7(self):
         self.money = App.get_running_app().money
         if self.money > self.price_money7:
@@ -2566,6 +2872,8 @@ class ScreenFour(Screen):
             self.sql_damage_update()
             self.update_moneys()
             self.update_prices()
+            App.get_running_app().money = self.money
+            self.update_sql_money()
     def up_money8(self):
         self.money = App.get_running_app().money
         if self.money > self.price_money8:
@@ -2582,6 +2890,8 @@ class ScreenFour(Screen):
             self.sql_damage_update()
             self.update_moneys()
             self.update_prices()
+            App.get_running_app().money = self.money
+            self.update_sql_money()
     def up_money9(self):
         self.money = App.get_running_app().money
         if self.money > self.price_money9:
@@ -2598,6 +2908,8 @@ class ScreenFour(Screen):
             self.sql_damage_update()
             self.update_moneys()
             self.update_prices()
+            App.get_running_app().money = self.money
+            self.update_sql_money()
     def up_money10(self):
         self.money = App.get_running_app().money
         if self.money > self.price_money10:
@@ -2614,11 +2926,20 @@ class ScreenFour(Screen):
             self.sql_damage_update()
             self.update_moneys()
             self.update_prices()
+            App.get_running_app().money = self.money
+            self.update_sql_money()
     def sql_damage_update(self):
         cursor = connect.cursor()
         sql_update_plus = """Update data set sql_plus = ? where id = ?"""
         data = (App.get_running_app().plus, 1)
         cursor.execute(sql_update_plus, data)
+        connect.commit()
+        cursor.close()
+    def update_sql_money(self):
+        cursor = connect.cursor()
+        sql_update_money = """Update data set sql_money = ? where id = ?"""
+        data = (self.money, 1)
+        cursor.execute(sql_update_money, data)
         connect.commit()
         cursor.close()
     def update_moneys(self):
@@ -2690,7 +3011,85 @@ class ScreenFour(Screen):
         connect.commit()
         cursor.close()
 
+class ScreenFive(Screen):
+    if not sql_search_data_moneys():
+        return_skill1 = StringProperty('0')
+    else:
+        return_skill1 = StringProperty(str(count(sql_search_data_skills()[0][1])))
 
+    if not sql_search_data_guns():
+        return_price_skill1 = StringProperty('100')
+    else:
+        return_price_skill1 = StringProperty(str(count(sql_search_data_price_skills()[0][1])))
+
+
+    def __init__(self, **kwargs):
+        super(ScreenFive, self).__init__(**kwargs)
+        if not sql_search_data_skills():
+            self.skill1 = ObjectProperty(0)
+        else:
+            self.skill1 = ObjectProperty(sql_search_data_skills()[0][1])
+            self.skill1 = sql_search_data_skills()[0][1]
+        if not sql_search_data_price_skills():
+            self.price_skill1 = 100
+        else:
+            self.price_skill1 = ObjectProperty(sql_search_data_price_skills()[0][1])
+            self.price_skill1 = sql_search_data_price_skills()[0][1]
+        self.money = App.get_running_app().money
+        if not sql_search_data_skills():
+            self.skill1 = 0
+            cursor = connect.cursor()
+            sql_list = [1, self.skill1]
+            cursor.execute("INSERT INTO data_skills VALUES(?, ?);", sql_list)
+            connect.commit()
+            cursor.close()
+        if not sql_search_data_price_skills():
+            cursor = connect.cursor()
+            sql_list = [1, self.price_skill1]
+            cursor.execute("INSERT INTO data_price_skills VALUES(?, ?);", sql_list)
+            connect.commit()
+            cursor.close()
+
+    def up_skill1(self):
+        self.money = App.get_running_app().money
+        if self.money > self.price_skill1:
+            self.skill1 += 1
+            App.get_running_app().money_in_sec += 1
+            App.get_running_app().return_money_in_sec = count(App.get_running_app().money_in_sec)
+            self.return_skill1 = count(self.skill1)
+            self.money -= self.price_skill1
+            App.get_running_app().money -= self.price_skill1
+            self.price_skill1 *= 1.1
+            self.price_skill1 = int(self.price_skill1)
+            App.get_running_app().return_money = count(self.money)
+            self.return_price_skill1 = count(self.price_skill1)
+            self.update_skills()
+            self.update_prices()
+            self.update_sql_money()
+
+    def update_skills(self):
+        cursor = connect.cursor()
+        sql_update_skill = """Update data_skills set sql_skill1 = ? where id = ?"""
+        data = (self.skill1, 1)
+        cursor.execute(sql_update_skill, data)
+        connect.commit()
+        cursor.close()
+
+    def update_prices(self):
+        cursor = connect.cursor()
+        sql_update_price = """Update data_price_skills set sql_price_skill1 = ? where id = ?"""
+        data = (self.price_skill1, 1)
+        cursor.execute(sql_update_price, data)
+        connect.commit()
+        cursor.close()
+
+    def update_sql_money(self):
+        cursor = connect.cursor()
+        sql_update_money = """Update data set sql_money = ? where id = ?"""
+        data = (self.money, 1)
+        cursor.execute(sql_update_money, data)
+        connect.commit()
+        cursor.close()
 
 
 class Manager(ScreenManager):
@@ -2699,12 +3098,26 @@ class Manager(ScreenManager):
     screen_two = ObjectProperty(None)
     screen_three = ObjectProperty(None)
     screen_four = ObjectProperty(None)
-
+    screen_five = ObjectProperty(None)
 class ScreensApp(MDApp):
+    max = ObjectProperty(300)
+    max = 300
+    time = datetime.datetime.today() - datetime.datetime.strptime(sql_search_time()[0][1], '%Y-%m-%d %H:%M:%S.%f')
+    time = int(time.total_seconds())
     if not sql_search_data():
         money = ObjectProperty(0)
     else:
         money = ObjectProperty(sql_search_data()[0][1])
+    if not sql_search_data_skills():
+        money_in_sec = ObjectProperty(0)
+        money_in_sec = 0
+    else:
+        money_in_sec = ObjectProperty(sql_search_data_skills()[0][1])
+        money_in_sec = sql_search_data_skills()[0][1]
+    if not sql_search_data_skills():
+        return_money_in_sec = StringProperty('1')
+    else:
+        return_money_in_sec = StringProperty(str(count(sql_search_data_skills()[0][1])))
     if not sql_search_data():
         damage = ObjectProperty(1)
     else:
@@ -2725,9 +3138,59 @@ class ScreensApp(MDApp):
         return_plus = StringProperty('1')
     else:
         return_plus = StringProperty(str(count(sql_search_data()[0][3])))
+    if not sql_search_data():
+        health = ObjectProperty(300)
+    else:
+        health = ObjectProperty(sql_search_data()[0][4])
+    if not sql_search_data():
+        health = ObjectProperty(300)
+    else:
+        health = ObjectProperty(sql_search_data()[0][4])
+    if not sql_search_data_skills():
+        return_total_money_in_time = ObjectProperty(0)
+        return_total_money_in_time = 0
+        return_return_total_money_in_time = StringProperty('0')
+    else:
+        return_total_money_in_time = ObjectProperty(money_in_sec * time)
+        return_total_money_in_time = money_in_sec * time
+        return_return_total_money_in_time = StringProperty(str(count(return_total_money_in_time)))
+        return_return_total_money_in_time = str(count(return_total_money_in_time))
+    def on_start(self):
+        Clock.schedule_interval(self.get_time, 1)
+        time = datetime.datetime.today() - datetime.datetime.strptime(sql_search_time()[0][1], '%Y-%m-%d %H:%M:%S.%f')
+        time = int(time.total_seconds())
+        App.get_running_app().money += App.get_running_app().money_in_sec * time
+        self.update_sql_money()
+        if not sql_search_data():
+            pass
+        else:
+            App.get_running_app().return_money = str(count(sql_search_data()[0][1]))
+        print(App.get_running_app().return_total_money_in_time)
+    def get_time(self, instance):
+        App.get_running_app().money += App.get_running_app().money_in_sec
+        self.update_sql_money()
+        if not sql_search_data():
+            pass
+        else:
+            App.get_running_app().return_money = str(count(sql_search_data()[0][1]))
     def build(self):
         m = Manager(transition=NoTransition())
         return m
+    def on_stop(self):
+        cursor = connect.cursor()
+        sql_update_money = """Update time set last_start = ? where id = ?"""
+        data = (datetime.datetime.today(), 1)
+        cursor.execute(sql_update_money, data)
+        connect.commit()
+        cursor.close()
+    def update_sql_money(self):
+        cursor = connect.cursor()
+        sql_update_money = """Update data set sql_money = ? where id = ?"""
+        data = (App.get_running_app().money, 1)
+        cursor.execute(sql_update_money, data)
+        connect.commit()
+        cursor.close()
 
 if __name__ == "__main__":
     ScreensApp().run()
+
