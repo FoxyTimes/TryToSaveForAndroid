@@ -202,7 +202,7 @@ def count(number):
     if number / 1000000000000000000000 > 1.0:
         return str("%.1f" % (number/10000000000000000000000)) + 'Qw'
     if number / 1000000000000000000 > 1.0:
-        return str("%.1f" % (number/11000000000000000000)) + 'Qr'
+        return str("%.1f" % (number/1000000000000000000)) + 'Qr'
     if number / 1000000000000000 > 1.0:
         return str("%.1f" % (number/1000000000000000)) + 'T'
     if number / 1000000000000 > 1.0:
@@ -308,14 +308,13 @@ temp = """
                 font_size: 18
     FloatLayout:
         BoxLayout:
-            orientation: 'vertical'
             padding: 20
             spacing: 5
             pos_hint: {'center_x': 0.5, 'center_y': 0.1}
-            size_hint: 0.6, 0.2
+            size_hint: 0.8, 0.25
             Button:
                 text: 'Улучшения'
-                font_size: self.width/2/2/2
+                font_size: self.width/2/2/2/2
                 background_normal: 'img/btn1.png'
                 on_press: root.manager.current = "screen3"
     FloatLayout:
@@ -366,19 +365,19 @@ temp = """
             Rectangle:
                 pos: self.center_x/3, self.center_y/1.5
                 size: self.width/1.5, self.height/2
-                source: 'img/page_for_time_total.png'
+                source:app.page_for_time_total
         MDLabel:
             halign: 'center'
             font_style: 'H6'
-            text: 'Вы получили ' + str(app.return_return_total_money_in_time)
+            text: app.text_start
             color: 1, 0, 1, 0.5
             size_hint: 1, 1
             font_size: self.width/2/2/2/2
             pos_hint: {'center_x': 0.5, 'center_y': 0.6}
         Button:
-            text: 'Подвердить'
-            background_normal: 'img/btn1.png'
-            background_down: 'img/btn1_pressed.png'
+            text: app.podtverdit
+            background_normal: app.btn1
+            background_down: app.btn1_pressed
             size_hint: 0.5, 0.2
             font_size: self.width/2/2/2
             pos_hint: {'center_x': 0.5, 'center_y': 0.46}
@@ -2195,21 +2194,27 @@ class ScreenTwo(Screen):
         self.ids.screen2fl.clear_widgets()
         self.ids.screen2fl.canvas.clear()
     def plus_money(self):
-        self.money = App.get_running_app().money
-        self.money += App.get_running_app().plus
-        App.get_running_app().money = self.money
-        App.get_running_app().return_money = count(self.money)
-        self.update_sql_money()
+        self.check_click = 1
+        if self.check_click == 1:
+            self.check_click = 0
+            self.money = App.get_running_app().money
+            self.money += App.get_running_app().plus
+            App.get_running_app().money = self.money
+            App.get_running_app().return_money = count(self.money)
+            self.update_sql_money()
     def minus_health(self):
-        check = self.health - self.get_damage()
-        if check <= 0:
-            self.health = 300 + self.get_damage()
-            App.get_running_app().money += 100
-        self.health -= self.get_damage()
-        self.return_health = count(self.health)
-        App.get_running_app().return_money = count(App.get_running_app().money)
-        self.update_sql_health()
-        App.get_running_app().health = self.health
+        self.check_click = 1
+        if self.check_click == 1:
+            self.check_click = 0
+            check = self.health - self.get_damage()
+            if check <= 0:
+                self.health = 300 + self.get_damage()
+                App.get_running_app().money += 100
+            self.health -= self.get_damage()
+            self.return_health = count(self.health)
+            App.get_running_app().return_money = count(App.get_running_app().money)
+            self.update_sql_health()
+            App.get_running_app().health = self.health
     def get_damage(self):
         return App.get_running_app().damage
     def update_sql_money(self):
@@ -2226,7 +2231,6 @@ class ScreenTwo(Screen):
         cursor.execute(sql_update_health, data)
         connect.commit()
         cursor.close()
-        print(sql_search_data())
 class ScreenThree(Screen):
     if not sql_search_data_guns():
         return_guns1 = StringProperty('1')
@@ -2353,7 +2357,7 @@ class ScreenThree(Screen):
             cursor.close()
     def up_guns1(self):
         self.money = App.get_running_app().money
-        if self.money > self.price1:
+        if self.money >= self.price1:
             self.guns1 += 1
             App.get_running_app().damage += 1
             App.get_running_app().return_damage = count(App.get_running_app().damage)
@@ -2371,7 +2375,7 @@ class ScreenThree(Screen):
             self.update_sql_money()
     def up_guns2(self):
         self.money = App.get_running_app().money
-        if self.money > self.price2:
+        if self.money >= self.price2:
             self.guns2 += 1
             App.get_running_app().damage += 5
             App.get_running_app().return_damage = count(App.get_running_app().damage)
@@ -2389,7 +2393,7 @@ class ScreenThree(Screen):
             self.update_sql_money()
     def up_guns3(self):
         self.money = App.get_running_app().money
-        if self.money > self.price3:
+        if self.money >= self.price3:
             self.guns3 += 1
             App.get_running_app().damage += 20
             App.get_running_app().return_damage = count(App.get_running_app().damage)
@@ -2407,7 +2411,7 @@ class ScreenThree(Screen):
             self.update_sql_money()
     def up_guns4(self):
         self.money = App.get_running_app().money
-        if self.money > self.price4:
+        if self.money >= self.price4:
             self.guns4 += 1
             App.get_running_app().damage += 50
             App.get_running_app().return_damage = count(App.get_running_app().damage)
@@ -2425,7 +2429,7 @@ class ScreenThree(Screen):
             self.update_sql_money()
     def up_guns5(self):
         self.money = App.get_running_app().money
-        if self.money > self.price5:
+        if self.money >= self.price5:
             self.guns5 += 1
             App.get_running_app().damage += 100
             App.get_running_app().return_damage = count(App.get_running_app().damage)
@@ -2443,7 +2447,7 @@ class ScreenThree(Screen):
             self.update_sql_money()
     def up_guns6(self):
         self.money = App.get_running_app().money
-        if self.money > self.price6:
+        if self.money >= self.price6:
             self.guns6 += 1
             App.get_running_app().damage += 200
             App.get_running_app().return_damage = count(App.get_running_app().damage)
@@ -2461,7 +2465,7 @@ class ScreenThree(Screen):
             self.update_sql_money()
     def up_guns7(self):
         self.money = App.get_running_app().money
-        if self.money > self.price7:
+        if self.money >= self.price7:
             self.guns7 += 1
             App.get_running_app().damage += 500
             App.get_running_app().return_damage = count(App.get_running_app().damage)
@@ -2479,7 +2483,7 @@ class ScreenThree(Screen):
             self.update_sql_money()
     def up_guns8(self):
         self.money = App.get_running_app().money
-        if self.money > self.price8:
+        if self.money >= self.price8:
             self.guns8 += 1
             App.get_running_app().damage += 1000
             App.get_running_app().return_damage = count(App.get_running_app().damage)
@@ -2497,7 +2501,7 @@ class ScreenThree(Screen):
             self.update_sql_money()
     def up_guns9(self):
         self.money = App.get_running_app().money
-        if self.money > self.price9:
+        if self.money >= self.price9:
             self.guns9 += 1
             App.get_running_app().damage += 2000
             App.get_running_app().return_damage = count(App.get_running_app().damage)
@@ -2515,7 +2519,7 @@ class ScreenThree(Screen):
             self.update_sql_money()
     def up_guns10(self):
         self.money = App.get_running_app().money
-        if self.money > self.price10:
+        if self.money >= self.price10:
             self.guns10 += 1
             App.get_running_app().damage += 5000
             App.get_running_app().return_damage = count(App.get_running_app().damage)
@@ -2750,7 +2754,7 @@ class ScreenFour(Screen):
             cursor.close()
     def up_money1(self):
         self.money = App.get_running_app().money
-        if self.money > self.price_money1:
+        if self.money >= self.price_money1:
             self.money1 += 1
             App.get_running_app().plus += 1
             App.get_running_app().return_plus = count(App.get_running_app().plus)
@@ -2768,7 +2772,7 @@ class ScreenFour(Screen):
             self.update_sql_money()
     def up_money2(self):
         self.money = App.get_running_app().money
-        if self.money > self.price_money2:
+        if self.money >= self.price_money2:
             self.money2 += 1
             App.get_running_app().plus += 5
             App.get_running_app().return_plus = count(App.get_running_app().plus)
@@ -2786,7 +2790,7 @@ class ScreenFour(Screen):
             self.update_sql_money()
     def up_money3(self):
         self.money = App.get_running_app().money
-        if self.money > self.price_money3:
+        if self.money >= self.price_money3:
             self.money3 += 1
             App.get_running_app().plus += 20
             App.get_running_app().return_plus = count(App.get_running_app().plus)
@@ -2800,11 +2804,11 @@ class ScreenFour(Screen):
             self.sql_damage_update()
             self.update_moneys()
             self.update_prices()
-            App.get_running_app().money = self.mone
+            App.get_running_app().money = self.money
             self.update_sql_money()
     def up_money4(self):
         self.money = App.get_running_app().money
-        if self.money > self.price_money4:
+        if self.money >= self.price_money4:
             self.money4 += 1
             App.get_running_app().plus += 50
             App.get_running_app().return_plus = count(App.get_running_app().plus)
@@ -2822,7 +2826,7 @@ class ScreenFour(Screen):
             self.update_sql_money()
     def up_money5(self):
         self.money = App.get_running_app().money
-        if self.money > self.price_money5:
+        if self.money >= self.price_money5:
             self.money5 += 1
             App.get_running_app().plus += 100
             App.get_running_app().return_plus = count(App.get_running_app().plus)
@@ -2840,7 +2844,7 @@ class ScreenFour(Screen):
             self.update_sql_money()
     def up_money6(self):
         self.money = App.get_running_app().money
-        if self.money > self.price_money6:
+        if self.money >= self.price_money6:
             self.money6 += 1
             App.get_running_app().plus += 200
             App.get_running_app().return_plus = count(App.get_running_app().plus)
@@ -2858,7 +2862,7 @@ class ScreenFour(Screen):
             self.update_sql_money()
     def up_money7(self):
         self.money = App.get_running_app().money
-        if self.money > self.price_money7:
+        if self.money >= self.price_money7:
             self.money7 += 1
             App.get_running_app().plus += 500
             App.get_running_app().return_plus = count(App.get_running_app().plus)
@@ -2876,7 +2880,7 @@ class ScreenFour(Screen):
             self.update_sql_money()
     def up_money8(self):
         self.money = App.get_running_app().money
-        if self.money > self.price_money8:
+        if self.money >= self.price_money8:
             self.money8 += 1
             App.get_running_app().plus += 1000
             App.get_running_app().return_plus = count(App.get_running_app().plus)
@@ -2894,7 +2898,7 @@ class ScreenFour(Screen):
             self.update_sql_money()
     def up_money9(self):
         self.money = App.get_running_app().money
-        if self.money > self.price_money9:
+        if self.money >= self.price_money9:
             self.money9 += 1
             App.get_running_app().plus += 2000
             App.get_running_app().return_plus = count(App.get_running_app().plus)
@@ -2912,7 +2916,7 @@ class ScreenFour(Screen):
             self.update_sql_money()
     def up_money10(self):
         self.money = App.get_running_app().money
-        if self.money > self.price_money10:
+        if self.money >= self.price_money10:
             self.money10 += 1
             App.get_running_app().plus += 5000
             App.get_running_app().return_plus = count(App.get_running_app().plus)
@@ -3052,7 +3056,7 @@ class ScreenFive(Screen):
 
     def up_skill1(self):
         self.money = App.get_running_app().money
-        if self.money > self.price_skill1:
+        if self.money >= self.price_skill1:
             self.skill1 += 1
             App.get_running_app().money_in_sec += 1
             App.get_running_app().return_money_in_sec = count(App.get_running_app().money_in_sec)
@@ -3155,6 +3159,18 @@ class ScreensApp(MDApp):
         return_total_money_in_time = money_in_sec * time
         return_return_total_money_in_time = StringProperty(str(count(return_total_money_in_time)))
         return_return_total_money_in_time = str(count(return_total_money_in_time))
+    if return_total_money_in_time != 0:
+        podtverdit = 'Подтвердить'
+        btn1 = 'img/btn1.png'
+        btn1_pressed = 'img/btn1_pressed.png'
+        text_start = 'Вы получили ' + str(return_return_total_money_in_time)
+        page_for_time_total = 'img/page_for_time_total.png'
+    else:
+        podtverdit = ''
+        btn1 = 'img/clear.png'
+        btn1_pressed = 'img/clear.png'
+        text_start = ''
+        page_for_time_total = 'img/clear.png'
     def on_start(self):
         Clock.schedule_interval(self.get_time, 1)
         time = datetime.datetime.today() - datetime.datetime.strptime(sql_search_time()[0][1], '%Y-%m-%d %H:%M:%S.%f')
@@ -3166,6 +3182,12 @@ class ScreensApp(MDApp):
         else:
             App.get_running_app().return_money = str(count(sql_search_data()[0][1]))
         print(App.get_running_app().return_total_money_in_time)
+        cursor = connect.cursor()
+        sql_update_money = """Update time set last_start = ? where id = ?"""
+        data = (datetime.datetime.today(), 1)
+        cursor.execute(sql_update_money, data)
+        connect.commit()
+        cursor.close()
     def get_time(self, instance):
         App.get_running_app().money += App.get_running_app().money_in_sec
         self.update_sql_money()
@@ -3176,13 +3198,6 @@ class ScreensApp(MDApp):
     def build(self):
         m = Manager(transition=NoTransition())
         return m
-    def on_stop(self):
-        cursor = connect.cursor()
-        sql_update_money = """Update time set last_start = ? where id = ?"""
-        data = (datetime.datetime.today(), 1)
-        cursor.execute(sql_update_money, data)
-        connect.commit()
-        cursor.close()
     def update_sql_money(self):
         cursor = connect.cursor()
         sql_update_money = """Update data set sql_money = ? where id = ?"""
